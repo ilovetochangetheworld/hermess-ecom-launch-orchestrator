@@ -47,7 +47,10 @@ Rules:
 - Ask for only one essential missing input at a time.
 - If information is missing, continue with marked assumptions and a confidence level.
 - Keep updates concise enough for a business operator to act on immediately.
-- Before moving to the next stage, summarize the artifact produced and ask for confirmation only when business judgment is required.
+- Default to stage-by-stage interaction, not an automatic full run.
+- After each stage, stop and ask the user to choose: continue to next stage, revise current stage, or stop/export current assets.
+- Do not move to the next stage until the user confirms, unless the user explicitly asks for an uninterrupted full workflow run.
+- When asking for confirmation, include a short stage summary, produced artifacts, unresolved assumptions, and the recommended next action.
 
 ## Unified Flow
 
@@ -249,7 +252,7 @@ Required output:
 
 ## Default Run Order
 
-Use this sequence for a standard run:
+Use this sequence for a standard run. By default, complete one stage, summarize, and wait for user confirmation before continuing.
 
 1. Choose product.
 2. Product research and go/no-go.
@@ -260,6 +263,23 @@ Use this sequence for a standard run:
 7. Customer service Q&A.
 8. Comment/data review and loopback.
 9. Render user-facing asset pack HTML when the user wants a shareable deliverable.
+
+## Stage Confirmation Pattern
+
+At the end of every stage, output:
+
+```text
+Stage complete: ...
+Produced: ...
+Open assumptions: ...
+Recommended next action: ...
+Please choose:
+1. Continue to {next_stage}
+2. Revise this stage
+3. Stop and export current assets
+```
+
+If the user chooses option 1, continue to the next stage. If the user chooses option 2, ask for the smallest correction needed. If the user chooses option 3, generate the current workflow envelope and, when possible, an HTML asset pack.
 
 ## Shared Contracts
 

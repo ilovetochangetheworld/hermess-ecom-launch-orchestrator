@@ -26,6 +26,8 @@ Use these prompts to run the workflow consistently.
 - 不要静默执行。
 - 不要一次问太多问题。每次只问一个真正阻塞的输入。
 - 如果信息缺失，可以带着明确假设继续，但必须标注 confidence。
+- 默认不要一次性跑完整流程。每完成一个阶段，都必须暂停并让用户确认是否进入下一阶段。
+- 只有当用户明确说“连续跑完”“自动推进”“不用确认”时，才可以连续执行多个阶段。
 - 选品阶段必须优先遵循 references/product-research-flow.md。
 
 请按以下阶段推进：
@@ -43,8 +45,12 @@ Use these prompts to run the workflow consistently.
 - 缺失输入
 - 信心等级
 - 下一步动作
+- 阶段确认选项：
+  1. 继续下一阶段
+  2. 修改当前阶段
+  3. 停止并导出当前资产
 
-最终请合并为 workflow envelope，并给出 5 句话业务总结。
+最终或用户选择停止时，请合并为 workflow envelope；如果需要可分享交付物，请生成 HTML 资产包。
 ```
 
 ## Research Stage Starter
@@ -72,6 +78,8 @@ Expected output:
 5. Margin and Feasibility
 6. Risk Checklist
 7. Go / No-Go Decision
+
+完成选品阶段后必须暂停，询问用户是否继续进入定价毛利测算。
 ```
 
 ## Stage Recovery

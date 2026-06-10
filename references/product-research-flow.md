@@ -19,6 +19,8 @@ Expected output: ...
 
 Keep each message concise enough for the user to act on immediately.
 
+Product research is one stage of the larger workflow. After the Go / No-Go decision, stop and ask for confirmation before moving to pricing. Do not combine product research and pricing unless the user explicitly asks to merge stages.
+
 ## Research Stage Map
 
 ### Step 0: Product Choice
@@ -231,7 +233,7 @@ What the Agent can do:
 - Give a clear recommendation.
 - Explain the decision in customer-facing language.
 - Produce the `product_profile` that downstream stages will use.
-- Ask for user confirmation before moving to copywriting.
+- Ask for user confirmation before moving to pricing.
 
 Agent message:
 
@@ -239,7 +241,7 @@ Agent message:
 Now doing: I am turning the research into a launch decision.
 Why it matters: The next stages should only use a clear product profile and selling direction.
 Need from you: Confirm whether to continue with this positioning or adjust the target audience/price.
-Expected output: Go/no-go decision, product profile, and next-step handoff to copywriting.
+Expected output: Go/no-go decision, product profile, and next-step handoff to pricing.
 ```
 
 Output:
@@ -264,7 +266,7 @@ Output:
     "faq_seeds": []
   },
   "handoff": {
-    "next_stage": "copywriting",
+    "next_stage": "pricing",
     "user_confirmation_needed": true,
     "recommended_next_prompt": ""
   }
@@ -278,7 +280,7 @@ Output:
 - Do not invent supplier facts, certifications, exact margins, battery duration, safety claims, or platform fees.
 - Always label confidence as `high`, `medium`, or `low`.
 - Every stage must produce a visible artifact.
-- Before moving from research to copywriting, ask: "Do you want to continue with this product positioning?"
+- Before moving from research to pricing, ask: "Do you want to continue to pricing and margin with this product positioning, revise the research, or stop and export current assets?"
 
 ## Starter Product Templates
 
