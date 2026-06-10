@@ -8,7 +8,9 @@ from pathlib import Path
 
 REQUIRED_TOP_LEVEL = [
     "workflow_meta",
+    "stage_progress",
     "product_profile",
+    "pricing_pack",
     "content_pack",
     "image_pack",
     "publish_result",
@@ -38,6 +40,21 @@ def main() -> int:
         "ok": bool(product.get("name")) and len(product.get("key_features") or []) >= 3,
     })
 
+    progress = data.get("stage_progress") or []
+    checks.append({
+        "name": "agent_progress_contract_present",
+        "ok": bool(progress) and all(
+            all(key in item for key in ["Now doing", "Why it matters", "Need from you", "Expected output"])
+            for item in progress
+        ),
+    })
+
+    pricing = data.get("pricing_pack") or {}
+    checks.append({
+        "name": "pricing_pack_present",
+        "ok": bool(pricing.get("price_range")) and bool(pricing.get("cost_breakdown")),
+    })
+
     content = data.get("content_pack") or {}
     versions = content.get("versions") or []
     checks.append({
@@ -61,6 +78,11 @@ def main() -> int:
             "pending_review",
             "blocked",
         ],
+    })
+
+    checks.append({
+        "name": "direct_publish_disabled",
+        "ok": publish.get("direct_publish_enabled") is False,
     })
 
     ok = all(item["ok"] for item in checks)

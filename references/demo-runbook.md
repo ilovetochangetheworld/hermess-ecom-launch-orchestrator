@@ -8,7 +8,6 @@ Use this runbook for the workshop case "From zero to launch: your AI e-commerce 
 - Prepare one backup `product_profile` per product.
 - Prepare Amazon/1688 data or clearly marked assumptions.
 - Prepare sample comments for review analysis.
-- Refresh Xiaohongshu cookies within 30 minutes if direct publishing will be shown.
 - Keep a complete publishing package ready: title, body, hashtags, image order, and operator action.
 - Prepare real product images or supplier images for each demo product.
 - Prepare the Agent progress statement format: Now doing / Why it matters / Need from you / Expected output.
@@ -17,7 +16,7 @@ Use this runbook for the workshop case "From zero to launch: your AI e-commerce 
 
 Opening:
 
-"今天我们不讲复杂理论，直接做一个挑战：现场选一个小商品，让 Hermess Agent 在 10 分钟内跑完选品、文案、图片、发布、客服和复盘。"
+"今天我们不讲复杂理论，直接做一个挑战：现场选一个小商品，让 Hermess Agent 在 10 分钟内跑完选品、定价、文案、图片、发布素材包、客服和复盘。"
 
 Research transition:
 
@@ -42,7 +41,7 @@ Product image transition:
 
 Publishing readiness:
 
-"平台账号和风控状态会变化，但发布素材必须完整。即使现场不点最终发布，也要让客户看到标题、正文、图片顺序、话题标签和发布动作已经准备好。"
+"平台账号和风控状态会变化，所以现场不演示直接发布。我们要让客户看到标题、正文、图片顺序、话题标签和人工发布清单已经完整准备好。"
 
 Customer service transition:
 
@@ -58,9 +57,10 @@ Loopback close:
 | --- | --- | --- |
 | 0:00-0:45 | Audience chooses product | Product candidate |
 | 0:45-2:30 | Research summary | Product profile and go/no-go |
-| 2:30-4:00 | Copywriting | 2 Xiaohongshu notes |
-| 4:00-5:30 | Product image preparation | Cover/feature/lifestyle image order |
-| 5:30-7:00 | Publishing package or execution | Title, body, hashtags, image order, operator action |
+| 2:30-3:30 | Pricing | Price range and margin logic |
+| 3:30-5:00 | Copywriting | 2 Xiaohongshu notes |
+| 5:00-6:15 | Product image preparation | Cover/feature/lifestyle image order |
+| 6:15-7:15 | Publishing package | Title, body, hashtags, image order, operator action |
 | 7:00-8:30 | Customer service | FAQ and realtime replies |
 | 8:30-10:00 | Review loopback | Iteration roadmap and next research seed |
 

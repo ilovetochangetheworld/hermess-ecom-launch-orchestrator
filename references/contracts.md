@@ -30,6 +30,48 @@ Use these contracts to keep all e-commerce skills interoperable.
 }
 ```
 
+## Stage Progress
+
+```json
+{
+  "stage_progress": [
+    {
+      "Now doing": "What the Agent is doing now",
+      "Why it matters": "Business reason this step matters",
+      "Need from you": "One essential input or confirmation",
+      "Expected output": "Artifact this stage will produce"
+    }
+  ]
+}
+```
+
+## Pricing Pack
+
+```json
+{
+  "pricing_pack": {
+    "platform": "xiaohongshu",
+    "currency": "CNY",
+    "target_margin": 0.45,
+    "cost_breakdown": {
+      "purchase_cost": 25,
+      "return_loss_rate": 0.04,
+      "platform_fee_rate": 0.1,
+      "marketing_reserve_rate": 0.08,
+      "loaded_cost": 26
+    },
+    "price_range": {
+      "conservative": 64.4,
+      "recommended": 70,
+      "aggressive": 78.4
+    },
+    "compliance_warnings": [
+      "Do not mark an original price unless there is real transaction evidence."
+    ]
+  }
+}
+```
+
 ## Content Pack
 
 ```json
@@ -84,7 +126,11 @@ Use these contracts to keep all e-commerce skills interoperable.
       "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     }
-  }
+  },
+  "image_order": ["cover", "feature", "lifestyle"],
+  "missing_image_checklist": [],
+  "shot_list": [],
+  "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos."
 }
 ```
 
@@ -99,6 +145,9 @@ Use these contracts to keep all e-commerce skills interoperable.
     "url": "URL or null",
     "visibility": "private|public|null",
     "failure_reason": null,
+    "direct_publish_enabled": false,
+    "policy_note": "Direct Xiaohongshu publishing demo is paused.",
+    "operator_checklist": [],
     "next_action": "Operator action"
   }
 }

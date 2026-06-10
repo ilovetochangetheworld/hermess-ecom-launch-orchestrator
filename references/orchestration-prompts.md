@@ -14,7 +14,7 @@ Use these prompts to run the workflow consistently.
 - Amazon竞品数据：{有|无|已粘贴}
 - 1688供应数据：{有|无|已粘贴}
 - 商品图片：{有|无}
-- XHS发布条件：{已准备|未准备|仅生成发布素材}
+- 发布条件：{已准备人工发布|未准备|仅生成发布素材包}
 - 评论数据：{有|无|使用样例}
 
 工作要求：
@@ -30,11 +30,12 @@ Use these prompts to run the workflow consistently.
 
 请按以下阶段推进：
 1. 选品竞品分析
-2. 小红书种草文案
-3. 商品图片准备：基于真实商品图、供应商图或现场实拍图整理封面/功能/场景图片建议
-4. 发布素材或发布执行
-5. 智能客服 FAQ 和实时问答
-6. 评论分析与下一轮选品回流
+2. 定价和毛利测算
+3. 小红书种草文案
+4. 商品图片准备：基于真实商品图、供应商图或现场实拍图整理封面/功能/场景图片建议
+5. 发布素材包：不演示直接发布，只输出标题、正文、话题、图片顺序和人工操作清单
+6. 智能客服 FAQ 和实时问答
+7. 评论分析与下一轮选品回流
 
 每个阶段必须输出：
 - 当前正在做什么
@@ -78,7 +79,7 @@ Expected output:
 ```text
 当前 Hermess 电商演示卡在以下阶段：
 
-阶段：{research|copywriting|imaging|publishing|customer_service|review_analysis}
+阶段：{research|pricing|copywriting|image_prep|publishing_package|customer_service|review_analysis}
 阻塞原因：{具体原因}
 当前已有产物：{粘贴已有JSON或摘要}
 剩余演示时间：{分钟}

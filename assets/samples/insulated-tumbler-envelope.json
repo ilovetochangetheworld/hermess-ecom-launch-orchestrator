@@ -5,7 +5,8 @@
     "current_stage": "complete",
     "demo_status": "ready",
     "sample_version": "v0.2",
-    "reference_product": "40oz insulated travel tumbler with handle and straw"
+    "reference_product": "40oz insulated travel tumbler with handle and straw",
+    "direct_publish_enabled": false
   },
   "product_profile": {
     "name": "40oz Stainless Steel Insulated Travel Tumbler with Handle, Straw Lid, and Cupholder Base",
@@ -127,8 +128,16 @@
     "url": null,
     "visibility": null,
     "failure_reason": null,
-    "next_action": "Review the publishing package, confirm account readiness, then publish with the prepared title, body, hashtags, and image order.",
-    "publishing_readiness": "pending_review"
+    "next_action": "Review the package and publish through the approved operator workflow.",
+    "publishing_readiness": "pending_review",
+    "direct_publish_enabled": false,
+    "policy_note": "Direct Xiaohongshu publishing demo is paused. The Agent prepares a publish-ready package for approved operator workflow.",
+    "operator_checklist": [
+      "确认账号和平台规则",
+      "确认图片来自真实商品/供应商/用户提供",
+      "复核标题、正文、话题和价格表述",
+      "由人工在平台完成发布"
+    ]
   },
   "customer_service_pack": {
     "faq_list": [
@@ -260,5 +269,56 @@
     "product image order and shot list",
     "FAQ pack",
     "review loopback seed"
+  ],
+  "stage_progress": [
+    {
+      "Now doing": "选择演示商品并建立产品事实",
+      "Why it matters": "选品先判断商品是否值得继续，避免后续内容空转。",
+      "Need from you": "选择商品或提供链接、图片、供应价。",
+      "Expected output": "产品画像和 go/no-go 结论。"
+    },
+    {
+      "Now doing": "计算价格和毛利空间",
+      "Why it matters": "客户需要看到这个商品不只是能写文案，也有经营可行性。",
+      "Need from you": "采购价、目标平台和预期毛利。",
+      "Expected output": "保守/建议/进取三个价格。"
+    },
+    {
+      "Now doing": "生成发布素材包",
+      "Why it matters": "平台发布动作可由人工确认，但素材必须完整可用。",
+      "Need from you": "确认账号、平台规则和最终发布边界。",
+      "Expected output": "标题、正文、标签、图片顺序和操作清单。"
+    }
+  ],
+  "pricing_pack": {
+    "platform": "xiaohongshu",
+    "currency": "CNY",
+    "target_margin": 0.45,
+    "cost_breakdown": {
+      "purchase_cost": 32,
+      "return_loss_rate": 0.04,
+      "platform_fee_rate": 0.1,
+      "marketing_reserve_rate": 0.08,
+      "loaded_cost": 33.28
+    },
+    "price_range": {
+      "conservative": 76.8,
+      "recommended": 86.4,
+      "aggressive": 99.2
+    },
+    "compliance_warnings": [
+      "不要标注无法证明的原价或限时折扣。"
+    ]
+  },
+  "image_order": [
+    "cover",
+    "feature",
+    "lifestyle"
+  ],
+  "missing_image_checklist": [],
+  "shot_list": [
+    "准备真实封面商品图",
+    "准备真实功能细节图",
+    "准备真实使用场景图"
   ]
 }
