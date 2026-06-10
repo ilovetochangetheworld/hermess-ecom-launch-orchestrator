@@ -53,8 +53,14 @@ def main() -> int:
 
     publish = data.get("publish_result") or {}
     checks.append({
-        "name": "publish_mode_present",
-        "ok": publish.get("publish_mode") in ["live", "mock", "manual"],
+        "name": "publishing_readiness_present",
+        "ok": publish.get("publishing_readiness") in [
+            "ready",
+            "pending_account",
+            "pending_cookie",
+            "pending_review",
+            "blocked",
+        ],
     })
 
     ok = all(item["ok"] for item in checks)

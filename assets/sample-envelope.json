@@ -1,7 +1,7 @@
 {
   "workflow_meta": {
     "workflow_name": "from_zero_to_launch",
-    "mode": "mock",
+    "mode": "customer_demo",
     "current_stage": "complete",
     "demo_status": "ready"
   },
@@ -29,10 +29,19 @@
     "differentiation_direction": "Position around quiet office comfort and portable summer essentials.",
     "target_audience": "College students and office workers who need personal cooling in small spaces.",
     "visual_style": "Clean summer colors, bright desk scene, lightweight portable feeling.",
-    "image_prompts": [
-      "White portable mini desk fan with USB-C cable on a clean light blue background, professional product photography, soft side lighting, high detail",
-      "Infographic-style product photo showing 3-speed airflow, USB-C charging port, compact size, clean labels, high detail",
-      "Lifestyle photo of a young office worker using a mint green mini desk fan beside a laptop in a bright workspace, natural summer light"
+    "image_needs": [
+      {
+        "role": "cover",
+        "requirement": "White portable mini desk fan with USB-C cable on a clean light blue background, professional product photography, soft side lighting, high detail"
+      },
+      {
+        "role": "feature",
+        "requirement": "Infographic-style product photo showing 3-speed airflow, USB-C charging port, compact size, clean labels, high detail"
+      },
+      {
+        "role": "lifestyle",
+        "requirement": "Lifestyle photo of a young office worker using a mint green mini desk fan beside a laptop in a bright workspace, natural summer light"
+      }
     ]
   },
   "content_pack": {
@@ -43,7 +52,16 @@
         "type": "测评型",
         "title": "桌面小风扇真香了",
         "body": "办公室空调总是不均匀，我工位这边经常闷到没精神。最近试了这个 USB-C 充电的小风扇，三档风力够用，放在电脑旁边也不占地方。它声音比较轻，开一档写东西不会被打扰，午休也能用。白色机身看起来很干净，包里放一根充电线就能带走。适合宿舍、工位、通勤包里备一个。",
-        "hashtags": ["#桌面好物", "#夏日好物", "#办公室好物", "#小风扇", "#宿舍好物", "#通勤好物", "#降温神器", "#学生党好物"]
+        "hashtags": [
+          "#桌面好物",
+          "#夏日好物",
+          "#办公室好物",
+          "#小风扇",
+          "#宿舍好物",
+          "#通勤好物",
+          "#降温神器",
+          "#学生党好物"
+        ]
       }
     ],
     "sales_claims": [
@@ -64,34 +82,34 @@
   "image_pack": {
     "cover": {
       "role": "封面图",
-      "prompt": "White portable mini desk fan with USB-C cable on a clean light blue background, professional product photography, soft side lighting, high detail",
-      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
-      "file_path": null,
-      "why_this_image": "Show the full product clearly for the first screen."
+      "why_this_image": "Show the full product clearly for the first screen.",
+      "source_type": "missing",
+      "source_path_or_url": null,
+      "required_if_missing": "Provide a clear front or three-quarter real product photo for the cover."
     },
     "feature": {
       "role": "功能图",
-      "prompt": "Infographic-style product photo showing 3-speed airflow, USB-C charging port, compact size, clean labels, high detail",
-      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
-      "file_path": null,
-      "why_this_image": "Make the core selling points visible."
+      "why_this_image": "Make the core selling points visible.",
+      "source_type": "missing",
+      "source_path_or_url": null,
+      "required_if_missing": "Provide real product detail images that show the key feature."
     },
     "lifestyle": {
       "role": "场景图",
-      "prompt": "Lifestyle photo of a young office worker using a mint green mini desk fan beside a laptop in a bright workspace, natural summer light",
-      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
-      "file_path": null,
-      "why_this_image": "Create a relatable office use scene."
+      "why_this_image": "Create a relatable office use scene.",
+      "source_type": "missing",
+      "source_path_or_url": null,
+      "required_if_missing": "Provide a real use-scene photo or a supplier lifestyle image."
     }
   },
   "publish_result": {
-    "publish_mode": "mock",
-    "status": "preview_ready",
+    "status": "package_ready",
     "title": "桌面小风扇真香了",
     "url": null,
-    "visibility": "mock",
+    "visibility": null,
     "failure_reason": null,
-    "next_action": "Use mock preview or switch to live xhs-cli after cookie refresh."
+    "next_action": "Review the publishing package, confirm account readiness, then publish with the prepared title, body, hashtags, and image order.",
+    "publishing_readiness": "pending_review"
   },
   "customer_service_pack": {
     "faq_list": [
@@ -147,7 +165,10 @@
     "iteration_roadmap": {
       "phase_1": {
         "timeline": "立即",
-        "actions": ["Add battery life FAQ", "Put USB-C charging in title and first image"],
+        "actions": [
+          "Add battery life FAQ",
+          "Put USB-C charging in title and first image"
+        ],
         "budget_per_unit": "¥0",
         "impact": "Improve conversion for cautious buyers"
       }
@@ -155,23 +176,36 @@
     "loopback": {
       "original_hypothesis_valid": "true",
       "invalid_points": [],
-      "new_insights": ["Battery life needs to be shown earlier than color options."],
+      "new_insights": [
+        "Battery life needs to be shown earlier than color options."
+      ],
       "next_selection_adjustment": "Prioritize suppliers with documented battery capacity and quieter motor specs.",
       "confidence_level": "medium"
     }
   },
   "next_research_seed": {
     "recommended_keyword": "quiet USB-C rechargeable mini desk fan",
-    "avoid_features": ["no battery capacity listed", "proprietary charging cable"],
-    "must_have_features": ["USB-C charging", "documented battery capacity", "low-noise motor"],
+    "avoid_features": [
+      "no battery capacity listed",
+      "proprietary charging cable"
+    ],
+    "must_have_features": [
+      "USB-C charging",
+      "documented battery capacity",
+      "low-noise motor"
+    ],
     "new_target_audience": "Office workers and dorm users sensitive to noise and desk space.",
     "price_band_adjustment": "Keep retail under $24.99.",
-    "supplier_requirements": ["battery capacity proof", "noise level claim", "color options"]
+    "supplier_requirements": [
+      "battery capacity proof",
+      "noise level claim",
+      "color options"
+    ]
   },
   "audience_takeaway": [
     "product profile JSON",
     "Xiaohongshu note",
-    "3 image prompts",
+    "product image order and shot list",
     "FAQ pack",
     "review loopback seed"
   ]

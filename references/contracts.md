@@ -25,7 +25,7 @@ Use these contracts to keep all e-commerce skills interoperable.
     "differentiation_direction": "Specific differentiation direction",
     "target_audience": "Specific audience",
     "visual_style": "Image direction based on actual product appearance",
-    "image_prompts": ["cover prompt", "feature prompt", "lifestyle prompt"]
+    "image_needs": ["cover image need", "feature image need", "lifestyle image need"]
   }
 }
 ```
@@ -65,23 +65,23 @@ Use these contracts to keep all e-commerce skills interoperable.
   "image_pack": {
     "cover": {
       "role": "封面图",
-      "prompt": "Prompt",
-      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect age label, unsafe use scene",
-      "file_path": "Local path or URL",
+      "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
+      "source_path_or_url": "Local path or URL",
+      "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     },
     "feature": {
       "role": "功能图",
-      "prompt": "Prompt",
-      "negative_prompt": "Same negative prompt",
-      "file_path": "Local path or URL",
+      "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
+      "source_path_or_url": "Local path or URL",
+      "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     },
     "lifestyle": {
       "role": "场景图",
-      "prompt": "Prompt",
-      "negative_prompt": "Same negative prompt",
-      "file_path": "Local path or URL",
+      "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
+      "source_path_or_url": "Local path or URL",
+      "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     }
   }
@@ -93,11 +93,11 @@ Use these contracts to keep all e-commerce skills interoperable.
 ```json
 {
   "publish_result": {
-    "publish_mode": "live|mock|manual",
-    "status": "published|preview_ready|copy_pack_ready|failed",
+    "publishing_readiness": "ready|pending_account|pending_cookie|pending_review|blocked",
+    "status": "published|package_ready|needs_operator_action|failed",
     "title": "Published title",
     "url": "URL or null",
-    "visibility": "private|public|mock|null",
+    "visibility": "private|public|null",
     "failure_reason": null,
     "next_action": "Operator action"
   }

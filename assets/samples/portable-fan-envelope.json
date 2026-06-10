@@ -1,7 +1,7 @@
 {
   "workflow_meta": {
     "workflow_name": "from_zero_to_launch",
-    "mode": "mock",
+    "mode": "customer_demo",
     "current_stage": "complete",
     "demo_status": "ready",
     "sample_version": "v0.2",
@@ -32,10 +32,19 @@
     "differentiation_direction": "Position around hands-free travel cooling with visible battery level and quiet low-speed office use.",
     "target_audience": "College students and commuters who spend time in hot subways, queues, dorms, and small offices.",
     "visual_style": "Clean summer palette, bright commute and desk scenes, close-up LED display and folding stand.",
-    "image_prompts": [
-      "Compact white USB-C rechargeable handheld fan with LED battery display and folding handle, placed on a pale blue summer background, professional product photography, soft side lighting, high detail",
-      "Infographic-style product photo of a portable fan showing five wind speeds, USB-C charging port, LED battery display, folding desk stand, clean labels, high detail",
-      "Lifestyle photo of a college student using a mint green handheld fan while waiting at a sunny train platform, summer outfit, natural light, realistic travel scene"
+    "image_needs": [
+      {
+        "role": "cover",
+        "requirement": "Compact white USB-C rechargeable handheld fan with LED battery display and folding handle, placed on a pale blue summer background, professional product photography, soft side lighting, high detail"
+      },
+      {
+        "role": "feature",
+        "requirement": "Infographic-style product photo of a portable fan showing five wind speeds, USB-C charging port, LED battery display, folding desk stand, clean labels, high detail"
+      },
+      {
+        "role": "lifestyle",
+        "requirement": "Lifestyle photo of a college student using a mint green handheld fan while waiting at a sunny train platform, summer outfit, natural light, realistic travel scene"
+      }
     ]
   },
   "content_pack": {
@@ -46,13 +55,31 @@
         "type": "测评型",
         "title": "通勤小风扇救我一命",
         "body": "最近地铁站真的闷到怀疑人生，我包里常备这个 USB-C 充电小风扇。它有 5 档风，低档在办公室用不会太吵，高档排队等车的时候很顶用。最喜欢的是小屏幕能看到电量，不用猜还能撑多久。手柄折起来可以直接立在桌上，宿舍写作业、工位午休都能用。白色机身不占包，夏天出门带它比带一堆降温贴更实在。",
-        "hashtags": ["#夏日好物", "#通勤好物", "#桌面好物", "#小风扇", "#宿舍好物", "#学生党好物", "#地铁通勤", "#办公室好物"]
+        "hashtags": [
+          "#夏日好物",
+          "#通勤好物",
+          "#桌面好物",
+          "#小风扇",
+          "#宿舍好物",
+          "#学生党好物",
+          "#地铁通勤",
+          "#办公室好物"
+        ]
       },
       {
         "type": "生活型",
         "title": "夏天出门少不了它",
         "body": "我以前夏天最怕等车，空气不动的时候脸上全是汗。后来包里放了这个小风扇，USB-C 充电，5 档风力，出门前看一眼 LED 电量就很安心。到办公室以后把手柄折开，它还能变成桌面风扇，不用一直拿着。颜色是很清爽的白色，放电脑旁边也不突兀。对经常通勤、上课、排队的人来说，真的属于夏天刚需。",
-        "hashtags": ["#我的通勤包", "#夏天必备", "#降温好物", "#便携小风扇", "#办公室桌面", "#宿舍生活", "#旅行好物", "#清凉一夏"]
+        "hashtags": [
+          "#我的通勤包",
+          "#夏天必备",
+          "#降温好物",
+          "#便携小风扇",
+          "#办公室桌面",
+          "#宿舍生活",
+          "#旅行好物",
+          "#清凉一夏"
+        ]
       }
     ],
     "sales_claims": [
@@ -74,34 +101,34 @@
   "image_pack": {
     "cover": {
       "role": "封面图",
-      "prompt": "Compact white USB-C rechargeable handheld fan with LED battery display and folding handle, placed on a pale blue summer background, professional product photography, soft side lighting, high detail",
-      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
-      "file_path": null,
-      "why_this_image": "Shows the product body, display, and summer visual tone."
+      "why_this_image": "Shows the product body, display, and summer visual tone.",
+      "source_type": "missing",
+      "source_path_or_url": null,
+      "required_if_missing": "Provide a clear front or three-quarter real product photo for the cover."
     },
     "feature": {
       "role": "功能图",
-      "prompt": "Infographic-style product photo of a portable fan showing five wind speeds, USB-C charging port, LED battery display, folding desk stand, clean labels, high detail",
-      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
-      "file_path": null,
-      "why_this_image": "Turns the key differentiators into visual proof points."
+      "why_this_image": "Turns the key differentiators into visual proof points.",
+      "source_type": "missing",
+      "source_path_or_url": null,
+      "required_if_missing": "Provide real product detail images that show the key feature."
     },
     "lifestyle": {
       "role": "场景图",
-      "prompt": "Lifestyle photo of a college student using a mint green handheld fan while waiting at a sunny train platform, summer outfit, natural light, realistic travel scene",
-      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
-      "file_path": null,
-      "why_this_image": "Creates commute heat-relief context."
+      "why_this_image": "Creates commute heat-relief context.",
+      "source_type": "missing",
+      "source_path_or_url": null,
+      "required_if_missing": "Provide a real use-scene photo or a supplier lifestyle image."
     }
   },
   "publish_result": {
-    "publish_mode": "mock",
-    "status": "preview_ready",
+    "status": "package_ready",
     "title": "通勤小风扇救我一命",
     "url": null,
-    "visibility": "mock",
+    "visibility": null,
     "failure_reason": null,
-    "next_action": "Use mock preview, or switch to xhs-cli live private publish after cookie refresh."
+    "next_action": "Review the publishing package, confirm account readiness, then publish with the prepared title, body, hashtags, and image order.",
+    "publishing_readiness": "pending_review"
   },
   "customer_service_pack": {
     "faq_list": [
@@ -175,13 +202,20 @@
     "iteration_roadmap": {
       "phase_1": {
         "timeline": "立即",
-        "actions": ["Add battery duration table", "Add low-speed noise FAQ", "Use LED display close-up as second image"],
+        "actions": [
+          "Add battery duration table",
+          "Add low-speed noise FAQ",
+          "Use LED display close-up as second image"
+        ],
         "budget_per_unit": "¥0",
         "impact": "Improve trust in battery and noise claims"
       },
       "phase_2": {
         "timeline": "3个月",
-        "actions": ["Source model with larger battery", "Add neck strap bundle option"],
+        "actions": [
+          "Source model with larger battery",
+          "Add neck strap bundle option"
+        ],
         "budget_per_unit": "¥3-8/台",
         "impact": "Increase outdoor and travel appeal"
       }
@@ -189,18 +223,39 @@
     "loopback": {
       "original_hypothesis_valid": "true",
       "invalid_points": [],
-      "new_insights": ["LED battery visibility is a stronger trust signal than color options."],
+      "new_insights": [
+        "LED battery visibility is a stronger trust signal than color options."
+      ],
       "next_selection_adjustment": "Prioritize fans with published battery capacity, clear charging port photos, and low-speed noise claims.",
       "confidence_level": "medium"
     }
   },
   "next_research_seed": {
     "recommended_keyword": "USB-C rechargeable handheld fan LED display 5 speed",
-    "avoid_features": ["micro-USB charging", "no battery capacity listed", "no stand function"],
-    "must_have_features": ["USB-C charging", "LED battery display", "folding stand", "at least 3 speeds"],
+    "avoid_features": [
+      "micro-USB charging",
+      "no battery capacity listed",
+      "no stand function"
+    ],
+    "must_have_features": [
+      "USB-C charging",
+      "LED battery display",
+      "folding stand",
+      "at least 3 speeds"
+    ],
     "new_target_audience": "Commuters, students, and outdoor event users who need visible battery confidence.",
     "price_band_adjustment": "Retail around $18.99-24.99; avoid premium pricing unless battery life is proven.",
-    "supplier_requirements": ["battery capacity documentation", "noise level data", "UN38.3 battery transport support"]
+    "supplier_requirements": [
+      "battery capacity documentation",
+      "noise level data",
+      "UN38.3 battery transport support"
+    ]
   },
-  "audience_takeaway": ["product profile JSON", "2 Xiaohongshu notes", "3 image prompts", "FAQ pack", "review loopback seed"]
+  "audience_takeaway": [
+    "product profile JSON",
+    "2 Xiaohongshu notes",
+    "product image order and shot list",
+    "FAQ pack",
+    "review loopback seed"
+  ]
 }

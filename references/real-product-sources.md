@@ -1,6 +1,6 @@
 # Real Product Source Notes
 
-These notes support the v0.2 mock samples. They are not copied product listings; they summarize public, factual product signals for demo-safe sample construction.
+These notes support the v0.2 demo product templates. They are not copied product listings; they summarize public, factual product signals for workshop-safe sample construction.
 
 ## Portable Fan
 

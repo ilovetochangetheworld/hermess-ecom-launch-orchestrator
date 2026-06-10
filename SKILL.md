@@ -1,6 +1,6 @@
 ---
 name: hermess-ecom-launch-orchestrator
-description: Use this skill when Hermess Agent needs to run, demo, or troubleshoot a full e-commerce launch workflow from product research to Xiaohongshu copywriting, AI product images, publishing, customer service FAQ, review analysis, and loopback iteration. It coordinates existing e-commerce skills, validates stage outputs, chooses live/mock/manual fallback modes, and produces workshop-ready takeaways.
+description: Use this skill when Hermess Agent needs to run or demo the customer-facing workshop case "From zero to launch: your AI e-commerce partner". It guides a product from selection research to Xiaohongshu copywriting, real product image preparation, publishing assets, customer service FAQ, review analysis, and loopback iteration. It coordinates existing e-commerce skills, proactively tells the user what it is doing at every stage, validates stage outputs, and produces workshop-ready takeaways.
 ---
 
 # Hermess Ecom Launch Orchestrator
@@ -9,7 +9,7 @@ Use this as the control layer for the "From zero to launch: AI e-commerce partne
 
 1. `ecom-product-research`
 2. `xiaohongshu-copywriting`
-3. `ecom-product-imaging`
+3. `ecom-product-imaging` or product image preparation tools
 4. `xiaohongshu-publish`
 5. `ecom-customer-service`
 6. `ecom-review-analysis`
@@ -18,17 +18,29 @@ Use this as the control layer for the "From zero to launch: AI e-commerce partne
 
 Help the user move one product through a complete launch loop:
 
-`research -> content -> images -> publish -> customer service -> review analysis -> next research seed`
+`research -> content -> product images -> publish -> customer service -> review analysis -> next research seed`
 
-For workshops, prioritize a stable 10-minute demo with visible artifacts over exhaustive analysis.
+For workshops, prioritize a real, customer-facing 10-minute demo with visible artifacts over exhaustive analysis.
 
-## Operating Modes
+## Agent Communication Contract
 
-- `live`: execute real integrations when credentials, cookies, APIs, and network are ready.
-- `mock`: use prepared/sample data and local previews when a platform blocks automation.
-- `manual`: generate copy-paste-ready assets when live publishing is risky or unavailable.
+The Agent must not silently work through the flow. At the beginning of every stage and before every external action, proactively tell the user:
 
-Default to `mock` for rehearsals, `live` only after the preflight checklist passes.
+- **Now doing:** the current action in one sentence.
+- **Why it matters:** the business purpose of this action.
+- **Need from you:** the minimum user input needed now, or "nothing yet".
+- **Expected output:** what artifact will be produced next.
+
+Use short, customer-facing language. Do not expose internal implementation detail unless the user asks.
+
+Example:
+
+```text
+Now doing: I am checking whether this product has enough demand and margin to be worth launching.
+Why it matters: We should not write copy or prepare images before confirming the product has a sellable angle.
+Need from you: Please choose one product: portable fan, 40oz tumbler, clear phone case, or your own product.
+Expected output: A go/no-go decision, target audience, selling angle, and risk checklist.
+```
 
 ## Orchestration Workflow
 
@@ -38,11 +50,10 @@ Collect or confirm:
 
 - product name or physical product selected by the audience
 - target market and platform
-- demo mode: `live`, `mock`, or `manual`
-- available inputs: Amazon data, 1688 data, product images, XHS cookies, comments
+- available inputs: marketplace data, supplier data, real product images, XHS publishing readiness, comments
 - time budget
 
-If data is missing, switch to the smallest fallback that preserves the story.
+If data is missing, continue with clearly marked assumptions and tell the user what confidence is affected.
 
 ### 2. Product Research
 
@@ -57,6 +68,8 @@ Required output:
 
 Before moving on, check that `product_profile` contains concrete product details, not just a category name.
 
+For the detailed product research interaction flow, read `references/product-research-flow.md`.
+
 ### 3. Xiaohongshu Copywriting
 
 Call or guide `xiaohongshu-copywriting`.
@@ -70,29 +83,24 @@ Required output:
 
 Reject generic copy. The body must mention at least 3 concrete fields from `product_profile`.
 
-### 4. Product Imaging
+### 4. Product Image Preparation
 
-Call or guide `ecom-product-imaging`.
+Use real product images whenever possible:现场实拍、供应商图、选品截图、商品详情图. AI may help organize, annotate, rank, and describe images, but do not position draft visuals as the real product listing source.
 
 Required output:
 
 - `image_pack.cover`
 - `image_pack.feature`
 - `image_pack.lifestyle`
+- image usage reason and missing-image checklist
 
-Avoid fake logos, unreadable text, incorrect age labels, distorted hands, and unsafe scenes.
+If real images are missing, ask the user for product photos or supplier links. If the user explicitly asks for generated scene drafts, label them as draft visual concepts, not real product photos.
 
 ### 5. Publishing
 
 Call or guide `xiaohongshu-publish`.
 
-Select publishing path:
-
-- use `live` if XHS cookie is fresh and xhs-cli is ready
-- use `mock` if platform/session reliability is uncertain
-- use `manual` if the user needs copy-paste assets
-
-Never block the workshop on publishing. If live publishing fails, continue with a mock preview and explain the platform constraint briefly.
+Prepare the publishable title, body, hashtags, and image order. If platform/account status changes, still produce a complete publishing package and explain the operator action needed to publish.
 
 ### 6. Customer Service
 
@@ -128,7 +136,7 @@ Whenever possible, consolidate outputs into this envelope:
 {
   "workflow_meta": {
     "workflow_name": "from_zero_to_launch",
-    "mode": "live|mock|manual",
+    "mode": "customer_demo|real_launch",
     "current_stage": "preflight|research|copywriting|imaging|publishing|customer_service|review_analysis|complete",
     "demo_status": "ready|partial_ready|blocked"
   },
@@ -155,8 +163,8 @@ Before presenting a result, check:
 
 - product details are specific enough for the next stage
 - copy mentions concrete product parameters
-- image prompts describe actual appearance and use scenes
-- publish path is clear: live/mock/manual
+- product images come from real product sources or are clearly marked as concept drafts
+- publishing package is complete
 - FAQ covers top pain points
 - review analysis produces a usable next research seed
 
@@ -169,18 +177,18 @@ For a 10-minute live demo:
 - 0:00-0:45 choose product
 - 0:45-2:30 research summary
 - 2:30-4:00 copywriting
-- 4:00-5:30 images
-- 5:30-7:00 publish or mock publish
+- 4:00-5:30 product image preparation
+- 5:30-7:00 publishing package or publishing execution
 - 7:00-8:30 customer service Q&A
 - 8:30-10:00 review loopback and takeaway pack
 
-For fallback scripts and presenter wording, read `references/demo-runbook.md`.
+For presenter wording, read `references/demo-runbook.md`.
 
 ## Sample Data
 
-For rehearsals or mock mode, use `assets/sample-envelope.json` as a complete example of the workflow envelope.
+For rehearsals or customer demos, use `assets/sample-envelope.json` as a complete example of the workflow envelope.
 
-For v0.2 real-product-inspired mock demos, use:
+For real-product-inspired demo templates, use:
 
 - `assets/samples/portable-fan-envelope.json`
 - `assets/samples/insulated-tumbler-envelope.json`

@@ -6,11 +6,12 @@ Use this runbook for the workshop case "From zero to launch: your AI e-commerce 
 
 - Choose 3 backup products: small fan, cup, phone case, or hair dryer.
 - Prepare one backup `product_profile` per product.
-- Prepare sample Amazon and 1688 data.
+- Prepare Amazon/1688 data or clearly marked assumptions.
 - Prepare sample comments for review analysis.
-- Refresh Xiaohongshu cookies within 30 minutes if using `live`.
-- Keep `mock` publish preview ready.
-- Keep generated images or image prompts ready as fallback.
+- Refresh Xiaohongshu cookies within 30 minutes if direct publishing will be shown.
+- Keep a complete publishing package ready: title, body, hashtags, image order, and operator action.
+- Prepare real product images or supplier images for each demo product.
+- Prepare the Agent progress statement format: Now doing / Why it matters / Need from you / Expected output.
 
 ## Recommended Demo Story
 
@@ -22,13 +23,26 @@ Research transition:
 
 "第一步不是写文案，而是先判断这个商品值不值得卖。AI 会把需求、竞品、利润和风险变成一个可执行的产品画像。"
 
+Research Agent progress example:
+
+```text
+Now doing: 我正在判断这个商品是否值得继续进入发布链路。
+Why it matters: 如果商品的人群、卖点和利润不清楚，后面的文案和发布都会变成空转。
+Need from you: 请选择一个商品，或给我商品链接/图片/供应价格。
+Expected output: 选品结论、目标人群、核心卖点和风险清单。
+```
+
 Copywriting transition:
 
 "有了产品画像，文案就不再是泛泛种草，而是围绕具体人群、具体痛点、具体参数来写。"
 
-Publishing fallback:
+Product image transition:
 
-"平台账号和风控经常会影响真实发布。如果现场接口不稳定，我们切换到模拟发布页，业务流程和产物不变。"
+"商品图不应该凭空生成。我们优先用真实商品图、供应商图或现场实拍图，让 AI 帮我们判断哪张做封面、哪张讲功能、哪张讲使用场景。"
+
+Publishing readiness:
+
+"平台账号和风控状态会变化，但发布素材必须完整。即使现场不点最终发布，也要让客户看到标题、正文、图片顺序、话题标签和发布动作已经准备好。"
 
 Customer service transition:
 
@@ -45,19 +59,19 @@ Loopback close:
 | 0:00-0:45 | Audience chooses product | Product candidate |
 | 0:45-2:30 | Research summary | Product profile and go/no-go |
 | 2:30-4:00 | Copywriting | 2 Xiaohongshu notes |
-| 4:00-5:30 | Imaging | 3 image prompts or images |
-| 5:30-7:00 | Publish | Live/private post or mock preview |
+| 4:00-5:30 | Product image preparation | Cover/feature/lifestyle image order |
+| 5:30-7:00 | Publishing package or execution | Title, body, hashtags, image order, operator action |
 | 7:00-8:30 | Customer service | FAQ and realtime replies |
 | 8:30-10:00 | Review loopback | Iteration roadmap and next research seed |
 
-## Fallback Ladder
+## Continuation Plan
 
-1. Real platform data and live execution.
-2. Real product with prepared data.
-3. Prepared product with mock publish.
-4. Static sample artifacts plus live explanation.
+1. Use real product data and direct publishing when ready.
+2. If a platform/account step is not ready, still produce the complete publishing package.
+3. If marketplace data is missing, continue with clearly marked assumptions and lower confidence.
+4. If product images are missing, request user photos/supplier images and produce an image shot list.
 
-The story should never fail because one platform blocks automation.
+The story should never fail because one platform status changes. The Agent should explain what is ready and what operator action remains.
 
 ## Audience Takeaway Pack
 
@@ -65,7 +79,7 @@ Prepare these outputs for participants:
 
 - product profile JSON
 - Xiaohongshu note versions
-- image prompts or generated images
+- product image order and shot list
 - FAQ knowledge base
 - review analysis sample
 - one-page prompt template

@@ -7,7 +7,6 @@ Use these prompts to run the workflow consistently.
 ```text
 你是 Hermess 电商全链路总控 Agent。请把一个商品从选品分析推进到可发布、可客服、可复盘的完整闭环。
 
-演示模式：{live|mock|manual}
 商品：{商品名称或现场商品描述}
 目标平台：小红书
 目标用户：{可选}
@@ -15,25 +14,63 @@ Use these prompts to run the workflow consistently.
 - Amazon竞品数据：{有|无|已粘贴}
 - 1688供应数据：{有|无|已粘贴}
 - 商品图片：{有|无}
-- XHS Cookie：{已刷新|未刷新|不用真实发布}
+- XHS发布条件：{已准备|未准备|仅生成发布素材}
 - 评论数据：{有|无|使用样例}
+
+工作要求：
+- 在每个阶段开始前，主动输出：
+  1. Now doing：我现在正在做什么
+  2. Why it matters：为什么这一步重要
+  3. Need from you：现在需要用户提供什么
+  4. Expected output：下一步会产出什么
+- 不要静默执行。
+- 不要一次问太多问题。每次只问一个真正阻塞的输入。
+- 如果信息缺失，可以带着明确假设继续，但必须标注 confidence。
+- 选品阶段必须优先遵循 references/product-research-flow.md。
 
 请按以下阶段推进：
 1. 选品竞品分析
 2. 小红书种草文案
-3. 产品图生成或图片 prompt
-4. 发布或模拟发布
+3. 商品图片准备：基于真实商品图、供应商图或现场实拍图整理封面/功能/场景图片建议
+4. 发布素材或发布执行
 5. 智能客服 FAQ 和实时问答
 6. 评论分析与下一轮选品回流
 
 每个阶段必须输出：
-- 当前阶段状态
+- 当前正在做什么
 - 已完成产物
 - 缺失输入
-- 是否触发 fallback
+- 信心等级
 - 下一步动作
 
 最终请合并为 workflow envelope，并给出适合现场讲解的 5 句话总结。
+```
+
+## Research Stage Starter
+
+```text
+请先进入“从 0 开张：你的 AI 电商合伙人”的选品阶段。
+
+你必须按以下格式主动播报：
+Now doing:
+Why it matters:
+Need from you:
+Expected output:
+
+先不要直接写长报告。请先帮助我完成商品选择：
+- 选项 A：便携小风扇
+- 选项 B：40oz 杯子
+- 选项 C：透明 MagSafe 手机壳
+- 选项 D：我自己的商品
+
+用户选择后，再按 product-research-flow.md 依次完成：
+1. Product Choice
+2. Product Fact Capture
+3. Demand Hypothesis
+4. Competition and Differentiation
+5. Margin and Feasibility
+6. Risk Checklist
+7. Go / No-Go Decision
 ```
 
 ## Stage Recovery
@@ -46,11 +83,11 @@ Use these prompts to run the workflow consistently.
 当前已有产物：{粘贴已有JSON或摘要}
 剩余演示时间：{分钟}
 
-请判断应该采用 live、mock 还是 manual 路径继续，并输出：
-1. 推荐路径
+请判断应该如何继续，并输出：
+1. 推荐继续方式
 2. 对观众的解释话术
 3. 可继续展示的产物
-4. 需要跳过或模拟的动作
+4. 需要用户补充的最小输入
 5. 下一步操作
 ```
 

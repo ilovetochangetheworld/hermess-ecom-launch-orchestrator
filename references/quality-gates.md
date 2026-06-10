@@ -15,7 +15,7 @@ Pass conditions:
 Fail action:
 
 - Ask for one missing input if it is essential.
-- Otherwise continue in `mock` mode with sample assumptions clearly marked.
+- Otherwise continue with clearly marked assumptions and lower the confidence level.
 
 ## Copywriting
 
@@ -31,32 +31,32 @@ Fail action:
 - Rewrite once with stricter grounding.
 - If still weak, produce a `needs_humanizer: true` flag and explain what needs manual polishing.
 
-## Imaging
+## Product Image Preparation
 
 Pass conditions:
 
-- Each prompt states actual product appearance.
+- Real product image sources are identified: user photo, supplier image, marketplace image, or product screenshot.
 - There are three roles: cover, feature, lifestyle.
-- Negative prompt discourages fake logos, wrong labels, deformed people, and unreadable text.
+- Each image role has a clear usage reason.
+- If AI-generated visual concepts are used, they are clearly labeled as concept drafts, not real product photos.
 
 Fail action:
 
-- Regenerate prompt before calling the image API.
-- If image generation fails, continue with prompt cards or prebuilt sample images.
+- Ask for product photos, supplier links, or screenshots.
+- If images are still unavailable, produce an image shot list and do not claim product photos are ready.
 
 ## Publishing
 
 Pass conditions:
 
-- `publish_mode` is known.
-- For `live`, cookie freshness and xhs-cli availability have been checked.
-- For `mock`, preview output is available.
-- For `manual`, copy-paste package is complete.
+- Title, body, hashtags, image order, and operator publishing action are clear.
+- Platform/account readiness is known or clearly marked as pending.
+- If direct publishing is unavailable, a complete publishing package is still produced.
 
 Fail action:
 
-- Switch from `live` to `mock`, then from `mock` to `manual`.
-- Do not let publishing failure stop the workshop.
+- Explain what is blocking direct publishing.
+- Continue by delivering the complete publishing package and required operator action.
 
 ## Customer Service
 
