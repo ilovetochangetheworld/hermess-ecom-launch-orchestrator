@@ -1,0 +1,178 @@
+{
+  "workflow_meta": {
+    "workflow_name": "from_zero_to_launch",
+    "mode": "mock",
+    "current_stage": "complete",
+    "demo_status": "ready"
+  },
+  "product_profile": {
+    "name": "Portable Mini Desk Fan with USB-C Charging and 3-Speed Airflow",
+    "category": "Small home appliance",
+    "key_features": [
+      "3-speed airflow control",
+      "USB-C rechargeable battery",
+      "compact desk-friendly body",
+      "quiet motor for office and dorm use"
+    ],
+    "specs": {
+      "suitable_ages": "Students and office workers",
+      "materials": "ABS plastic body",
+      "package_contents": "fan, USB-C cable, instruction card",
+      "certifications": "supplier to confirm",
+      "colors": "white, mint green, light pink"
+    },
+    "supplier_price_cny": "18-26",
+    "supplier_moq": "100",
+    "supplier_name": "Sample 1688 supplier",
+    "selling_price_usd": "19.99",
+    "key_selling_point": "A quiet USB-C rechargeable mini fan for desks, dorms, and commute bags.",
+    "differentiation_direction": "Position around quiet office comfort and portable summer essentials.",
+    "target_audience": "College students and office workers who need personal cooling in small spaces.",
+    "visual_style": "Clean summer colors, bright desk scene, lightweight portable feeling.",
+    "image_prompts": [
+      "White portable mini desk fan with USB-C cable on a clean light blue background, professional product photography, soft side lighting, high detail",
+      "Infographic-style product photo showing 3-speed airflow, USB-C charging port, compact size, clean labels, high detail",
+      "Lifestyle photo of a young office worker using a mint green mini desk fan beside a laptop in a bright workspace, natural summer light"
+    ]
+  },
+  "content_pack": {
+    "platform": "xiaohongshu",
+    "selected_version": "A",
+    "versions": [
+      {
+        "type": "测评型",
+        "title": "桌面小风扇真香了",
+        "body": "办公室空调总是不均匀，我工位这边经常闷到没精神。最近试了这个 USB-C 充电的小风扇，三档风力够用，放在电脑旁边也不占地方。它声音比较轻，开一档写东西不会被打扰，午休也能用。白色机身看起来很干净，包里放一根充电线就能带走。适合宿舍、工位、通勤包里备一个。",
+        "hashtags": ["#桌面好物", "#夏日好物", "#办公室好物", "#小风扇", "#宿舍好物", "#通勤好物", "#降温神器", "#学生党好物"]
+      }
+    ],
+    "sales_claims": [
+      "USB-C charging",
+      "3-speed airflow",
+      "compact desk size",
+      "quiet office use"
+    ],
+    "risk_words_removed": [],
+    "quality_check": {
+      "product_specificity_score": 88,
+      "human_tone_score": 82,
+      "forbidden_words_found": [],
+      "generic_phrases_found": [],
+      "needs_humanizer": false
+    }
+  },
+  "image_pack": {
+    "cover": {
+      "role": "封面图",
+      "prompt": "White portable mini desk fan with USB-C cable on a clean light blue background, professional product photography, soft side lighting, high detail",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Show the full product clearly for the first screen."
+    },
+    "feature": {
+      "role": "功能图",
+      "prompt": "Infographic-style product photo showing 3-speed airflow, USB-C charging port, compact size, clean labels, high detail",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Make the core selling points visible."
+    },
+    "lifestyle": {
+      "role": "场景图",
+      "prompt": "Lifestyle photo of a young office worker using a mint green mini desk fan beside a laptop in a bright workspace, natural summer light",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Create a relatable office use scene."
+    }
+  },
+  "publish_result": {
+    "publish_mode": "mock",
+    "status": "preview_ready",
+    "title": "桌面小风扇真香了",
+    "url": null,
+    "visibility": "mock",
+    "failure_reason": null,
+    "next_action": "Use mock preview or switch to live xhs-cli after cookie refresh."
+  },
+  "customer_service_pack": {
+    "faq_list": [
+      {
+        "id": 1,
+        "Q_zh": "这个风扇声音大吗？",
+        "A_zh": "一档声音比较轻，适合办公室和宿舍使用；高档风力更强，声音会相对明显。",
+        "Q_en": "Is this fan noisy?",
+        "A_en": "Low speed is quiet for office or dorm use. Higher speed gives stronger airflow with more sound.",
+        "category": "功能"
+      },
+      {
+        "id": 2,
+        "Q_zh": "是 Type-C 充电吗？",
+        "A_zh": "是的，采用 USB-C 充电，包装内含充电线。",
+        "Q_en": "Does it use USB-C charging?",
+        "A_en": "Yes. It uses USB-C charging and includes a charging cable.",
+        "category": "使用"
+      }
+    ],
+    "sample_replies": [
+      {
+        "detected_lang": "zh",
+        "matched_faq_id": 1,
+        "reply": "一档声音比较轻，适合办公室和宿舍；如果开到高档，风力更强，声音也会明显一点。",
+        "confidence": "high",
+        "buyer_intent": "quality_concern",
+        "need_escalation": false,
+        "escalation_reason": null
+      }
+    ]
+  },
+  "review_insight_pack": {
+    "sentiment": {
+      "positive_pct": 72,
+      "neutral_pct": 18,
+      "negative_pct": 10,
+      "nps_estimate": 42,
+      "sample_size": 50
+    },
+    "pain_points": [
+      {
+        "rank": 1,
+        "pain": "Users worry about battery life and charging frequency.",
+        "mentions": 8,
+        "typical_quote": "充一次电到底能用多久？",
+        "severity": "中",
+        "fix": "Add battery capacity and usage duration to product page.",
+        "fix_cost": "低(<¥5/台)",
+        "impact": "Reduce pre-sale hesitation."
+      }
+    ],
+    "iteration_roadmap": {
+      "phase_1": {
+        "timeline": "立即",
+        "actions": ["Add battery life FAQ", "Put USB-C charging in title and first image"],
+        "budget_per_unit": "¥0",
+        "impact": "Improve conversion for cautious buyers"
+      }
+    },
+    "loopback": {
+      "original_hypothesis_valid": "true",
+      "invalid_points": [],
+      "new_insights": ["Battery life needs to be shown earlier than color options."],
+      "next_selection_adjustment": "Prioritize suppliers with documented battery capacity and quieter motor specs.",
+      "confidence_level": "medium"
+    }
+  },
+  "next_research_seed": {
+    "recommended_keyword": "quiet USB-C rechargeable mini desk fan",
+    "avoid_features": ["no battery capacity listed", "proprietary charging cable"],
+    "must_have_features": ["USB-C charging", "documented battery capacity", "low-noise motor"],
+    "new_target_audience": "Office workers and dorm users sensitive to noise and desk space.",
+    "price_band_adjustment": "Keep retail under $24.99.",
+    "supplier_requirements": ["battery capacity proof", "noise level claim", "color options"]
+  },
+  "audience_takeaway": [
+    "product profile JSON",
+    "Xiaohongshu note",
+    "3 image prompts",
+    "FAQ pack",
+    "review loopback seed"
+  ]
+}
