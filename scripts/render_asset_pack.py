@@ -62,13 +62,16 @@ def render_images(image_pack: dict[str, Any]) -> str:
     cards = []
     for key in ["cover", "feature", "lifestyle"]:
         item = image_pack.get(key) or {}
+        prompt = item.get("prompt") or item.get("image_prompt") or item.get("required_if_missing")
+        path = item.get("source_path_or_url") or item.get("expected_output_path")
         cards.append(
             f"""
             <article class="mini-card">
               <div class="eyebrow">{esc(item.get("role", key))}</div>
-              <h3>{esc(item.get("source_type", "missing"))}</h3>
+              <h3>{esc(item.get("source_type", "prompt_ready"))}</h3>
               <p>{esc(item.get("why_this_image"))}</p>
-              <small>{esc(item.get("required_if_missing"))}</small>
+              <small>{esc(path)}</small>
+              <pre>{esc(prompt)}</pre>
             </article>
             """
         )
@@ -93,6 +96,84 @@ def render_faq(customer_service_pack: dict[str, Any]) -> str:
     return "".join(rows)
 
 
+def render_stage_progress(stage_progress: list[dict[str, Any]] | None) -> str:
+    stage_progress = stage_progress or []
+    if not stage_progress:
+        return '<p class="muted">暂无阶段进度。</p>'
+    cards = []
+    for index, item in enumerate(stage_progress, start=1):
+        cards.append(
+            f"""
+            <article class="mini-card">
+              <div class="eyebrow">Stage {index}</div>
+              <h3>{esc(item.get("Now doing"))}</h3>
+              <p>{esc(item.get("Why it matters"))}</p>
+              <small>{esc(item.get("Expected output"))}</small>
+            </article>
+            """
+        )
+    return '<div class="grid three">' + "".join(cards) + "</div>"
+
+
+def build_delivery_manifest(data: dict[str, Any]) -> dict[str, Any]:
+    manifest = data.get("delivery_manifest") or {}
+    if manifest.get("assets"):
+        return manifest
+
+    profile = data.get("product_profile") or {}
+    raw_name = profile.get("name") or "product"
+    slug = "product"
+    lowered = raw_name.lower()
+    if "tumbler" in lowered or "cup" in lowered:
+        slug = "tumbler"
+    elif "fan" in lowered:
+        slug = "fan"
+    elif "case" in lowered:
+        slug = "case"
+
+    base_dir = "/home/agentuser"
+    image_pack = data.get("image_pack") or {}
+    image_paths = {
+        "封面图": (image_pack.get("cover") or {}).get("source_path_or_url") or f"{base_dir}/xhs_{slug}_demo/封面图.png",
+        "功能图": (image_pack.get("feature") or {}).get("source_path_or_url") or f"{base_dir}/xhs_{slug}_demo/功能图.png",
+        "场景图": (image_pack.get("lifestyle") or {}).get("source_path_or_url") or f"{base_dir}/xhs_{slug}_demo/场景图.png",
+    }
+    assets = [
+        {"name": "文案包", "path": f"{base_dir}/{slug}_content_pack.json"},
+        {"name": "客服FAQ包", "path": f"{base_dir}/{slug}_cs_pack.json"},
+        {"name": "完整工作流Envelope", "path": f"{base_dir}/{slug}_workflow_envelope.json"},
+        *({"name": name, "path": path} for name, path in image_paths.items()),
+    ]
+    return {
+        "title": "交付资产清单",
+        "assets": assets,
+        "media_refs": [f"MEDIA:{item['path']}" for item in assets],
+    }
+
+
+def render_delivery_manifest(manifest: dict[str, Any]) -> str:
+    assets = manifest.get("assets") or []
+    rows = []
+    for item in assets:
+        rows.append(
+            f"""
+            <tr>
+              <td>{esc(item.get("name"))}</td>
+              <td><code>{esc(item.get("path"))}</code></td>
+            </tr>
+            """
+        )
+    refs = "\n".join(manifest.get("media_refs") or [])
+    return f"""
+    <table class="asset-table">
+      <thead><tr><th>文件</th><th>路径</th></tr></thead>
+      <tbody>{''.join(rows)}</tbody>
+    </table>
+    <h3>MEDIA 引用</h3>
+    <pre>{esc(refs)}</pre>
+    """
+
+
 def render_asset_pack(data: dict[str, Any]) -> str:
     profile = data.get("product_profile") or {}
     decision = data.get("decision") or {}
@@ -104,6 +185,7 @@ def render_asset_pack(data: dict[str, Any]) -> str:
     review = data.get("review_insight_pack") or {}
     loopback = review.get("loopback") or {}
     next_seed = data.get("next_research_seed") or {}
+    manifest = build_delivery_manifest(data)
 
     title = profile.get("name") or "电商启动资产包"
     decision_body = (
@@ -209,6 +291,11 @@ def render_asset_pack(data: dict[str, Any]) -> str:
     .faq-row {{ display: grid; grid-template-columns: 1.1fr 1.7fr .4fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); align-items: start; }}
     .faq-row:first-child {{ border-top: 0; }}
     .faq-row span, .muted, small {{ color: var(--muted); }}
+    code {{ color: #344054; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }}
+    pre {{ white-space: pre-wrap; overflow-wrap: anywhere; background: #f8fafc; border: 1px solid var(--line); border-radius: 8px; padding: 12px; line-height: 1.55; color: #344054; }}
+    .asset-table {{ width: 100%; border-collapse: collapse; }}
+    .asset-table th, .asset-table td {{ text-align: left; border-top: 1px solid var(--line); padding: 12px; vertical-align: top; }}
+    .asset-table th {{ color: var(--muted); font-size: 13px; }}
     .footer {{ color: var(--muted); font-size: 13px; margin-top: 26px; }}
     @media (max-width: 820px) {{
       .page {{ padding: 24px 14px 48px; }}
@@ -222,16 +309,18 @@ def render_asset_pack(data: dict[str, Any]) -> str:
     <header class="hero">
       <div class="eyebrow">E-commerce Launch Asset Pack</div>
       <h1>{esc(title)}</h1>
-      <p class="lead-small">从选品判断到发布准备、客服承接和复盘迭代的可执行资产包。</p>
+      <p class="lead-small">从选品判断到发布准备、客服承接、复盘迭代和文件交付的可执行资产包。</p>
     </header>
+    {section("0. 工作流进度", render_stage_progress(data.get("stage_progress")))}
     {section("1. 选品结论", decision_body)}
     {section("2. 产品画像", profile_body)}
     {section("3. 定价和毛利", pricing_body)}
     {section("4. 内容资产", render_content_versions(content))}
-    {section("5. 商品图片准备", render_images(data.get("image_pack") or {}))}
+    {section("5. 商品图片与 Prompt", render_images(data.get("image_pack") or {}))}
     {section("6. 发布准备包", publish_body)}
     {section("7. 客服 FAQ", render_faq(data.get("customer_service_pack") or {}))}
     {section("8. 复盘和下一轮", review_body)}
+    {section("9. 交付资产清单", render_delivery_manifest(manifest))}
     <div class="footer">Generated from workflow envelope. Actual publishing should follow platform rules, account status, and business approval requirements.</div>
   </main>
 </body>

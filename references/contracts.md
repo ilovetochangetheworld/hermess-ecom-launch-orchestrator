@@ -109,6 +109,8 @@ Use these contracts to keep all e-commerce skills interoperable.
       "role": "封面图",
       "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
       "source_path_or_url": "Local path or URL",
+      "prompt": "Optional image generation prompt",
+      "expected_output_path": "Optional expected generated image path",
       "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     },
@@ -116,6 +118,8 @@ Use these contracts to keep all e-commerce skills interoperable.
       "role": "功能图",
       "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
       "source_path_or_url": "Local path or URL",
+      "prompt": "Optional image generation prompt",
+      "expected_output_path": "Optional expected generated image path",
       "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     },
@@ -123,6 +127,8 @@ Use these contracts to keep all e-commerce skills interoperable.
       "role": "场景图",
       "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
       "source_path_or_url": "Local path or URL",
+      "prompt": "Optional image generation prompt",
+      "expected_output_path": "Optional expected generated image path",
       "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     }
@@ -221,6 +227,20 @@ Use these contracts to keep all e-commerce skills interoperable.
 ```json
 {
   "asset_pack_html_path": "Local path to generated HTML asset pack or null",
-  "delivery_note": "The workflow envelope remains the machine-readable source of truth; the HTML asset pack is the user-facing view."
+  "delivery_manifest": {
+    "title": "交付资产清单",
+    "assets": [
+      { "name": "文案包", "path": "/home/agentuser/product_content_pack.json" },
+      { "name": "客服FAQ包", "path": "/home/agentuser/product_cs_pack.json" },
+      { "name": "完整工作流Envelope", "path": "/home/agentuser/product_workflow_envelope.json" },
+      { "name": "封面图", "path": "/home/agentuser/xhs_product_demo/封面图.png" },
+      { "name": "功能图", "path": "/home/agentuser/xhs_product_demo/功能图.png" },
+      { "name": "场景图", "path": "/home/agentuser/xhs_product_demo/场景图.png" }
+    ],
+    "media_refs": [
+      "MEDIA:/home/agentuser/product_content_pack.json"
+    ]
+  },
+  "delivery_note": "The workflow envelope remains the machine-readable source of truth; the HTML asset pack is the user-facing view and should include the delivery manifest when files are available."
 }
 ```

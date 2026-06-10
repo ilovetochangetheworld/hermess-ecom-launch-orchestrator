@@ -18,7 +18,7 @@
 5. 发布准备包：整理标题、正文、话题、图片顺序和发布前确认清单。
 6. 智能客服 FAQ：生成常见问题、买家意图识别和回复样例。
 7. 评论复盘闭环：把评论痛点和运营数据回流成下一轮选品建议。
-8. HTML 资产包：把完整 workflow envelope 渲染成可打开、可分享、可复制的单页 HTML。
+8. HTML 资产包：把完整 workflow envelope 渲染成可打开、可分享、可复制的单页 HTML，并在页面内展示交付资产清单和 `MEDIA:` 引用。
 
 发布相关能力聚焦于“发布前准备”：Agent 负责整理发布所需素材和检查项；实际发布动作应由使用者结合账号状态、平台规则和业务审批流程完成。
 
@@ -164,6 +164,8 @@ python3 scripts/render_asset_pack.py \
   assets/sample-envelope.json \
   --out outputs/sample-asset-pack.html
 ```
+
+HTML 资产包会包含选品结论、产品画像、定价、文案、图片/Prompt、发布准备、客服 FAQ、复盘建议，以及文件路径和 `MEDIA:` 引用。
 
 ## 目录说明
 

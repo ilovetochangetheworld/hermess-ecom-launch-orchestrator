@@ -237,12 +237,15 @@ Capabilities:
 
 - Render a single HTML file from the completed workflow envelope.
 - Organize outputs into readable sections: decision, product profile, pricing, content, image preparation, publishing readiness, FAQ, and loopback.
+- Include a delivery manifest section with generated file paths and `MEDIA:` references when available.
+- Show image prompts and generated image file paths together when an image generation step has run.
 - Keep the JSON envelope as the machine-readable source of truth.
 
 Required output:
 
 - `workflow_envelope`
 - `asset_pack_html_path` when an HTML file is generated
+- delivery manifest inside the HTML when files or media references are available
 
 ## Default Run Order
 
