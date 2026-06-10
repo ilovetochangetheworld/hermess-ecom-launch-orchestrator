@@ -180,6 +180,14 @@ For fallback scripts and presenter wording, read `references/demo-runbook.md`.
 
 For rehearsals or mock mode, use `assets/sample-envelope.json` as a complete example of the workflow envelope.
 
+For v0.2 real-product-inspired mock demos, use:
+
+- `assets/samples/portable-fan-envelope.json`
+- `assets/samples/insulated-tumbler-envelope.json`
+- `assets/samples/clear-magsafe-case-envelope.json`
+
+For source assumptions behind these samples, read `references/real-product-sources.md`.
+
 ## Final Response Pattern
 
 At the end of a run, summarize:

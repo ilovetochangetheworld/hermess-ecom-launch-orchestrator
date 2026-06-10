@@ -1,0 +1,206 @@
+{
+  "workflow_meta": {
+    "workflow_name": "from_zero_to_launch",
+    "mode": "mock",
+    "current_stage": "complete",
+    "demo_status": "ready",
+    "sample_version": "v0.2",
+    "reference_product": "40oz insulated travel tumbler with handle and straw"
+  },
+  "product_profile": {
+    "name": "40oz Stainless Steel Insulated Travel Tumbler with Handle, Straw Lid, and Cupholder Base",
+    "category": "Insulated drinkware",
+    "key_features": [
+      "40oz large capacity",
+      "double-wall vacuum insulated stainless steel",
+      "handle and reusable straw lid",
+      "narrow cupholder-friendly base",
+      "optional ceramic-lined interior to reduce metallic taste"
+    ],
+    "specs": {
+      "suitable_ages": "Office workers, drivers, gym users, students",
+      "materials": "18/8 stainless steel body, BPA-free lid and straw",
+      "package_contents": "tumbler, straw lid, reusable straw, cleaning brush",
+      "certifications": "supplier to confirm LFGB/FDA food contact compliance",
+      "colors": "cream white, sage green, lavender, matte black"
+    },
+    "supplier_price_cny": "32-58",
+    "supplier_moq": "100-500",
+    "supplier_name": "Demo supplier from 1688 search: stainless steel tumbler manufacturer",
+    "selling_price_usd": "24.99-34.99",
+    "key_selling_point": "A 40oz cupholder-friendly tumbler built for all-day cold drinks at office, gym, and commute.",
+    "differentiation_direction": "Differentiate with spill-resistant lid, better grip handle, and no-metallic-taste interior option.",
+    "target_audience": "Office commuters and gym users who want a large stylish tumbler without paying premium viral-brand pricing.",
+    "visual_style": "Bright hydration scenes, car cupholder fit, pastel color lineup, cold condensation details.",
+    "image_prompts": [
+      "40oz sage green stainless steel insulated tumbler with handle and straw lid, narrow base, ice water condensation, clean white background, professional product photography, high detail",
+      "Infographic-style product photo showing double-wall insulation, 40oz capacity, cupholder-friendly base, straw lid, ergonomic handle, clean labels, high detail",
+      "Lifestyle photo of a commuter placing a lavender 40oz tumbler into a car cupholder beside a gym bag, morning sunlight, realistic daily scene"
+    ]
+  },
+  "content_pack": {
+    "platform": "xiaohongshu",
+    "selected_version": "B",
+    "versions": [
+      {
+        "type": "测评型",
+        "title": "大容量杯子别乱买",
+        "body": "之前跟风买过很重的杯子，装满水以后手腕真的累。这只 40oz 保温杯比较适合我，手柄好握，底部能放进车载杯架，早上装冰水通勤到公司还很凉。它是双层不锈钢保温，配吸管盖，边开车边喝也方便。最加分的是可以选陶瓷内胆版本，喝水没有明显金属味。想要大容量但不想花太多买网红杯的人，可以重点看这种配置。",
+        "hashtags": ["#水杯推荐", "#通勤好物", "#办公室好物", "#保温杯", "#健身好物", "#大容量水杯", "#车载杯架", "#喝水打卡"]
+      },
+      {
+        "type": "生活型",
+        "title": "我的通勤杯终于换对了",
+        "body": "我现在每天出门前都会装一大杯冰水，这个 40oz 杯子刚好够我上午喝。它有手柄和吸管盖，开车、健身、坐办公室都顺手。底部是窄的，可以放进车杯架，不会像普通大杯子那样没地方放。双层不锈钢保温够用，夏天放冰块很安心。颜色我选了鼠尾草绿，放桌上也好看，喝水频率真的变高了。",
+        "hashtags": ["#通勤杯", "#夏日喝水", "#办公室水杯", "#健身水杯", "#高颜值水杯", "#车载好物", "#大容量保温杯", "#女生水杯"]
+      }
+    ],
+    "sales_claims": [
+      "40oz capacity",
+      "double-wall vacuum insulation",
+      "cupholder-friendly base",
+      "handle and straw lid",
+      "optional ceramic-lined interior"
+    ],
+    "risk_words_removed": [],
+    "quality_check": {
+      "product_specificity_score": 91,
+      "human_tone_score": 84,
+      "forbidden_words_found": [],
+      "generic_phrases_found": [],
+      "needs_humanizer": false
+    }
+  },
+  "image_pack": {
+    "cover": {
+      "role": "封面图",
+      "prompt": "40oz sage green stainless steel insulated tumbler with handle and straw lid, narrow base, ice water condensation, clean white background, professional product photography, high detail",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Clearly shows the tumbler shape, handle, straw lid, and premium color."
+    },
+    "feature": {
+      "role": "功能图",
+      "prompt": "Infographic-style product photo showing double-wall insulation, 40oz capacity, cupholder-friendly base, straw lid, ergonomic handle, clean labels, high detail",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Explains why the tumbler is practical, not just good-looking."
+    },
+    "lifestyle": {
+      "role": "场景图",
+      "prompt": "Lifestyle photo of a commuter placing a lavender 40oz tumbler into a car cupholder beside a gym bag, morning sunlight, realistic daily scene",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect label, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Shows car cupholder fit and commute/gym use case."
+    }
+  },
+  "publish_result": {
+    "publish_mode": "mock",
+    "status": "preview_ready",
+    "title": "我的通勤杯终于换对了",
+    "url": null,
+    "visibility": "mock",
+    "failure_reason": null,
+    "next_action": "Use mock preview or publish privately after XHS cookie refresh."
+  },
+  "customer_service_pack": {
+    "faq_list": [
+      {
+        "id": 1,
+        "Q_zh": "这个杯子能放车杯架吗？",
+        "A_zh": "可以，底部是窄底设计，适配大多数车载杯架，具体还要看车型尺寸。",
+        "Q_en": "Does it fit car cup holders?",
+        "A_en": "Yes, the narrow base fits most car cup holders, depending on the vehicle size.",
+        "category": "使用"
+      },
+      {
+        "id": 2,
+        "Q_zh": "喝水会有金属味吗？",
+        "A_zh": "普通款是不锈钢内胆；如介意金属味，建议选择陶瓷内胆版本。",
+        "Q_en": "Does it have a metallic taste?",
+        "A_en": "The standard version is stainless steel. Choose the ceramic-lined option if you are sensitive to metallic taste.",
+        "category": "对比"
+      },
+      {
+        "id": 3,
+        "Q_zh": "会漏水吗？",
+        "A_zh": "日常防泼溅没问题，但吸管杯不建议倒置放包里。",
+        "Q_en": "Is it leakproof?",
+        "A_en": "It is splash-resistant for daily use, but straw tumblers should not be stored upside down in a bag.",
+        "category": "功能"
+      }
+    ],
+    "sample_replies": [
+      {
+        "detected_lang": "zh",
+        "matched_faq_id": 3,
+        "reply": "日常拿着走、防泼溅没问题，但因为是吸管盖，不建议倒置放包里，更适合车里、桌面和健身房使用。",
+        "confidence": "high",
+        "buyer_intent": "quality_concern",
+        "need_escalation": false,
+        "escalation_reason": null
+      }
+    ]
+  },
+  "review_insight_pack": {
+    "sentiment": {
+      "positive_pct": 70,
+      "neutral_pct": 20,
+      "negative_pct": 10,
+      "nps_estimate": 40,
+      "sample_size": 100
+    },
+    "pain_points": [
+      {
+        "rank": 1,
+        "pain": "Large tumblers can feel heavy when full.",
+        "mentions": 18,
+        "typical_quote": "装满以后还是有点重。",
+        "severity": "中",
+        "fix": "Show filled weight expectation and handle grip detail in listing.",
+        "fix_cost": "低(<¥5/台)",
+        "impact": "Reduce mismatch for small-hand users."
+      },
+      {
+        "rank": 2,
+        "pain": "Buyers confuse splash-resistant and leakproof.",
+        "mentions": 12,
+        "typical_quote": "倒过来还是会从吸管口漏。",
+        "severity": "高",
+        "fix": "Avoid claiming full leakproof if straw lid cannot seal upside down.",
+        "fix_cost": "低(<¥5/台)",
+        "impact": "Reduce avoidable after-sales complaints."
+      }
+    ],
+    "iteration_roadmap": {
+      "phase_1": {
+        "timeline": "立即",
+        "actions": ["Change claim from leakproof to splash-resistant", "Add cupholder photo", "Add filled-weight note"],
+        "budget_per_unit": "¥0",
+        "impact": "Reduce complaint risk and increase buyer trust"
+      },
+      "phase_2": {
+        "timeline": "3个月",
+        "actions": ["Test sealed flip-straw lid", "Offer 30oz lighter version"],
+        "budget_per_unit": "¥4-10/台",
+        "impact": "Cover portability-focused buyers"
+      }
+    },
+    "loopback": {
+      "original_hypothesis_valid": "true",
+      "invalid_points": ["Do not overpromise leakproof performance for straw lids."],
+      "new_insights": ["Weight and lid sealing are stronger purchase concerns than color alone."],
+      "next_selection_adjustment": "Prioritize lighter body, better lid seal, and explicit cupholder-fit dimensions.",
+      "confidence_level": "medium"
+    }
+  },
+  "next_research_seed": {
+    "recommended_keyword": "40oz ceramic lined insulated tumbler handle straw cupholder",
+    "avoid_features": ["unclear lid sealing", "no cupholder base dimension", "only generic color differentiation"],
+    "must_have_features": ["cupholder-friendly narrow base", "ergonomic handle", "splash-resistant straw lid", "food-contact certification"],
+    "new_target_audience": "Commuters and gym users who want large capacity but worry about leaks and weight.",
+    "price_band_adjustment": "Retail around $24.99-34.99; offer 30oz alternative for weight-sensitive users.",
+    "supplier_requirements": ["FDA/LFGB documentation", "base diameter measurement", "lid leak test video", "dishwasher safety guidance"]
+  },
+  "audience_takeaway": ["product profile JSON", "2 Xiaohongshu notes", "3 image prompts", "FAQ pack", "review loopback seed"]
+}

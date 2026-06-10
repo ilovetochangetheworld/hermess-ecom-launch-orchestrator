@@ -1,0 +1,206 @@
+{
+  "workflow_meta": {
+    "workflow_name": "from_zero_to_launch",
+    "mode": "mock",
+    "current_stage": "complete",
+    "demo_status": "ready",
+    "sample_version": "v0.2",
+    "reference_product": "iPhone 15 clear MagSafe-compatible protective case"
+  },
+  "product_profile": {
+    "name": "Clear MagSafe-Compatible iPhone 15 Case with Raised Bezels and Air-Cushion Corners",
+    "category": "Phone accessory",
+    "key_features": [
+      "transparent clear back to show original phone color",
+      "MagSafe-compatible magnetic ring",
+      "raised camera and screen bezels",
+      "shock-absorbing air-cushion corners",
+      "slim TPU and polycarbonate hybrid body"
+    ],
+    "specs": {
+      "suitable_ages": "iPhone 15 users, students, commuters, gift buyers",
+      "materials": "TPU bumper and polycarbonate clear back",
+      "package_contents": "phone case, protective film, instruction card",
+      "certifications": "supplier to confirm RoHS/REACH material compliance",
+      "colors": "clear, frosted clear, clear black edge"
+    },
+    "supplier_price_cny": "8-18",
+    "supplier_moq": "100-500",
+    "supplier_name": "Demo supplier from 1688 search: MagSafe phone case factory",
+    "selling_price_usd": "12.99-19.99",
+    "key_selling_point": "A slim clear iPhone 15 case that keeps the phone color visible while adding MagSafe and everyday drop protection.",
+    "differentiation_direction": "Differentiate around anti-yellowing clarity, stronger magnetic hold, and visible raised camera protection.",
+    "target_audience": "iPhone 15 users who want a clear case for daily commuting without hiding the phone color.",
+    "visual_style": "Clean tech accessory look, transparent material close-ups, MagSafe ring and camera-lip detail.",
+    "image_prompts": [
+      "Transparent clear MagSafe-compatible iPhone 15 case with white magnetic ring, raised camera bezel, air-cushion corners, floating on a clean light gray background, professional product photography, high detail",
+      "Infographic-style product photo of clear iPhone 15 case showing MagSafe magnetic ring, raised screen lip, camera protection, air-cushion corners, anti-yellowing clear back, clean labels, high detail",
+      "Lifestyle photo of a commuter holding a blue iPhone 15 in a clear MagSafe case near a cafe table with wireless charger and keys, natural daylight, realistic tech accessory scene"
+    ]
+  },
+  "content_pack": {
+    "platform": "xiaohongshu",
+    "selected_version": "A",
+    "versions": [
+      {
+        "type": "测评型",
+        "title": "透明手机壳别只看颜值",
+        "body": "换 iPhone 15 后我一直想找透明壳，但很多壳要么发黄快，要么镜头那里保护不够。这款是透明背板加 TPU 边框，能露出手机原色，背后还有 MagSafe 磁吸圈，车载支架和无线充都方便。四角做了缓冲结构，屏幕和镜头边缘也有加高，日常通勤放包里更安心。它不是那种厚重防摔壳，胜在清爽、轻、该保护的地方都有。",
+        "hashtags": ["#手机壳推荐", "#iPhone15", "#透明手机壳", "#MagSafe", "#苹果配件", "#通勤好物", "#数码好物", "#防摔手机壳"]
+      },
+      {
+        "type": "生活型",
+        "title": "终于找到清爽透明壳",
+        "body": "我买蓝色 iPhone 15 就是不想把颜色藏起来，所以手机壳一直选透明款。这个壳背面是清透的，能看到原机颜色，MagSafe 圈也能直接吸车载支架。平时放桌上最怕刮镜头，它的镜头边缘有加高，屏幕面也有一点保护。四个角是缓冲设计，拿在手里不笨重。适合想要清爽外观，又不想裸机冒险的人。",
+        "hashtags": ["#我的手机壳", "#iPhone配件", "#透明壳", "#MagSafe配件", "#数码生活", "#通勤装备", "#苹果手机壳", "#手机保护"]
+      }
+    ],
+    "sales_claims": [
+      "clear back",
+      "MagSafe-compatible magnetic ring",
+      "raised camera and screen bezels",
+      "air-cushion corners",
+      "slim TPU/polycarbonate body"
+    ],
+    "risk_words_removed": [],
+    "quality_check": {
+      "product_specificity_score": 92,
+      "human_tone_score": 85,
+      "forbidden_words_found": [],
+      "generic_phrases_found": [],
+      "needs_humanizer": false
+    }
+  },
+  "image_pack": {
+    "cover": {
+      "role": "封面图",
+      "prompt": "Transparent clear MagSafe-compatible iPhone 15 case with white magnetic ring, raised camera bezel, air-cushion corners, floating on a clean light gray background, professional product photography, high detail",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect phone model, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Shows transparency, MagSafe ring, and camera protection."
+    },
+    "feature": {
+      "role": "功能图",
+      "prompt": "Infographic-style product photo of clear iPhone 15 case showing MagSafe magnetic ring, raised screen lip, camera protection, air-cushion corners, anti-yellowing clear back, clean labels, high detail",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect phone model, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Explains protection details beyond clear appearance."
+    },
+    "lifestyle": {
+      "role": "场景图",
+      "prompt": "Lifestyle photo of a commuter holding a blue iPhone 15 in a clear MagSafe case near a cafe table with wireless charger and keys, natural daylight, realistic tech accessory scene",
+      "negative_prompt": "wrong product, extra objects, unreadable text, distorted hands, deformed face, low quality, blurry, watermark, logo, fake brand name, incorrect phone model, unsafe use scene",
+      "file_path": null,
+      "why_this_image": "Makes MagSafe and daily commute use tangible."
+    }
+  },
+  "publish_result": {
+    "publish_mode": "mock",
+    "status": "preview_ready",
+    "title": "透明手机壳别只看颜值",
+    "url": null,
+    "visibility": "mock",
+    "failure_reason": null,
+    "next_action": "Use mock preview or publish privately after XHS cookie refresh."
+  },
+  "customer_service_pack": {
+    "faq_list": [
+      {
+        "id": 1,
+        "Q_zh": "这个是 iPhone 15 还是 15 Pro 用的？",
+        "A_zh": "这款样例定位是 iPhone 15，购买前请确认具体型号，15/15 Pro 开孔不同。",
+        "Q_en": "Is this for iPhone 15 or 15 Pro?",
+        "A_en": "This sample is for iPhone 15. Please confirm your exact model because 15 and 15 Pro cases differ.",
+        "category": "使用"
+      },
+      {
+        "id": 2,
+        "Q_zh": "支持 MagSafe 吗？",
+        "A_zh": "支持，背部带磁吸圈，可配合 MagSafe 充电器、车载支架等配件使用。",
+        "Q_en": "Does it support MagSafe?",
+        "A_en": "Yes, it has a magnetic ring for MagSafe chargers, mounts, and compatible accessories.",
+        "category": "功能"
+      },
+      {
+        "id": 3,
+        "Q_zh": "会不会发黄？",
+        "A_zh": "透明壳长期使用都会有发黄风险，建议选择抗黄材料并避免长期暴晒。",
+        "Q_en": "Will it yellow over time?",
+        "A_en": "Clear cases may yellow over time. Anti-yellowing material and avoiding long sun exposure help slow it down.",
+        "category": "对比"
+      }
+    ],
+    "sample_replies": [
+      {
+        "detected_lang": "zh",
+        "matched_faq_id": 1,
+        "reply": "这款是 iPhone 15 用的，15 Pro 的按键和镜头开孔不一样，购买前一定要确认手机型号。",
+        "confidence": "high",
+        "buyer_intent": "ready_to_buy",
+        "need_escalation": false,
+        "escalation_reason": null
+      }
+    ]
+  },
+  "review_insight_pack": {
+    "sentiment": {
+      "positive_pct": 68,
+      "neutral_pct": 21,
+      "negative_pct": 11,
+      "nps_estimate": 36,
+      "sample_size": 120
+    },
+    "pain_points": [
+      {
+        "rank": 1,
+        "pain": "Model mismatch causes returns.",
+        "mentions": 20,
+        "typical_quote": "买错了，15 Pro 不能用。",
+        "severity": "高",
+        "fix": "Put model compatibility warning in title, first image, and FAQ.",
+        "fix_cost": "低(<¥5/台)",
+        "impact": "Reduce avoidable returns."
+      },
+      {
+        "rank": 2,
+        "pain": "Clear case yellowing expectations need management.",
+        "mentions": 14,
+        "typical_quote": "用了几个月边框开始黄。",
+        "severity": "中",
+        "fix": "Avoid permanent anti-yellowing claims; explain material and care tips.",
+        "fix_cost": "低(<¥5/台)",
+        "impact": "Reduce trust damage from overclaims."
+      }
+    ],
+    "iteration_roadmap": {
+      "phase_1": {
+        "timeline": "立即",
+        "actions": ["Add model compatibility warning", "Add camera lip close-up", "Add anti-yellowing expectation FAQ"],
+        "budget_per_unit": "¥0",
+        "impact": "Reduce returns and clarify product fit"
+      },
+      "phase_2": {
+        "timeline": "3个月",
+        "actions": ["Test stronger magnets", "Source UV-resistant TPU", "Offer black-edge clear version"],
+        "budget_per_unit": "¥1-4/台",
+        "impact": "Improve durability perception and repeat purchase"
+      }
+    },
+    "loopback": {
+      "original_hypothesis_valid": "true",
+      "invalid_points": ["Do not sell one SKU as compatible with multiple iPhone models unless verified."],
+      "new_insights": ["Compatibility clarity is as important as protection claims."],
+      "next_selection_adjustment": "Prioritize SKUs with exact model molding, stronger magnet specs, and anti-yellowing test data.",
+      "confidence_level": "medium"
+    }
+  },
+  "next_research_seed": {
+    "recommended_keyword": "iPhone 15 clear MagSafe case anti yellowing raised camera bezel",
+    "avoid_features": ["ambiguous model compatibility", "weak magnetic ring", "no raised camera lip"],
+    "must_have_features": ["exact iPhone 15 fit", "MagSafe-compatible magnet ring", "raised camera and screen bezels", "shock-absorbing corners"],
+    "new_target_audience": "iPhone 15 users who want to show original phone color with everyday MagSafe protection.",
+    "price_band_adjustment": "Retail around $12.99-19.99; premium only with verified magnets and material tests.",
+    "supplier_requirements": ["model-specific mold photos", "magnet pull-force data", "anti-yellowing material statement", "RoHS/REACH documentation"]
+  },
+  "audience_takeaway": ["product profile JSON", "2 Xiaohongshu notes", "3 image prompts", "FAQ pack", "review loopback seed"]
+}
