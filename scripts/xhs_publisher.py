@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Publishing package helper.
+"""Publishing readiness package helper.
 
-Direct Xiaohongshu publishing is intentionally disabled for the current
-customer demo. This script only packages publish-ready assets and operator
-actions.
+This script packages publish-ready assets and pre-publish checks. Actual
+publishing should follow account status, platform policy, and business
+approval requirements.
 """
 
 from __future__ import annotations
@@ -25,12 +25,12 @@ def build_package(title: str, body: str, hashtags: list[str], images: list[str])
         "hashtags": hashtags,
         "image_order": images,
         "direct_publish_enabled": DIRECT_PUBLISHING_ENABLED,
-        "policy_note": "Direct Xiaohongshu publishing demo is paused. This helper only prepares assets for approved operator workflow.",
+        "policy_note": "Publishing readiness package prepared. Actual publishing should follow account status, platform policy, and business approval requirements.",
         "operator_checklist": [
             "Confirm account readiness",
             "Confirm all images are real product/supplier/user-provided images",
             "Review compliance warnings",
-            "Paste title, body, hashtags, and images into the platform",
+            "Submit or schedule the approved package through the appropriate platform workflow",
         ],
     }
 
@@ -38,8 +38,8 @@ def build_package(title: str, body: str, hashtags: list[str], images: list[str])
 def publish_disabled() -> dict:
     return {
         "ok": False,
-        "reason": "Direct platform publishing is disabled for this workshop skill.",
-        "next_action": "Use build_package() and publish through the approved operator workflow.",
+        "reason": "This helper only prepares publishing readiness packages.",
+        "next_action": "Use build_package(), resolve checklist items, and submit through the appropriate platform workflow.",
     }
 
 

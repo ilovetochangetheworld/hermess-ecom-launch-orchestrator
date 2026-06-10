@@ -139,14 +139,14 @@ Use these contracts to keep all e-commerce skills interoperable.
 ```json
 {
   "publish_result": {
-    "publishing_readiness": "ready|pending_account|pending_cookie|pending_review|blocked",
-    "status": "published|package_ready|needs_operator_action|failed",
-    "title": "Published title",
+    "publishing_readiness": "ready|pending_account|pending_review|blocked",
+    "status": "package_ready|needs_operator_action|failed",
+    "title": "Prepared title",
     "url": "URL or null",
     "visibility": "private|public|null",
     "failure_reason": null,
     "direct_publish_enabled": false,
-    "policy_note": "Direct Xiaohongshu publishing demo is paused.",
+    "policy_note": "Publishing readiness package prepared. Actual publishing should follow account status, platform policy, and business approval requirements.",
     "operator_checklist": [],
     "next_action": "Operator action"
   }

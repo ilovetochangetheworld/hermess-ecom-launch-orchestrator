@@ -9,7 +9,9 @@ from pathlib import Path
 REQUIRED_TOP_LEVEL = [
     "workflow_meta",
     "stage_progress",
+    "decision",
     "product_profile",
+    "risk_checklist",
     "pricing_pack",
     "content_pack",
     "image_pack",
@@ -40,6 +42,18 @@ def main() -> int:
         "ok": bool(product.get("name")) and len(product.get("key_features") or []) >= 3,
     })
 
+    decision = data.get("decision") or {}
+    checks.append({
+        "name": "decision_present",
+        "ok": decision.get("verdict") in ["go", "go_with_caution", "pause", "avoid"] and isinstance(decision.get("score"), int),
+    })
+
+    risk_checklist = data.get("risk_checklist") or []
+    checks.append({
+        "name": "risk_checklist_present",
+        "ok": bool(risk_checklist),
+    })
+
     progress = data.get("stage_progress") or []
     checks.append({
         "name": "agent_progress_contract_present",
@@ -59,7 +73,7 @@ def main() -> int:
     versions = content.get("versions") or []
     checks.append({
         "name": "content_versions_present",
-        "ok": len(versions) >= 1,
+        "ok": len(versions) >= 1 and bool(content.get("quality_check")) and "selected_version" in content,
     })
 
     images = data.get("image_pack") or {}
@@ -74,7 +88,6 @@ def main() -> int:
         "ok": publish.get("publishing_readiness") in [
             "ready",
             "pending_account",
-            "pending_cookie",
             "pending_review",
             "blocked",
         ],
@@ -83,6 +96,12 @@ def main() -> int:
     checks.append({
         "name": "direct_publish_disabled",
         "ok": publish.get("direct_publish_enabled") is False,
+    })
+
+    review = data.get("review_insight_pack") or {}
+    checks.append({
+        "name": "review_loopback_present",
+        "ok": bool(review.get("loopback")) and "sentiment" in review,
     })
 
     ok = all(item["ok"] for item in checks)

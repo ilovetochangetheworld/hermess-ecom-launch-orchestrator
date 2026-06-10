@@ -1,21 +1,21 @@
 ---
 name: solo-ecom-pilot
-description: Use this skill for the customer-facing workshop case "From zero to launch: your AI e-commerce partner". It is a unified e-commerce operating skill for solo sellers: product research, pricing, content, real product image preparation, publishing package creation, customer service FAQ, compliance review, data diagnosis, and loopback iteration. The agent must proactively explain what it is doing at every step.
+description: Use this skill for e-commerce launch workflows that take a product from research to pricing, content, real product image preparation, publishing readiness, customer service FAQ, compliance review, data diagnosis, and loopback iteration. The agent must proactively explain what it is doing at every step.
 ---
 
 # Solo Ecom Pilot
 
-This is the unified skill for the workshop case:
+This is the unified skill for the e-commerce workflow:
 
 **从 0 开张：你的 AI 电商合伙人**
 
-It replaces scattered e-commerce prompts with one customer-facing flow. The skill must behave like an AI e-commerce co-pilot, not a passive prompt library.
+It replaces scattered e-commerce prompts with one operating flow. The skill must behave like an AI e-commerce co-pilot, not a passive prompt library.
 
 ## Critical Positioning
 
-- The demo is for customers, so use business language, not internal engineering language.
-- Xiaohongshu direct publishing is temporarily paused for policy reasons. Generate a complete publishing package instead of demonstrating live publishing.
-- Product images should come from real sources:现场实拍、供应商图、选品截图、商品详情图. AI may help rank, annotate, and describe images, but draft visuals must not be positioned as real product listing photos.
+- Use business language, not internal engineering language.
+- Publishing-related output focuses on publishing readiness: prepare titles, body, hashtags/topics, image order, compliance notes, and pre-publish checks. Actual publishing should follow account status, platform policy, and business approval requirements.
+- Product images should come from real sources: user photos, supplier images, product screenshots, or product detail images. AI may help rank, annotate, and describe images, but draft visuals must not be positioned as real product listing photos.
 - The Agent must proactively say what it is doing at every stage.
 
 ## Trigger Keywords
@@ -28,7 +28,7 @@ It replaces scattered e-commerce prompts with one customer-facing flow. The skil
 - 客服类：客服话术、售后处理、退换货、差评回复、客户投诉
 - 合规类：广告法、违禁词、极限词、虚假宣传、七日无理由
 - 数据类：转化率、店铺诊断、运营日报、ROI、DSR、评论复盘
-- 编排类：全链路演示、闭环演示、从0开张、AI电商合伙人
+- 编排类：全链路、闭环流程、从0开张、AI电商合伙人
 
 ## Communication Contract
 
@@ -46,7 +46,7 @@ Rules:
 - Do not silently work through the flow.
 - Ask for only one essential missing input at a time.
 - If information is missing, continue with marked assumptions and a confidence level.
-- Keep updates short enough to be read aloud in a workshop.
+- Keep updates concise enough for a business operator to act on immediately.
 - Before moving to the next stage, summarize the artifact produced and ask for confirmation only when business judgment is required.
 
 ## Unified Flow
@@ -57,7 +57,7 @@ Purpose: decide whether the product is worth continuing.
 
 Capabilities:
 
-- Offer three demo templates: portable fan, 40oz tumbler, clear MagSafe phone case.
+- Offer three starter templates: portable fan, 40oz tumbler, clear MagSafe phone case.
 - Accept the user's own product name, link, photo, supplier page, or rough description.
 - Capture product facts without inventing missing details.
 - Score market opportunity using:
@@ -148,15 +148,15 @@ Required output:
 - image order
 - shot list
 
-### 5. PublishingPackage: Publishing Assets
+### 5. PublishingReadiness: Publishing Preparation
 
-Purpose: prepare everything needed for publishing while direct Xiaohongshu publishing is paused.
+Purpose: prepare everything needed before a platform post or listing is submitted.
 
 Policy:
 
-- Do not demo direct Xiaohongshu publishing for now.
 - Do not claim the Agent has published unless a user explicitly provides a confirmed post URL.
-- Produce a publishing package instead.
+- Prepare a publishing readiness package: copy, topics, image order, compliance notes, and pre-publish checklist.
+- The final publishing action belongs to the user or operator according to account status, platform rules, and business approval requirements.
 
 Required output:
 
@@ -164,7 +164,7 @@ Required output:
 - body
 - hashtags
 - image order
-- operator publishing checklist
+- pre-publish checklist
 - account/platform readiness notes
 
 ### 6. ServiceBot: Customer Service
@@ -229,16 +229,16 @@ Required output:
 - FAQ improvements
 - next research seed
 
-## Workshop Run Order
+## Default Run Order
 
-Use this 10-minute customer demo sequence:
+Use this sequence for a standard run:
 
 1. Choose product.
 2. Product research and go/no-go.
 3. Pricing and margin.
 4. Xiaohongshu content.
 5. Real product image preparation.
-6. Publishing package.
+6. Publishing readiness package.
 7. Customer service Q&A.
 8. Comment/data review and loopback.
 
@@ -263,26 +263,26 @@ Use `scripts/validate_envelope.py` to check the workflow envelope.
 - `references/product-research-flow.md`: detailed product research interaction.
 - `references/contracts.md`: shared data structures.
 - `references/quality-gates.md`: stage checks.
-- `references/demo-runbook.md`: presenter wording.
+- `references/demo-runbook.md`: optional training or workshop runbook.
 - `references/orchestration-prompts.md`: reusable launch prompts.
-- `references/real-product-sources.md`: assumptions behind demo templates.
+- `references/real-product-sources.md`: assumptions behind starter templates.
 
 ## Scripts
 
 - `scripts/main.py`: unified deterministic helper with research, pricing, content, image prep, publishing package, service, analytics, and an orchestrator.
 - `scripts/validate_envelope.py`: validates the workflow envelope.
-- `scripts/xhs_publisher.py`: publishing package helper; direct publishing is disabled by policy.
+- `scripts/xhs_publisher.py`: publishing readiness package helper.
 - `scripts/product_image_preparer.py`: image role and shot-list helper.
 
 ## Demo Templates
 
-Use these as starting points only:
+Use these as starter examples only:
 
 - `assets/samples/portable-fan-envelope.json`
 - `assets/samples/insulated-tumbler-envelope.json`
 - `assets/samples/clear-magsafe-case-envelope.json`
 
-If the user provides real product information, prefer the user's data over demo templates.
+If the user provides real product information, prefer the user's data over starter templates.
 
 ## Final Response Pattern
 

@@ -45,18 +45,18 @@ Fail action:
 - Ask for product photos, supplier links, or screenshots.
 - If images are still unavailable, produce an image shot list and do not claim product photos are ready.
 
-## Publishing
+## Publishing Readiness
 
 Pass conditions:
 
-- Title, body, hashtags, image order, and operator publishing action are clear.
+- Title, body, hashtags/topics, image order, and pre-publish checklist are clear.
 - Platform/account readiness is known or clearly marked as pending.
-- If direct publishing is unavailable, a complete publishing package is still produced.
+- Compliance notes and business approval requirements are explicit when needed.
 
 Fail action:
 
-- Explain what is blocking direct publishing.
-- Continue by delivering the complete publishing package and required operator action.
+- Ask for one missing account, platform, image, or approval input if it blocks readiness.
+- Otherwise continue by delivering the complete publishing readiness package and marking unresolved items as pending.
 
 ## Customer Service
 

@@ -1,12 +1,12 @@
 {
   "workflow_meta": {
     "workflow_name": "from_zero_to_launch",
-    "mode": "customer_demo",
+    "mode": "standard_workflow",
     "current_stage": "complete",
-    "demo_status": "ready",
     "sample_version": "v0.2",
     "reference_product": "iPhone 15 clear MagSafe-compatible protective case",
-    "direct_publish_enabled": false
+    "direct_publish_enabled": false,
+    "workflow_status": "ready"
   },
   "product_profile": {
     "name": "Clear MagSafe-Compatible iPhone 15 Case with Raised Bezels and Air-Cushion Corners",
@@ -131,12 +131,12 @@
     "next_action": "Review the package and publish through the approved operator workflow.",
     "publishing_readiness": "pending_review",
     "direct_publish_enabled": false,
-    "policy_note": "Direct Xiaohongshu publishing demo is paused. The Agent prepares a publish-ready package for approved operator workflow.",
+    "policy_note": "Publishing readiness package prepared. Actual publishing should follow account status, platform policy, and business approval requirements.",
     "operator_checklist": [
       "确认账号和平台规则",
       "确认图片来自真实商品/供应商/用户提供",
       "复核标题、正文、话题和价格表述",
-      "由人工在平台完成发布"
+      "按账号状态和平台规范完成发布"
     ]
   },
   "customer_service_pack": {
@@ -264,16 +264,9 @@
       "RoHS/REACH documentation"
     ]
   },
-  "audience_takeaway": [
-    "product profile JSON",
-    "2 Xiaohongshu notes",
-    "product image order and shot list",
-    "FAQ pack",
-    "review loopback seed"
-  ],
   "stage_progress": [
     {
-      "Now doing": "选择演示商品并建立产品事实",
+      "Now doing": "选择商品并建立产品事实",
       "Why it matters": "选品先判断商品是否值得继续，避免后续内容空转。",
       "Need from you": "选择商品或提供链接、图片、供应价。",
       "Expected output": "产品画像和 go/no-go 结论。"
@@ -285,10 +278,10 @@
       "Expected output": "保守/建议/进取三个价格。"
     },
     {
-      "Now doing": "生成发布素材包",
-      "Why it matters": "平台发布动作可由人工确认，但素材必须完整可用。",
-      "Need from you": "确认账号、平台规则和最终发布边界。",
-      "Expected output": "标题、正文、标签、图片顺序和操作清单。"
+      "Now doing": "生成发布准备包",
+      "Why it matters": "发布前需要把素材、合规和账号状态整理清楚。",
+      "Need from you": "确认账号状态、平台规则和审批要求。",
+      "Expected output": "标题、正文、标签、图片顺序和发布前确认清单。"
     }
   ],
   "pricing_pack": {
@@ -321,5 +314,26 @@
     "准备真实封面商品图",
     "准备真实功能细节图",
     "准备真实使用场景图"
+  ],
+  "handoff_summary": [
+    "product profile JSON",
+    "2 Xiaohongshu notes",
+    "product image order and shot list",
+    "FAQ pack",
+    "review loopback seed"
+  ],
+  "decision": {
+    "verdict": "go_with_caution",
+    "score": 72,
+    "risk_level": "medium",
+    "one_line_reason": "Clear MagSafe-Compatible iPhone 15 Case with Raised Bezels and Air-Cushion Corners has a clear buyer scenario, but supplier facts, image sources, and compliance details should be confirmed before publishing."
+  },
+  "risk_checklist": [
+    {
+      "risk": "Supplier and product facts need final verification.",
+      "level": "medium",
+      "operator_check": "Confirm supplier price, material, package contents, platform restrictions, and after-sales policy.",
+      "copywriting_rule": "Do not claim unverified certifications, performance, durability, or effectiveness."
+    }
   ]
 }

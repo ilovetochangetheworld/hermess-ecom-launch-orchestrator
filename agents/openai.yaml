@@ -1,8 +1,8 @@
 interface:
   display_name: "Hermess Ecom Launch Orchestrator"
-  short_description: "电商全链路演示总控与容错编排"
+  short_description: "电商从选品到复盘的全链路工作流"
   brand_color: "#2563EB"
-  default_prompt: "Use $hermess-ecom-launch-orchestrator to run a 10-minute AI e-commerce launch demo from product research to review loopback."
+  default_prompt: "Use $hermess-ecom-launch-orchestrator to run an e-commerce launch workflow from product research to pricing, content, publishing readiness, customer service, and review loopback."
 
 policy:
   allow_implicit_invocation: true

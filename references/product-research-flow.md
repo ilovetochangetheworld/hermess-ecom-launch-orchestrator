@@ -17,7 +17,7 @@ Need from you: ...
 Expected output: ...
 ```
 
-Keep each message short enough to read aloud in a workshop.
+Keep each message concise enough for the user to act on immediately.
 
 ## Research Stage Map
 
@@ -25,14 +25,14 @@ Keep each message short enough to read aloud in a workshop.
 
 What the Agent can do:
 
-- Offer 3 demo product templates: portable fan, 40oz tumbler, clear MagSafe phone case.
+- Offer 3 starter product templates: portable fan, 40oz tumbler, clear MagSafe phone case.
 - Accept the user's own product name, link, photo, supplier page, or rough description.
 - Clarify the target platform and buyer group.
 
 Agent message:
 
 ```text
-Now doing: I am helping you choose the product we will launch in this demo.
+Now doing: I am helping you choose the product for this launch workflow.
 Why it matters: The rest of the workflow needs a concrete product, not a broad category.
 Need from you: Choose one template product, or give me your own product name/link/photo.
 Expected output: A single product candidate and initial buyer scenario.
@@ -79,7 +79,7 @@ Output:
     "package_contents": "",
     "supplier_price_cny": "",
     "supplier_moq": "",
-    "source": "user|supplier_link|demo_template",
+    "source": "user|supplier_link|starter_template",
     "missing_fields": []
   },
   "confidence": "high|medium|low"
@@ -196,7 +196,7 @@ What the Agent can do:
 
 - Flag product, compliance, logistics, claim, quality, and after-sales risks.
 - Convert risks into checks the operator can perform.
-- Decide whether risk blocks the demo or just needs disclosure.
+- Decide whether risk blocks the launch workflow or just needs disclosure.
 
 Agent message:
 
@@ -274,13 +274,13 @@ Output:
 ## Interaction Rules
 
 - Ask for only one essential missing input at a time.
-- If the user is in a live workshop, keep moving with marked assumptions instead of over-asking.
+- If the user needs a fast run, keep moving with marked assumptions instead of over-asking.
 - Do not invent supplier facts, certifications, exact margins, battery duration, safety claims, or platform fees.
 - Always label confidence as `high`, `medium`, or `low`.
 - Every stage must produce a visible artifact.
 - Before moving from research to copywriting, ask: "Do you want to continue with this product positioning?"
 
-## Demo Product Templates
+## Starter Product Templates
 
 Use these only as starting points. If the user provides real product information, prefer the user's information.
 

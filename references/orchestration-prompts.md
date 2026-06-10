@@ -7,14 +7,14 @@ Use these prompts to run the workflow consistently.
 ```text
 你是 Hermess 电商全链路总控 Agent。请把一个商品从选品分析推进到可发布、可客服、可复盘的完整闭环。
 
-商品：{商品名称或现场商品描述}
+商品：{商品名称、链接、图片或描述}
 目标平台：小红书
 目标用户：{可选}
 可用数据：
 - Amazon竞品数据：{有|无|已粘贴}
 - 1688供应数据：{有|无|已粘贴}
 - 商品图片：{有|无}
-- 发布条件：{已准备人工发布|未准备|仅生成发布素材包}
+- 发布条件：{账号已准备|待确认|仅生成发布准备包}
 - 评论数据：{有|无|使用样例}
 
 工作要求：
@@ -32,8 +32,8 @@ Use these prompts to run the workflow consistently.
 1. 选品竞品分析
 2. 定价和毛利测算
 3. 小红书种草文案
-4. 商品图片准备：基于真实商品图、供应商图或现场实拍图整理封面/功能/场景图片建议
-5. 发布准备包：输出标题、正文、话题、图片顺序和发布前确认清单，最终发布由讲师或运营人员按平台规范确认
+4. 商品图片准备：基于真实商品图、供应商图、商品截图或用户实拍图整理封面/功能/场景图片建议
+5. 发布准备包：输出标题、正文、话题、图片顺序、合规提示和发布前确认清单
 6. 智能客服 FAQ 和实时问答
 7. 评论分析与下一轮选品回流
 
@@ -44,7 +44,7 @@ Use these prompts to run the workflow consistently.
 - 信心等级
 - 下一步动作
 
-最终请合并为 workflow envelope，并给出适合现场讲解的 5 句话总结。
+最终请合并为 workflow envelope，并给出 5 句话业务总结。
 ```
 
 ## Research Stage Starter
@@ -77,16 +77,16 @@ Expected output:
 ## Stage Recovery
 
 ```text
-当前 Hermess 电商演示卡在以下阶段：
+当前 Hermess 电商工作流卡在以下阶段：
 
 阶段：{research|pricing|copywriting|image_prep|publishing_package|customer_service|review_analysis}
 阻塞原因：{具体原因}
 当前已有产物：{粘贴已有JSON或摘要}
-剩余演示时间：{分钟}
+可用时间：{分钟}
 
 请判断应该如何继续，并输出：
 1. 推荐继续方式
-2. 对观众的解释话术
+2. 对用户的解释话术
 3. 可继续展示的产物
 4. 需要用户补充的最小输入
 5. 下一步操作
@@ -95,7 +95,7 @@ Expected output:
 ## Final Workshop Takeaway
 
 ```text
-请把以下 workflow envelope 整理成观众可带走的提效工坊素材包。
+请把以下 workflow envelope 整理成可复用的电商启动素材包。
 
 {workflow_envelope_json}
 

@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""Deterministic helpers for the Solo Ecom Pilot workshop skill.
+"""Deterministic helpers for the Solo Ecom Pilot skill.
 
 These helpers do not replace the language model. They provide stable scoring,
-schemas, compliance checks, and packaging logic for the customer-facing demo.
+schemas, compliance checks, and packaging logic for the e-commerce workflow.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import re
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -82,6 +81,7 @@ class MarketIntel:
             "decision": {
                 "verdict": verdict,
                 "score": total,
+                "risk_level": "low" if total >= 75 else "medium" if total >= 60 else "high",
                 "one_line_reason": self._reason(verdict, facts),
             },
             "six_dimension_scores": {
@@ -104,6 +104,14 @@ class MarketIntel:
                 "image_needs": ["clear product cover image", "feature/detail image", "real use-scene image"],
                 "faq_seeds": ["price", "quality", "shipping", "after-sales", "comparison"],
             },
+            "risk_checklist": [
+                {
+                    "risk": "Key product facts are not fully verified.",
+                    "level": "medium",
+                    "operator_check": "Confirm supplier price, material, package contents, and applicable platform restrictions before publishing.",
+                    "copywriting_rule": "Do not claim unverified certifications, battery life, material, or effectiveness.",
+                }
+            ],
             "confidence": "medium" if facts.missing_fields else "high",
         }
 
@@ -197,9 +205,16 @@ class ContentFactory:
         return {
             "content_pack": {
                 "platform": "xiaohongshu",
-                "versions": [{"type": "客户演示版", "title": title, "body": body, "hashtags": ["#电商选品", "#小红书开店", "#好物分享"]}],
+                "selected_version": "A",
+                "versions": [{"type": "工作流样例版", "title": title, "body": body, "hashtags": ["#电商选品", "#小红书开店", "#好物分享"]}],
+                "sales_claims": features,
+                "risk_words_removed": [],
                 "quality_check": {
                     "product_specificity_score": 80 if features else 50,
+                    "human_tone_score": 70,
+                    "forbidden_words_found": [],
+                    "generic_phrases_found": [],
+                    "needs_humanizer": False,
                     "compliance": self.compliance.check(title + body),
                 },
             }
@@ -233,6 +248,7 @@ class ProductImagePrep:
                 "Shoot or collect one detail image for the strongest selling point.",
                 "Shoot or collect one real use-scene image with the target user context.",
             ],
+            "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos.",
         }
 
     def _requirement(self, role: str) -> str:
@@ -264,14 +280,14 @@ class PublishingPackage:
                 "visibility": None,
                 "failure_reason": None,
                 "direct_publish_enabled": False,
-                "policy_note": "Direct Xiaohongshu publishing demo is paused. The Agent prepares a publish-ready package for approved operator workflow.",
+                "policy_note": "Publishing readiness package prepared. Actual publishing should follow account status, platform policy, and business approval requirements.",
                 "operator_checklist": [
                     "Confirm account and platform policy readiness.",
                     "Confirm images are real product, supplier, or user-provided photos.",
                     "Review title, body, hashtags, price claims, and after-sales wording.",
-                    "Paste the approved package into the platform manually.",
+                    "Submit or schedule the approved package through the appropriate platform workflow.",
                 ],
-                "next_action": "Review the package and publish through the approved operator workflow.",
+                "next_action": "Review the package, resolve pending checklist items, then submit through the appropriate platform workflow.",
             }
         }
 
@@ -334,6 +350,15 @@ class AnalyticsDashboard:
         force_loopback = sum(triggers.values()) >= 2
         return {
             "review_insight_pack": {
+                "sentiment": {
+                    "positive_pct": 0,
+                    "neutral_pct": 0,
+                    "negative_pct": 0,
+                    "nps_estimate": 0,
+                    "sample_size": 0,
+                },
+                "pain_points": [],
+                "iteration_roadmap": {},
                 "health_triggers": triggers,
                 "force_loopback": force_loopback,
                 "loopback": {
@@ -365,11 +390,11 @@ class Orchestrator:
     def run_template(self, template: str) -> dict[str, Any]:
         facts = self.market.from_template(template)
         progress = [
-            Progress.message("选择演示商品并建立产品事实", "选品先判断商品是否值得继续，避免后续内容空转。", "选择商品或提供链接、图片、供应价。", "产品画像和 go/no-go 结论。"),
-            Progress.message("计算价格和毛利空间", "客户需要看到这个商品不只是能写文案，也有经营可行性。", "采购价、目标平台和预期毛利。", "保守/建议/进取三个价格。"),
+            Progress.message("选择商品并建立产品事实", "选品先判断商品是否值得继续，避免后续内容空转。", "选择商品或提供链接、图片、供应价。", "产品画像和 go/no-go 结论。"),
+            Progress.message("计算价格和毛利空间", "使用者需要看到这个商品不只是能写文案，也有经营可行性。", "采购价、目标平台和预期毛利。", "保守/建议/进取三个价格。"),
             Progress.message("生成绑定产品事实的内容", "好内容必须引用真实参数和目标人群。", "确认目标用户和不可夸大的卖点。", "标题、正文、标签和合规提示。"),
             Progress.message("整理真实商品图片", "商品图要支撑信任，不能把概念图当成真实上架图。", "提供实拍、供应商图或商品截图。", "封面/功能/场景三张图的顺序和补拍清单。"),
-            Progress.message("生成发布素材包", "平台发布动作可由人工确认，但素材必须完整可用。", "确认账号、平台规则和最终发布边界。", "标题、正文、标签、图片顺序和操作清单。"),
+            Progress.message("生成发布准备包", "发布前需要把素材、合规和账号状态整理清楚。", "确认账号状态、平台规则和审批要求。", "标题、正文、标签、图片顺序和发布前确认清单。"),
             Progress.message("准备客服和复盘闭环", "发布后真正的效率来自问答承接和反馈回流。", "提供常见问题、评论或运营数据。", "FAQ、回复样例和下一轮选品种子。"),
         ]
         research = self.market.score(facts)
@@ -382,9 +407,9 @@ class Orchestrator:
         return {
             "workflow_meta": {
                 "workflow_name": "from_zero_to_launch",
-                "mode": "customer_demo",
+                "mode": "standard_workflow",
                 "current_stage": "complete",
-                "demo_status": "ready",
+                "workflow_status": "ready",
                 "direct_publish_enabled": False,
             },
             "stage_progress": progress,
@@ -395,12 +420,12 @@ class Orchestrator:
             **publish,
             **service,
             **analytics,
-            "audience_takeaway": [
+            "handoff_summary": [
                 "product research decision",
                 "pricing suggestion",
                 "xiaohongshu note",
                 "product image shot list",
-                "publishing package",
+                "publishing readiness package",
                 "customer service FAQ",
                 "review loopback seed",
             ],
