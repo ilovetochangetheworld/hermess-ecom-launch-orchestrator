@@ -215,3 +215,12 @@ Use these contracts to keep all e-commerce skills interoperable.
   }
 }
 ```
+
+## Asset Pack Delivery
+
+```json
+{
+  "asset_pack_html_path": "Local path to generated HTML asset pack or null",
+  "delivery_note": "The workflow envelope remains the machine-readable source of truth; the HTML asset pack is the user-facing view."
+}
+```

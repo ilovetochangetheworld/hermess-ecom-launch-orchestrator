@@ -18,6 +18,7 @@
 5. 发布准备包：整理标题、正文、话题、图片顺序和发布前确认清单。
 6. 智能客服 FAQ：生成常见问题、买家意图识别和回复样例。
 7. 评论复盘闭环：把评论痛点和运营数据回流成下一轮选品建议。
+8. HTML 资产包：把完整 workflow envelope 渲染成可打开、可分享、可复制的单页 HTML。
 
 发布相关能力聚焦于“发布前准备”：Agent 负责整理发布所需素材和检查项；实际发布动作应由使用者结合账号状态、平台规则和业务审批流程完成。
 
@@ -111,6 +112,7 @@ publish_result
 customer_service_pack
 review_insight_pack
 next_research_seed
+asset_pack_html_path
 ```
 
 字段定义见 `references/contracts.md`。
@@ -155,6 +157,14 @@ python3 scripts/xhs_publisher.py \
   --images cover.jpg feature.jpg lifestyle.jpg
 ```
 
+生成 HTML 资产包：
+
+```bash
+python3 scripts/render_asset_pack.py \
+  assets/sample-envelope.json \
+  --out outputs/sample-asset-pack.html
+```
+
 ## 目录说明
 
 ```text
@@ -171,6 +181,7 @@ python3 scripts/xhs_publisher.py \
 ├── scripts/
 │   ├── main.py                   # 统一流程样例生成器
 │   ├── validate_envelope.py      # envelope 校验器
+│   ├── render_asset_pack.py      # HTML 资产包渲染器
 │   ├── product_image_preparer.py # 商品图片角色整理
 │   └── xhs_publisher.py          # 发布准备包生成器
 └── assets/

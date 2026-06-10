@@ -229,6 +229,21 @@ Required output:
 - FAQ improvements
 - next research seed
 
+### 8. AssetPackRenderer: User-Facing Delivery
+
+Purpose: turn the workflow envelope into a user-facing asset pack.
+
+Capabilities:
+
+- Render a single HTML file from the completed workflow envelope.
+- Organize outputs into readable sections: decision, product profile, pricing, content, image preparation, publishing readiness, FAQ, and loopback.
+- Keep the JSON envelope as the machine-readable source of truth.
+
+Required output:
+
+- `workflow_envelope`
+- `asset_pack_html_path` when an HTML file is generated
+
 ## Default Run Order
 
 Use this sequence for a standard run:
@@ -241,6 +256,7 @@ Use this sequence for a standard run:
 6. Publishing readiness package.
 7. Customer service Q&A.
 8. Comment/data review and loopback.
+9. Render user-facing asset pack HTML when the user wants a shareable deliverable.
 
 ## Shared Contracts
 
@@ -255,8 +271,10 @@ Use `references/contracts.md` for:
 - `customer_service_pack`
 - `review_insight_pack`
 - `next_research_seed`
+- `asset_pack_html_path`
 
 Use `scripts/validate_envelope.py` to check the workflow envelope.
+Use `scripts/render_asset_pack.py` to turn a workflow envelope into a shareable HTML asset pack.
 
 ## References
 
@@ -271,6 +289,7 @@ Use `scripts/validate_envelope.py` to check the workflow envelope.
 
 - `scripts/main.py`: unified deterministic helper with research, pricing, content, image prep, publishing package, service, analytics, and an orchestrator.
 - `scripts/validate_envelope.py`: validates the workflow envelope.
+- `scripts/render_asset_pack.py`: renders the workflow envelope into a user-facing HTML asset pack.
 - `scripts/xhs_publisher.py`: publishing readiness package helper.
 - `scripts/product_image_preparer.py`: image role and shot-list helper.
 
@@ -294,3 +313,4 @@ At the end of a run, summarize:
 - what is ready for publishing
 - what questions the customer service bot can answer
 - what should feed the next round of product research
+- where the HTML asset pack was saved, if generated
