@@ -41,7 +41,7 @@ Product image transition:
 
 Publishing readiness:
 
-"平台账号和风控状态会变化，所以现场不演示直接发布。我们要让客户看到标题、正文、图片顺序、话题标签和人工发布清单已经完整准备好。"
+"平台账号和发布规范会变化，所以现场重点展示发布前准备。我们要让客户看到标题、正文、图片顺序、话题标签和发布前确认清单已经完整准备好。"
 
 Customer service transition:
 
@@ -60,7 +60,7 @@ Loopback close:
 | 2:30-3:30 | Pricing | Price range and margin logic |
 | 3:30-5:00 | Copywriting | 2 Xiaohongshu notes |
 | 5:00-6:15 | Product image preparation | Cover/feature/lifestyle image order |
-| 6:15-7:15 | Publishing package | Title, body, hashtags, image order, operator action |
+| 6:15-7:15 | Publishing readiness pack | Title, body, hashtags, image order, pre-publish checklist |
 | 7:00-8:30 | Customer service | FAQ and realtime replies |
 | 8:30-10:00 | Review loopback | Iteration roadmap and next research seed |
 
