@@ -109,8 +109,8 @@ Use these contracts to keep all e-commerce skills interoperable.
       "role": "封面图",
       "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
       "source_path_or_url": "Local path or URL",
-      "prompt": "Optional image generation prompt",
-      "expected_output_path": "Optional expected generated image path",
+      "prompt": "Image generation or shooting prompt for this role",
+      "expected_output_path": "Only present if a real/generated file already exists",
       "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     },
@@ -118,8 +118,8 @@ Use these contracts to keep all e-commerce skills interoperable.
       "role": "功能图",
       "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
       "source_path_or_url": "Local path or URL",
-      "prompt": "Optional image generation prompt",
-      "expected_output_path": "Optional expected generated image path",
+      "prompt": "Image generation or shooting prompt for this role",
+      "expected_output_path": "Only present if a real/generated file already exists",
       "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     },
@@ -127,8 +127,8 @@ Use these contracts to keep all e-commerce skills interoperable.
       "role": "场景图",
       "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
       "source_path_or_url": "Local path or URL",
-      "prompt": "Optional image generation prompt",
-      "expected_output_path": "Optional expected generated image path",
+      "prompt": "Image generation or shooting prompt for this role",
+      "expected_output_path": "Only present if a real/generated file already exists",
       "required_if_missing": "What image the operator should provide or shoot",
       "why_this_image": "Purpose"
     }
@@ -136,6 +136,7 @@ Use these contracts to keep all e-commerce skills interoperable.
   "image_order": ["cover", "feature", "lifestyle"],
   "missing_image_checklist": [],
   "shot_list": [],
+  "generation_policy": "Default output is prompts only. Do not call image generation APIs unless the user explicitly asks.",
   "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos."
 }
 ```

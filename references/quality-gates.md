@@ -31,19 +31,21 @@ Fail action:
 - Rewrite once with stricter grounding.
 - If still weak, produce a `needs_humanizer: true` flag and explain what needs manual polishing.
 
-## Product Image Preparation
+## Image Prompt and Product Image Preparation
 
 Pass conditions:
 
-- Real product image sources are identified: user photo, supplier image, marketplace image, or product screenshot.
 - There are three roles: cover, feature, lifestyle.
 - Each image role has a clear usage reason.
-- If AI-generated visual concepts are used, they are clearly labeled as concept drafts, not real product photos.
+- Each image role has either a real source or a concrete prompt/shot requirement.
+- If real product image sources are identified, label them as user photo, supplier image, marketplace image, or product screenshot.
+- If image files are missing, the stage still passes when it outputs cover/feature/lifestyle prompts and a missing image checklist.
+- If AI-generated visual concepts are used later, they are clearly labeled as concept drafts, not real product photos.
 
 Fail action:
 
 - Ask for product photos, supplier links, or screenshots.
-- If images are still unavailable, produce an image shot list and do not claim product photos are ready.
+- If images are still unavailable, produce image prompts and a shot list; do not call image generation or claim product photos are ready.
 
 ## Publishing Readiness
 

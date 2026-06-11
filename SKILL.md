@@ -1,6 +1,6 @@
 ---
 name: solo-ecom-pilot
-description: Use this skill for e-commerce launch workflows that take a product from research to pricing, content, real product image preparation, publishing readiness, customer service FAQ, compliance review, data diagnosis, and loopback iteration. The agent must proactively explain what it is doing at every step.
+description: Use this skill for e-commerce launch workflows that take a product from research to pricing, content, image prompts and real product image preparation, publishing readiness, customer service FAQ, compliance review, data diagnosis, and loopback iteration. The agent must proactively explain what it is doing at every step.
 ---
 
 # Solo Ecom Pilot
@@ -15,8 +15,18 @@ It replaces scattered e-commerce prompts with one operating flow. The skill must
 
 - Use business language, not internal engineering language.
 - Publishing-related output focuses on publishing readiness: prepare titles, body, hashtags/topics, image order, compliance notes, and pre-publish checks. Actual publishing should follow account status, platform policy, and business approval requirements.
-- Product images should come from real sources: user photos, supplier images, product screenshots, or product detail images. AI may help rank, annotate, and describe images, but draft visuals must not be positioned as real product listing photos.
+- Product images should come from real sources: user photos, supplier images, product screenshots, or product detail images. The image stage outputs image prompts, shot requirements, ordering, and annotation suggestions only. Do not call image generation APIs by default, and do not position AI draft visuals as real product listing photos.
 - The Agent must proactively say what it is doing at every stage.
+
+## Token Budget Rules
+
+- Default stage output should be concise: one progress card, up to 5 bullets of findings, and the confirmation options.
+- Do not paste full JSON after every stage. Keep the complete JSON internally and output it only when the user asks to export or when rendering the 商品经营启动包.
+- Load reference files only when needed for the active stage. Do not load all references at workflow start.
+- Avoid repeating product facts already accepted by the user; refer to them as "已确认产品画像" unless a field changed.
+- For FAQ, output the top 8 questions during the live workflow; expand to 20 only in the exported customer service pack.
+- For review analysis, summarize top 3 pain points in the chat; put the full analysis in the envelope/export.
+- For image preparation, output 3 concise prompts and the image order. Do not generate images unless the user explicitly asks.
 
 ## Trigger Keywords
 
@@ -130,9 +140,9 @@ Required output:
 - content quality check
 - compliance check result
 
-### 4. ProductImagePrep: Real Product Image Preparation
+### 4. ProductImagePrep: Image Prompts and Real Product Image Preparation
 
-Purpose: prepare trustworthy listing images.
+Purpose: prepare trustworthy listing image requirements without spending image-generation tokens or credits by default.
 
 Capabilities:
 
@@ -140,16 +150,22 @@ Capabilities:
   - cover image
   - feature/detail image
   - lifestyle/use-scene image
-- Generate an image shot list if real images are missing.
+- Generate three image prompts if real images are missing or the user wants a creative brief:
+  - cover prompt
+  - feature/detail prompt
+  - lifestyle/use-scene prompt
+- Generate an image shot list for the operator or designer.
 - Suggest annotation points and image order.
-- Label AI draft visuals only as concept drafts, not listing photos.
+- Do not call image generation tools or external image APIs unless the user explicitly asks.
+- Label AI draft visuals only as concept drafts, not listing photos, if the user later requests generated images.
 
 Required output:
 
 - `image_pack`
 - missing image checklist
 - image order
-- shot list
+- 3 image prompts
+- shot list / operator brief
 
 ### 5. PublishingReadiness: Publishing Preparation
 
@@ -241,7 +257,7 @@ Capabilities:
 - Render a single HTML file from the completed workflow envelope.
 - Organize outputs into readable sections: decision, product profile, pricing, content, image preparation, publishing readiness, FAQ, and loopback.
 - Include a delivery file list with clear business-facing names and `MEDIA:` references when available.
-- Show image prompts and generated image file paths together when an image generation step has run.
+- Show image prompts and real/generated image file paths only when such files are actually available.
 - Keep the "完整流程数据包（workflow envelope JSON）" as the machine-readable source of truth.
 
 Required output:
@@ -258,7 +274,7 @@ Use this sequence for a standard run. By default, complete one stage, summarize,
 2. Product research and go/no-go.
 3. Pricing and margin.
 4. Xiaohongshu content.
-5. Real product image preparation.
+5. Image prompts and real product image preparation.
 6. Publishing readiness package.
 7. Customer service Q&A.
 8. Comment/data review and loopback.

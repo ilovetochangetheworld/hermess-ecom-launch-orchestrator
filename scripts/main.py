@@ -236,6 +236,7 @@ class ProductImagePrep:
                 "role": {"cover": "封面图", "feature": "功能图", "lifestyle": "场景图"}[role],
                 "source_type": "user_photo" if source else "missing",
                 "source_path_or_url": source,
+                "prompt": self._prompt(role),
                 "required_if_missing": self._requirement(role),
                 "why_this_image": self._reason(role),
             }
@@ -248,8 +249,16 @@ class ProductImagePrep:
                 "Shoot or collect one detail image for the strongest selling point.",
                 "Shoot or collect one real use-scene image with the target user context.",
             ],
+            "generation_policy": "Default output is prompts only. Do not call image generation APIs unless the user explicitly asks.",
             "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos.",
         }
+
+    def _prompt(self, role: str) -> str:
+        return {
+            "cover": "Clean front-facing product photo prompt: show the exact product shape, color, material, and package contents on a simple bright background, realistic ecommerce photography, no invented features.",
+            "feature": "Feature/detail image prompt: close-up of the strongest verified selling point, clear annotation space, realistic product detail photography, no exaggerated claims.",
+            "lifestyle": "Lifestyle scene prompt: show the target user using the real product in a natural daily setting, warm practical lighting, realistic proportions, no fake brand marks.",
+        }[role]
 
     def _requirement(self, role: str) -> str:
         return {
@@ -283,7 +292,7 @@ class PublishingPackage:
                 "policy_note": "Publishing readiness package prepared. Actual publishing should follow account status, platform policy, and business approval requirements.",
                 "operator_checklist": [
                     "Confirm account and platform policy readiness.",
-                    "Confirm images are real product, supplier, or user-provided photos.",
+                    "Confirm image prompts, image order, and whether real product/supplier/user-provided photos are available.",
                     "Review title, body, hashtags, price claims, and after-sales wording.",
                     "Submit or schedule the approved package through the appropriate platform workflow.",
                 ],
@@ -393,7 +402,7 @@ class Orchestrator:
             Progress.message("选择商品并建立产品事实", "选品先判断商品是否值得继续，避免后续内容空转。", "选择商品或提供链接、图片、供应价。", "产品画像和 go/no-go 结论。"),
             Progress.message("计算价格和毛利空间", "使用者需要看到这个商品不只是能写文案，也有经营可行性。", "采购价、目标平台和预期毛利。", "保守/建议/进取三个价格。"),
             Progress.message("生成绑定产品事实的内容", "好内容必须引用真实参数和目标人群。", "确认目标用户和不可夸大的卖点。", "标题、正文、标签和合规提示。"),
-            Progress.message("整理真实商品图片", "商品图要支撑信任，不能把概念图当成真实上架图。", "提供实拍、供应商图或商品截图。", "封面/功能/场景三张图的顺序和补拍清单。"),
+            Progress.message("整理图片 Prompt 与素材要求", "商品图要支撑信任，默认先输出 Prompt 和拍摄清单，不消耗生图。", "提供实拍、供应商图、商品截图，或确认先用商品画像生成 Prompt。", "封面/功能/场景三类图片 Prompt、图片顺序和补拍清单。"),
             Progress.message("生成发布准备包", "发布前需要把素材、合规和账号状态整理清楚。", "确认账号状态、平台规则和审批要求。", "标题、正文、标签、图片顺序和发布前确认清单。"),
             Progress.message("准备客服和复盘闭环", "发布后真正的效率来自问答承接和反馈回流。", "提供常见问题、评论或运营数据。", "FAQ、回复样例和下一轮选品种子。"),
         ]
@@ -424,7 +433,7 @@ class Orchestrator:
                 "product research decision",
                 "pricing suggestion",
                 "xiaohongshu note",
-                "product image shot list",
+                "image prompts and product shot list",
                 "publishing readiness package",
                 "customer service FAQ",
                 "review loopback seed",

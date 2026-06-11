@@ -25,6 +25,7 @@ def prepare(images: list[str]) -> dict:
             "role": role,
             "source_type": "user_photo" if source else "missing",
             "source_path_or_url": source,
+            "prompt": prompt_for(key),
             "required_if_missing": requirement,
             "why_this_image": requirement,
         }
@@ -37,8 +38,18 @@ def prepare(images: list[str]) -> dict:
             "Use a real detail photo to prove the strongest selling point.",
             "Use a real use-scene or supplier lifestyle image for context.",
         ],
+        "generation_policy": "Default output is prompts only. Do not call image generation APIs unless the user explicitly asks.",
         "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos.",
     }
+
+
+def prompt_for(role: str) -> str:
+    prompts = {
+        "cover": "Clean front-facing product photo prompt: exact product shape, color, material, and package contents on a simple bright background, realistic ecommerce photography, no invented features.",
+        "feature": "Feature/detail image prompt: close-up of the strongest verified selling point, clear annotation space, realistic product detail photography, no exaggerated claims.",
+        "lifestyle": "Lifestyle scene prompt: target user using the real product in a natural daily setting, warm practical lighting, realistic proportions, no fake brand marks.",
+    }
+    return prompts[role]
 
 
 def main() -> None:

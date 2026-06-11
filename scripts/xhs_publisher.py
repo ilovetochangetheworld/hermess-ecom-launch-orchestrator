@@ -28,7 +28,7 @@ def build_package(title: str, body: str, hashtags: list[str], images: list[str])
         "policy_note": "Publishing readiness package prepared. Actual publishing should follow account status, platform policy, and business approval requirements.",
         "operator_checklist": [
             "Confirm account readiness",
-            "Confirm all images are real product/supplier/user-provided images",
+            "Confirm image order and whether each image is a real file or a prompt-only placeholder",
             "Review compliance warnings",
             "Submit or schedule the approved package through the appropriate platform workflow",
         ],

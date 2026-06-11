@@ -132,18 +132,17 @@ def build_delivery_manifest(data: dict[str, Any]) -> dict[str, Any]:
         slug = "case"
 
     base_dir = "/home/agentuser"
-    image_pack = data.get("image_pack") or {}
-    image_paths = {
-        "封面图": (image_pack.get("cover") or {}).get("source_path_or_url") or f"{base_dir}/xhs_{slug}_demo/封面图.png",
-        "功能图": (image_pack.get("feature") or {}).get("source_path_or_url") or f"{base_dir}/xhs_{slug}_demo/功能图.png",
-        "场景图": (image_pack.get("lifestyle") or {}).get("source_path_or_url") or f"{base_dir}/xhs_{slug}_demo/场景图.png",
-    }
     assets = [
         {"name": "文案素材包", "path": f"{base_dir}/{slug}_content_pack.json"},
         {"name": "客服问答包", "path": f"{base_dir}/{slug}_cs_pack.json"},
         {"name": "完整流程数据包", "path": f"{base_dir}/{slug}_workflow_envelope.json"},
-        *({"name": name, "path": path} for name, path in image_paths.items()),
+        {"name": "图片Prompt包", "path": f"{base_dir}/{slug}_image_prompt_pack.json"},
     ]
+    image_pack = data.get("image_pack") or {}
+    for name, key in [("封面图", "cover"), ("功能图", "feature"), ("场景图", "lifestyle")]:
+        path = (image_pack.get(key) or {}).get("source_path_or_url") or (image_pack.get(key) or {}).get("expected_output_path")
+        if path:
+            assets.append({"name": name, "path": path})
     return {
         "title": "交付文件清单",
         "assets": assets,

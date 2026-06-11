@@ -9,7 +9,7 @@ Use this runbook for the workshop case "From zero to launch: your AI e-commerce 
 - Prepare Amazon/1688 data or clearly marked assumptions.
 - Prepare sample comments for review analysis.
 - Keep a complete publishing package ready: title, body, hashtags, image order, and operator action.
-- Prepare real product images or supplier images for each demo product.
+- Prepare real product images or supplier images for each demo product when available; otherwise prepare image prompts and a shot list.
 - Prepare the Agent progress statement format: Now doing / Why it matters / Need from you / Expected output.
 
 ## Recommended Demo Story
@@ -37,7 +37,7 @@ Copywriting transition:
 
 Product image transition:
 
-"商品图不应该凭空生成。我们优先用真实商品图、供应商图或现场实拍图，让 AI 帮我们判断哪张做封面、哪张讲功能、哪张讲使用场景。"
+"商品图不应该凭空生成。我们优先用真实商品图、供应商图或现场实拍图；如果图片还没准备好，AI 先输出封面、功能、场景三类图片 Prompt 和拍摄清单，不现场消耗生图。"
 
 Publishing readiness:
 
@@ -59,7 +59,7 @@ Loopback close:
 | 0:45-2:30 | Research summary | Product profile and go/no-go |
 | 2:30-3:30 | Pricing | Price range and margin logic |
 | 3:30-5:00 | Copywriting | 2 Xiaohongshu notes |
-| 5:00-6:15 | Product image preparation | Cover/feature/lifestyle image order |
+| 5:00-6:15 | Image prompt and material preparation | Cover/feature/lifestyle prompts and image order |
 | 6:15-7:15 | Publishing readiness pack | Title, body, hashtags, image order, pre-publish checklist |
 | 7:00-8:30 | Customer service | FAQ and realtime replies |
 | 8:30-10:00 | Review loopback | Iteration roadmap and next research seed |
@@ -69,7 +69,7 @@ Loopback close:
 1. Use real product data and direct publishing when ready.
 2. If a platform/account step is not ready, still produce the complete publishing package.
 3. If marketplace data is missing, continue with clearly marked assumptions and lower confidence.
-4. If product images are missing, request user photos/supplier images and produce an image shot list.
+4. If product images are missing, produce image prompts and a shot list first; only generate images after the user explicitly asks.
 
 The story should never fail because one platform status changes. The Agent should explain what is ready and what operator action remains.
 
@@ -83,7 +83,7 @@ Prepare these outputs for participants:
 - 客服问答包（FAQ pack JSON）
 - 发布准备清单
 - Xiaohongshu note versions
-- product image order and shot list
+- image prompts, product image order, and shot list
 - FAQ knowledge base
 - review analysis sample
 - one-page prompt template
