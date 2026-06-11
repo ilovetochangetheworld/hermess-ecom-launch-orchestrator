@@ -32,6 +32,12 @@
       display: grid;
       align-content: center;
     }
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 34px;
+      align-items: end;
+    }
     .eyebrow {
       color: var(--blue);
       font-weight: 800;
@@ -50,6 +56,34 @@
       color: #344054;
       font-size: 22px;
       line-height: 1.55;
+    }
+    .qr-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255,255,255,.94);
+      padding: 18px;
+      box-shadow: 0 20px 50px rgba(15,23,42,.08);
+    }
+    .qr-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .qr-card b {
+      display: block;
+      margin-top: 14px;
+      font-size: 20px;
+      line-height: 1.25;
+    }
+    .qr-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
     }
     .cards {
       display: grid;
@@ -99,15 +133,26 @@
     }
     @media (max-width: 760px) {
       main { padding: 44px 18px; }
+      .hero { grid-template-columns: 1fr; }
+      .qr-card { max-width: 260px; }
       .cards { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
   <main>
-    <div class="eyebrow">Hermess Agent 提效工坊</div>
-    <h1>从 0 开张：你的 AI 电商合伙人</h1>
-    <p>这里汇总客户可直接访问的演示材料：一份现场讲解用的流程页，以及一份小鸭子泡澡玩具的商品经营启动包示例。</p>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Hermess Agent 提效工坊</div>
+        <h1>从 0 开张：你的 AI 电商合伙人</h1>
+        <p>这里汇总客户可直接访问的演示材料：一份现场讲解用的流程页，以及一份小鸭子泡澡玩具的商品经营启动包示例。</p>
+      </div>
+      <aside class="qr-card">
+        <img src="./qr-home.png" alt="扫码访问 AI 电商合伙人演示材料">
+        <b>扫码访问</b>
+        <span>手机打开本页，快速进入演示材料和小鸭子启动包示例。</span>
+      </aside>
+    </section>
     <div class="cards">
       <a class="card" href="./talk/">
         <span>Workshop Talk</span>
