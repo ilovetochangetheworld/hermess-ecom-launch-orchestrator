@@ -224,8 +224,9 @@ class ContentFactory:
 class ProductImagePrep:
     ROLES = ["cover", "feature", "lifestyle"]
 
-    def prepare(self, image_sources: list[str] | None = None) -> dict[str, Any]:
+    def prepare(self, image_sources: list[str] | None = None, product_profile: dict[str, Any] | None = None) -> dict[str, Any]:
         image_sources = image_sources or []
+        product_profile = product_profile or {}
         pack = {}
         missing = []
         for index, role in enumerate(self.ROLES):
@@ -236,7 +237,7 @@ class ProductImagePrep:
                 "role": {"cover": "封面图", "feature": "功能图", "lifestyle": "场景图"}[role],
                 "source_type": "user_photo" if source else "missing",
                 "source_path_or_url": source,
-                "prompt": self._prompt(role),
+                "prompt": self._prompt(role, product_profile),
                 "required_if_missing": self._requirement(role),
                 "why_this_image": self._reason(role),
             }
@@ -253,11 +254,31 @@ class ProductImagePrep:
             "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos.",
         }
 
-    def _prompt(self, role: str) -> str:
+    def _prompt(self, role: str, profile: dict[str, Any]) -> str:
+        name = profile.get("name") or "the exact product"
+        audience = profile.get("target_audience") or "the target buyer"
+        selling_point = profile.get("key_selling_point") or "the verified core selling point"
+        features = ", ".join((profile.get("key_features") or [])[:4]) or "verified visible features"
+        category = profile.get("category") or "product category"
         return {
-            "cover": "Clean front-facing product photo prompt: show the exact product shape, color, material, and package contents on a simple bright background, realistic ecommerce photography, no invented features.",
-            "feature": "Feature/detail image prompt: close-up of the strongest verified selling point, clear annotation space, realistic product detail photography, no exaggerated claims.",
-            "lifestyle": "Lifestyle scene prompt: show the target user using the real product in a natural daily setting, warm practical lighting, realistic proportions, no fake brand marks.",
+            "cover": (
+                f"封面图 Prompt：主体必须是 {name}（{category}），画面要清楚展示商品真实外观、颜色、材质和包装/数量；"
+                f"背景使用干净明亮的电商首图场景，突出 {selling_point}；构图为居中或三分法，顶部预留标题安全区，"
+                f"柔和自然光，真实产品摄影风格；面向 {audience}，解决买家第一眼不知道这是什么、是否适合自己的疑虑；"
+                "不要添加未确认功能、认证标志或夸张效果。"
+            ),
+            "feature": (
+                f"功能图 Prompt：主体必须是 {name}，用白底或浅色背景的拼图/信息图展示已确认卖点：{features}；"
+                f"每个分镜都要出现商品本体，例如手部演示核心功能、材质/细节特写、结构设计说明，并留出简短标注区域；"
+                f"画面目标是证明 {selling_point}，帮助 {audience} 判断功能是否真实、材质是否可靠；"
+                "真实产品摄影 + 清晰标注风格，不要只写功能词，不要出现未验证认证或绝对化功效。"
+            ),
+            "lifestyle": (
+                f"场景图 Prompt：主体必须是 {name}，展示 {audience} 在真实生活场景中使用该商品；"
+                f"商品要清楚可见并与使用动作发生关系，场景应解释为什么需要 {selling_point}；"
+                "构图为中景或近景，温暖自然光，真实生活方式摄影风格；如果涉及儿童，只拍背影、手部或非识别角度，"
+                "画面解决买家对使用场景、尺寸感和安全感的疑虑；不要把概念图当作真实上架图。"
+            ),
         }[role]
 
     def _requirement(self, role: str) -> str:
@@ -409,7 +430,7 @@ class Orchestrator:
         research = self.market.score(facts)
         price = self.pricing.price(cost=facts.supplier_price_cny or 25)
         content = self.content.xiaohongshu_note(research["product_profile"])
-        images = self.images.prepare()
+        images = self.images.prepare(product_profile=research["product_profile"])
         publish = self.publisher.build(content["content_pack"], images["image_pack"])
         service = self.service.faq(research["product_profile"])
         analytics = self.analytics.diagnose()

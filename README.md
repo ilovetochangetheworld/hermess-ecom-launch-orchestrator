@@ -92,6 +92,7 @@ D. 我自己的商品
 - 发布环节输出发布准备包，包括标题、正文、话题、图片顺序和发布前确认清单。
 - 商品图片优先使用真实商品图、供应商图、商品截图或用户提供的实拍图。
 - 图片环节默认只输出 Prompt、拍摄清单和图片顺序，不立即调用生图。
+- 图片 Prompt 必须包含商品主体、外观材质、目标用户或使用场景、构图光线、核心卖点和买家疑虑；不要只输出“发声演示、软胶材质”这类缺少主体的短语。
 - 为节省 token，每个阶段只输出摘要和确认选项；完整 JSON 只在用户选择导出或生成商品经营启动包时输出。
 - 所有文案必须绑定商品具体参数，不要写成任何同类商品都能套用的泛泛内容。
 - 用户选择停止或完成全部阶段后，生成「完整流程数据包」；如需分享交付物，生成「商品经营启动包（HTML交付页）」。
@@ -176,7 +177,11 @@ python3 scripts/validate_envelope.py assets/sample-envelope.json
 准备图片 Prompt 和商品图片角色：
 
 ```bash
-python3 scripts/product_image_preparer.py cover.jpg feature.jpg lifestyle.jpg
+python3 scripts/product_image_preparer.py \
+  --product "小鸭子泡澡玩具（会叫款）" \
+  --features "捏压发声、软胶材质、不藏水设计" \
+  --audience "0-3岁宝宝的宝妈" \
+  --selling-point "让宝宝洗澡更愿意互动，同时让家长看见材质和清洁细节"
 ```
 
 生成发布准备包：

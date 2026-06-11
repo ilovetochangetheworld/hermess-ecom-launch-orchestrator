@@ -38,6 +38,8 @@ Pass conditions:
 - There are three roles: cover, feature, lifestyle.
 - Each image role has a clear usage reason.
 - Each image role has either a real source or a concrete prompt/shot requirement.
+- Each prompt names the product subject and includes visible product details, target user/context, composition, lighting/style, and the buyer concern it addresses.
+- Feature prompts explicitly connect the subject to the demonstrated feature; fragments without a subject fail.
 - If real product image sources are identified, label them as user photo, supplier image, marketplace image, or product screenshot.
 - If image files are missing, the stage still passes when it outputs cover/feature/lifestyle prompts and a missing image checklist.
 - If AI-generated visual concepts are used later, they are clearly labeled as concept drafts, not real product photos.

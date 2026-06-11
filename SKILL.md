@@ -159,6 +159,15 @@ Capabilities:
 - Do not call image generation tools or external image APIs unless the user explicitly asks.
 - Label AI draft visuals only as concept drafts, not listing photos, if the user later requests generated images.
 
+Prompt rules:
+
+- Every image prompt must include the subject: product name, visible appearance, material/color, and package or quantity when known.
+- Every image prompt must include product background: target user, usage context, core selling point, and what buyer concern this image answers.
+- Feature image prompts must explicitly name the product subject and the feature being demonstrated; do not write feature fragments such as "sound demo + soft material" without a subject.
+- Cover prompts must define composition, background, lighting, style, title-safe blank area, and no invented features.
+- Lifestyle prompts must define user, scene, action, product placement, privacy constraints for children if relevant, and realism requirements.
+- If a fact is unverified, mark it as "需要确认" or avoid it. Do not silently invent certifications, material, size, battery life, age range, or safety claims.
+
 Required output:
 
 - `image_pack`
