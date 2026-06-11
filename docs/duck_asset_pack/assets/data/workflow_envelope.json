@@ -1,0 +1,525 @@
+{
+  "workflow_meta": {
+    "workflow_name": "from_zero_to_launch",
+    "mode": "standard_workflow",
+    "current_stage": "complete",
+    "workflow_status": "ready",
+    "direct_publish_enabled": false,
+    "created_at": "2026-06-11"
+  },
+  "stage_progress": [
+    {
+      "Now doing": "选定商品并建立产品画像",
+      "Why it matters": "后续所有环节需要具体商品",
+      "Need from you": "选择商品或提供链接/图片",
+      "Expected output": "明确商品候选和买家场景"
+    },
+    {
+      "Now doing": "产品事实采集与选品判断",
+      "Why it matters": "好选品避免内容空转",
+      "Need from you": "补充规格、供应价、目标平台",
+      "Expected output": "产品画像、go/no-go、风险清单"
+    },
+    {
+      "Now doing": "设计组合套餐定价方案",
+      "Why it matters": "套餐既实惠又拉高客单价",
+      "Need from you": "确认套餐方向和价格区间",
+      "Expected output": "单只/2只/4只套餐价格+毛利明细"
+    },
+    {
+      "Now doing": "生成小红书种草笔记+淘宝文案",
+      "Why it matters": "文案把产品画像变成买家想买",
+      "Need from you": "选择笔记风格",
+      "Expected output": "双版本笔记+淘宝标题/详情+合规质检"
+    },
+    {
+      "Now doing": "生成图片Prompt与商品图片准备",
+      "Why it matters": "商品图用真实来源建立信任",
+      "Need from you": "提交实拍图或确认先用Prompt",
+      "Expected output": "封面/功能/场景图片Prompt+图片顺序+拍摄清单"
+    },
+    {
+      "Now doing": "生成双平台发布准备包",
+      "Why it matters": "整合所有成果为可执行发布方案",
+      "Need from you": "确认账号状态和平台偏好",
+      "Expected output": "双平台发布素材包+发布前确认清单"
+    },
+    {
+      "Now doing": "生成客服FAQ与回复话术",
+      "Why it matters": "上架后咨询是第一道转化关",
+      "Need from you": "确认售后政策",
+      "Expected output": "8条FAQ+意图识别+售后决策树"
+    },
+    {
+      "Now doing": "建立评论复盘闭环框架",
+      "Why it matters": "上架后复盘把反馈变成下一轮弹药",
+      "Need from you": "上架后提供评论和运营数据",
+      "Expected output": "监控指标+触发规则+下一轮选品种子"
+    }
+  ],
+  "decision": {
+    "verdict": "go_with_caution",
+    "score": 78,
+    "one_line_reason": "供应价极低+3C认证+4花色差异化，毛利优秀；但年龄合规需严格遵守，且需补充尺寸信息和亮片款安全确认"
+  },
+  "confidence": "medium",
+  "product_profile": {
+    "name": "小鸭子泡澡玩具（捏捏叫款）",
+    "brand": "洛丽塔（玩具）",
+    "category": "搪胶玩具 → 捏捏叫戏水玩具",
+    "model": "XHY-KB",
+    "origin": "广东",
+    "key_features": [
+      "捏压发声，锻炼听觉与抓握",
+      "4款花色：港版小黄鸭/彩色鸭/表情鸭/亮片鸭",
+      "3C认证（2020182202016991）",
+      "袋装，有导购视频",
+      "能力培养：抓握、感官、手眼协调、互动、听觉、亲子交流"
+    ],
+    "specs": {
+      "suitable_ages": "4-6岁",
+      "materials": "搪胶",
+      "package_contents": "袋装（单只/2只/4只可选）",
+      "certifications": "3C认证 2020182202016991",
+      "colors": "港版小黄鸭 / 港版彩色鸭 / 港版表情鸭 / 港版亮片鸭"
+    },
+    "supplier_price_cny": 0.36,
+    "key_selling_point": "不只是洗澡玩具，是玩水中的感官启蒙教具",
+    "differentiation_direction": "玩水启蒙派（感官训练）+ 4花色选搭（参与感）+ 看得见的3C（信任感）",
+    "target_audience": "4-6岁儿童的宝妈，重视玩教结合",
+    "visual_style": "清新浴室场景，4只鸭子排排站对比，温暖自然光",
+    "image_needs": [
+      "封面：4只鸭子排排站对比图",
+      "功能：捏叫动作特写+手部抓握特写",
+      "场景：4-6岁儿童浴室戏水互动"
+    ],
+    "safe_claims": [
+      "通过3C认证，编码可查",
+      "搪胶材质，通过3C安全检测",
+      "适合4-6岁儿童，建议成人陪同使用",
+      "捏压发声，锻炼抓握与听觉感知"
+    ],
+    "claims_to_avoid": [
+      "婴儿/0-3岁/新生宝宝可用",
+      "食品级/可入口/奶嘴同款材质",
+      "超响/巨大声",
+      "全网最低价"
+    ],
+    "faq_seeds": [
+      "适合多大的孩子？",
+      "声音大不大？",
+      "材质安全吗？有没有3C？",
+      "亮片会不会掉？",
+      "四款有什么区别？"
+    ]
+  },
+  "risk_checklist": [
+    {
+      "risk": "年龄标注合规：产品标注4-6岁，不得暗示0-3岁可用",
+      "level": "high",
+      "operator_check": "详情页、标题、笔记中不得出现'婴儿''0-3岁''新生宝宝'等词",
+      "copywriting_rule": "严格使用'4-6岁'年龄段表述"
+    },
+    {
+      "risk": "材质声称：搪胶≠食品级硅胶，不得混用",
+      "level": "high",
+      "operator_check": "文案中不得出现'食品级''可入口''奶嘴同款'",
+      "copywriting_rule": "只说'搪胶材质+3C认证'"
+    },
+    {
+      "risk": "亮片款安全性：亮片是否内嵌不可脱落",
+      "level": "medium",
+      "operator_check": "向供应商确认亮片款结构并保留书面确认",
+      "copywriting_rule": "如未确认，对亮片款标注'需成人陪同'"
+    },
+    {
+      "risk": "袋装包装观感偏简陋",
+      "level": "medium",
+      "operator_check": "评估是否需要升级彩卡/贴纸",
+      "copywriting_rule": "文案不强调包装，侧重产品本身"
+    },
+    {
+      "risk": "尺寸未标注可能引发买家落差",
+      "level": "medium",
+      "operator_check": "上架前实测尺寸并标注在详情页",
+      "copywriting_rule": "文案给出具体尺寸"
+    },
+    {
+      "risk": "捏叫声大小期望管理",
+      "level": "low",
+      "operator_check": "视频展示真实捏叫效果",
+      "copywriting_rule": "不夸大'超响''巨大声'"
+    }
+  ],
+  "pricing_pack": {
+    "platforms": [
+      "xiaohongshu",
+      "taobao"
+    ],
+    "currency": "CNY",
+    "combos": [
+      {
+        "name": "单只尝鲜装",
+        "quantity": 1,
+        "price_xhs": 9.9,
+        "price_taobao": 6.9,
+        "margin_pct_xhs": 42.9,
+        "margin_pct_taobao": 40.4
+      },
+      {
+        "name": "2只搭档装",
+        "quantity": 2,
+        "price_xhs": 16.9,
+        "price_taobao": 12.9,
+        "margin_pct_xhs": 54.9,
+        "margin_pct_taobao": 57.0
+      },
+      {
+        "name": "4只全家桶",
+        "quantity": 4,
+        "price_xhs": 29.9,
+        "price_taobao": 22.9,
+        "margin_pct_xhs": 62.1,
+        "margin_pct_taobao": 64.8
+      }
+    ],
+    "recommended_combo": {
+      "xiaohongshu": "4只全家桶 ¥29.9",
+      "taobao": "4只全家桶 ¥22.9"
+    },
+    "cost_breakdown": {
+      "purchase_cost_single": 0.36,
+      "shipping_xhs": 3.0,
+      "shipping_taobao": 2.5,
+      "platform_fee_rate_xhs": 0.05,
+      "platform_fee_rate_taobao": 0.03,
+      "marketing_reserve_rate_xhs": 0.15,
+      "marketing_reserve_rate_taobao": 0.1,
+      "return_loss_rate_xhs": 0.03,
+      "return_loss_rate_taobao": 0.05
+    },
+    "price_saying": "4只不到30块，一只才7块多",
+    "compliance_warnings": [
+      "不得标注虚假原价",
+      "组合优惠可用折算单价表述，不可用折扣率",
+      "不得使用限量话术除非库存真实"
+    ]
+  },
+  "content_pack": {
+    "platforms": [
+      "xiaohongshu",
+      "taobao"
+    ],
+    "selected_version": null,
+    "versions": [
+      {
+        "type": "测评型",
+        "platform": "xiaohongshu",
+        "title": "4只小鸭子全评测🦆洗澡从「不要不要」变成「还要还要」",
+        "hashtags": [
+          "#儿童洗澡玩具",
+          "#捏捏叫小鸭子",
+          "#4岁玩具推荐",
+          "#亲子洗澡时光",
+          "#玩水启蒙",
+          "#早教玩具",
+          "#3C认证玩具",
+          "#浴室好物"
+        ]
+      },
+      {
+        "type": "生活型",
+        "platform": "xiaohongshu",
+        "title": "洗澡不再哭🛁4只小鸭子让娃每天主动进浴室",
+        "hashtags": [
+          "#洗澡不哭系列",
+          "#亲子洗澡神器",
+          "#4岁男孩玩具",
+          "#5岁女孩礼物",
+          "#浴室带娃神器",
+          "#捏捏叫鸭子",
+          "#宝妈好物分享",
+          "#玩中学"
+        ]
+      }
+    ],
+    "taobao_title": "洛丽塔小鸭子泡澡玩具4-6岁捏捏叫搪胶戏水鸭3C认证4款花色可选单只/2只/4只套餐",
+    "taobao_detail_outline": [
+      "1. 痛点切入：洗澡像打仗？场景图+宝妈心声",
+      "2. 产品亮相：4只鸭子正面排排站，标注花色名称",
+      "3. 功能展示：捏叫动图/视频+嘎音效",
+      "4. 能力培养：抓握→手指力量 / 戏水→手眼协调 / 角色→想象力",
+      "5. 安心背书：3C认证截图+编号 + 适用年龄4-6岁",
+      "6. 套餐对比：单只/2只/4只价格对比表",
+      "7. 尺寸参考：手掌对比图 + 具体尺寸数据",
+      "8. 售后承诺：7天无理由 + 质量问题包退换"
+    ],
+    "sales_claims": [
+      "捏压发声，锻炼抓握与听觉感知",
+      "搪胶材质，通过3C认证（2020182202016991）",
+      "适用4-6岁儿童，建议成人陪同使用",
+      "4款花色可选：港版小黄鸭/彩色鸭/表情鸭/亮片鸭",
+      "4只全家桶折算¥7.5/只"
+    ],
+    "risk_words_removed": [
+      "食品级",
+      "婴儿",
+      "全网最",
+      "原价"
+    ],
+    "quality_check": {
+      "product_specificity_score": 88,
+      "human_tone_score": 85,
+      "forbidden_words_found": [],
+      "generic_phrases_found": [],
+      "needs_humanizer": false
+    }
+  },
+  "image_pack": {
+    "cover": {
+      "role": "封面图",
+      "source_type": "用户提交图片",
+      "source_path_or_url": "assets/images/duck_cover.png",
+      "prompt": "封面图 Prompt：主体必须是小鸭子泡澡玩具（捏捏叫款），4只不同花色鸭子并排展示。搪胶材质微光泽质感，鸭子圆润造型约7cm高，嘴巴微张，侧面可见底部捏压气孔。俯拍45度角，居中排列，干净浅蓝色背景，顶部预留标题安全区。真实产品摄影风格。",
+      "required_if_missing": "用于首屏识别的4只鸭子正面排排站商品主图",
+      "why_this_image": "让买家第一眼看清商品全貌和4花色差异，建立购买兴趣",
+      "image_status": "已收到图片，可放入商品经营启动包",
+      "expected_output_path": "assets/images/duck_cover.png"
+    },
+    "feature": {
+      "role": "功能图",
+      "source_type": "用户提交图片",
+      "source_path_or_url": "assets/images/duck_feature.png",
+      "prompt": "功能图 Prompt：白底拼图分4格展示核心功能卖点。分镜①捏叫演示、分镜②抓握特写、分镜③材质细节、分镜④4花色对比。所有分镜必须出现完整鸭子本体。",
+      "required_if_missing": "用于证明捏叫、抓握、材质、花色4大卖点的功能拼图",
+      "why_this_image": "用图证说话，让宝妈判断功能真实性和材质可靠性",
+      "image_status": "已收到图片，可放入商品经营启动包",
+      "expected_output_path": "assets/images/duck_feature.png"
+    },
+    "lifestyle": {
+      "role": "场景图",
+      "source_type": "用户提交图片",
+      "source_path_or_url": "assets/images/duck_lifestyle.png",
+      "prompt": "场景图 Prompt：主体必须是小鸭子泡澡玩具（捏捏叫款），展示4-6岁儿童在浴室戏水场景中使用。商品清楚可见，温暖自然光，真实生活方式摄影风格。涉及儿童只拍手部和背影。",
+      "required_if_missing": "用于建立浴室戏水代入感的真实场景图",
+      "why_this_image": "帮宝妈想象自己孩子在浴室和鸭子互动的画面，激发购买欲",
+      "image_status": "已收到图片，可放入商品经营启动包",
+      "expected_output_path": "assets/images/duck_lifestyle.png"
+    }
+  },
+  "image_order": [
+    "cover",
+    "feature",
+    "lifestyle"
+  ],
+  "missing_image_checklist": [
+    "尺寸参照图：鸭子与手掌/硬币对比（建议补拍）",
+    "亮片款安全确认截图：确认亮片是否内嵌不可脱落"
+  ],
+  "shot_list": [
+    "封面图：已收到",
+    "功能图：已收到",
+    "场景图：已收到",
+    "尺寸参照图：建议补拍",
+    "亮片安全确认：建议向供应商索取书面确认"
+  ],
+  "publish_result": {
+    "publishing_readiness": "pending_review",
+    "status": "package_ready",
+    "title": "洗澡不再哭🛁4只小鸭子让娃每天主动进浴室",
+    "hashtags": [
+      "#洗澡不哭系列",
+      "#亲子洗澡神器",
+      "#4岁男孩玩具",
+      "#5岁女孩礼物",
+      "#浴室带娃神器",
+      "#捏捏叫鸭子",
+      "#宝妈好物分享",
+      "#玩中学"
+    ],
+    "image_order": [
+      "cover",
+      "feature",
+      "lifestyle"
+    ],
+    "direct_publish_enabled": false,
+    "policy_note": "已生成发布准备包。实际发布前请结合账号状态、平台规则和业务审批要求确认。",
+    "operator_checklist": [
+      "确认小红书和淘宝账号已注册且实名认证",
+      "确认图片无水印无侵权",
+      "复核标题、正文、话题标签、价格表述和售后话术",
+      "上传3C认证截图至详情页",
+      "配置淘宝物流模板",
+      "通过合适的平台流程提交或排期发布素材"
+    ]
+  },
+  "customer_service_pack": {
+    "faq_list": [
+      {
+        "id": 1,
+        "Q_zh": "声音大不大？会吵吗？",
+        "A_zh": "捏捏叫设计，声音温和不刺耳，浴室里刚好能听见嘎嘎声",
+        "category": "功能"
+      },
+      {
+        "id": 2,
+        "Q_zh": "怎么叫的？按哪里？",
+        "A_zh": "捏一下鸭肚子就会嘎嘎叫，4岁小朋友自己就能玩",
+        "category": "功能"
+      },
+      {
+        "id": 3,
+        "Q_zh": "适合多大的孩子？",
+        "A_zh": "适用4-6岁儿童，商品详情页已标注，建议成人陪同使用",
+        "category": "使用"
+      },
+      {
+        "id": 4,
+        "Q_zh": "材质安全吗？有没有3C？",
+        "A_zh": "搪胶材质，已通过3C认证（编号2020182202016991），可在国家认监委官网查验",
+        "category": "安全"
+      },
+      {
+        "id": 5,
+        "Q_zh": "亮片会不会掉？",
+        "A_zh": "亮片内嵌设计，正常使用不会脱落，建议4岁以上儿童在成人陪同下使用",
+        "category": "安全"
+      },
+      {
+        "id": 6,
+        "Q_zh": "4款有什么区别？",
+        "A_zh": "小黄鸭经典款、彩色鸭认颜色、表情鸭角色扮演、亮片鸭视觉吸引，4只全家桶玩法最丰富",
+        "category": "对比"
+      },
+      {
+        "id": 7,
+        "Q_zh": "买几只比较划算？",
+        "A_zh": "4只全家桶22.9元，折算一只5块7，省近5元且4只玩法多孩子不容易腻",
+        "category": "价格"
+      },
+      {
+        "id": 8,
+        "Q_zh": "可以退换吗？",
+        "A_zh": "7天无理由退换，质量问题包邮退，不影响二次销售均可申请",
+        "category": "售后"
+      }
+    ]
+  },
+  "review_insight_pack": {
+    "sentiment": {
+      "positive_pct": 0,
+      "neutral_pct": 0,
+      "negative_pct": 0,
+      "nps_estimate": 0,
+      "sample_size": 0,
+      "note": "商品尚未上架，数据为空"
+    },
+    "predicated_pain_points": [
+      {
+        "pain": "比想象中小",
+        "level": "high"
+      },
+      {
+        "pain": "声音没有视频里响",
+        "level": "high"
+      },
+      {
+        "pain": "包装简陋",
+        "level": "medium"
+      },
+      {
+        "pain": "底部进水不好晾干",
+        "level": "medium"
+      },
+      {
+        "pain": "想给更小宝宝用",
+        "level": "medium"
+      }
+    ],
+    "iteration_roadmap": {
+      "immediate": "上架前补齐尺寸参照图+真实捏叫视频",
+      "week_2": "收集首轮评论触发复盘分析",
+      "month_1": "根据数据决定是否升级包装或调整SKU"
+    },
+    "loopback": {
+      "next_selection_adjustment": "下一轮可探索0-3岁安全洗澡玩具",
+      "confidence_level": "low"
+    }
+  },
+  "next_research_seed": {
+    "recommended_keyword": "幼儿洗澡互动玩具 0-3岁安全款",
+    "avoid_features": [
+      "非内嵌亮片",
+      "无3C认证",
+      "模糊年龄标注"
+    ],
+    "must_have_features": [
+      "3C认证",
+      "明确年龄标注",
+      "易于晾干",
+      "可定制包装"
+    ],
+    "new_target_audience": "0-3岁新手宝妈",
+    "price_band_adjustment": "供应价3-8元，售价15-25元",
+    "supplier_requirements": [
+      "3C证书可查",
+      "支持定制包装",
+      "支持混批"
+    ]
+  },
+  "asset_pack_html_path": "duck_asset_pack.html",
+  "asset_pack_bundle_path": ".",
+  "delivery_manifest": {
+    "title": "交付文件清单",
+    "assets": [
+      {
+        "name": "商品经营启动包（HTML交付页）",
+        "path": "duck_asset_pack.html"
+      },
+      {
+        "name": "完整流程数据包（Workflow Envelope JSON）",
+        "path": "assets/data/workflow_envelope.json"
+      },
+      {
+        "name": "文案素材包",
+        "path": "assets/data/content_pack.json"
+      },
+      {
+        "name": "客服问答包",
+        "path": "assets/data/customer_service_pack.json"
+      },
+      {
+        "name": "发布准备清单",
+        "path": "assets/data/publish_readiness.json"
+      },
+      {
+        "name": "图片Prompt包",
+        "path": "assets/data/image_prompt_pack.json"
+      },
+      {
+        "name": "封面商品图",
+        "path": "assets/images/duck_cover.png"
+      },
+      {
+        "name": "功能商品图",
+        "path": "assets/images/duck_feature.png"
+      },
+      {
+        "name": "场景商品图",
+        "path": "assets/images/duck_lifestyle.png"
+      }
+    ],
+    "media_refs": [
+      "MEDIA:duck_asset_pack.html",
+      "MEDIA:assets/data/workflow_envelope.json",
+      "MEDIA:assets/data/content_pack.json",
+      "MEDIA:assets/data/customer_service_pack.json",
+      "MEDIA:assets/data/publish_readiness.json",
+      "MEDIA:assets/data/image_prompt_pack.json",
+      "MEDIA:assets/images/duck_cover.png",
+      "MEDIA:assets/images/duck_feature.png",
+      "MEDIA:assets/images/duck_lifestyle.png"
+    ]
+  },
+  "delivery_note": "本交付包使用相对路径组织 HTML、图片和 JSON 数据。请解压整个 zip 后打开 HTML，不要单独移动 HTML 文件。"
+}

@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>从 0 开张：你的 AI 电商合伙人</title>
+  <style>
+    :root {
+      --ink: #101828;
+      --muted: #667085;
+      --line: #d9e2ec;
+      --paper: #f7fafc;
+      --panel: #ffffff;
+      --blue: #2563eb;
+      --green: #059669;
+      --amber: #d97706;
+      --rose: #e11d48;
+      --violet: #6d28d9;
+      --navy: #0f172a;
+      font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", Inter, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: #0b1220;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    body { overflow: hidden; }
+    h1, h2, h3, p { margin: 0; letter-spacing: .01em; }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 44px 60px 34px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      opacity: 0;
+      transform: translateX(34px) scale(.985);
+      pointer-events: none;
+      transition: opacity .55s ease, transform .55s ease;
+      background:
+        linear-gradient(90deg, rgba(37,99,235,.07) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(5,150,105,.06) 1px, transparent 1px),
+        var(--paper);
+      background-size: 52px 52px;
+    }
+    .slide.active {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    header, main, footer { position: relative; z-index: 1; }
+    header, footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .brand { color: #475467; }
+    .counter {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      background: rgba(255,255,255,.82);
+      color: #475467;
+      font-variant-numeric: tabular-nums;
+    }
+    main { align-self: center; }
+    h1 { font-size: clamp(54px, 6.6vw, 92px); line-height: 1.04; font-weight: 800; max-width: 1020px; }
+    h2 { font-size: clamp(38px, 4.8vw, 64px); line-height: 1.1; font-weight: 800; max-width: 1040px; }
+    h3 { font-size: 24px; line-height: 1.22; font-weight: 750; }
+    .lead {
+      margin-top: 24px;
+      color: #344054;
+      font-size: clamp(22px, 2.5vw, 32px);
+      line-height: 1.5;
+      font-weight: 500;
+      max-width: 980px;
+    }
+    .sub {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 860px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .split.narrow { grid-template-columns: .92fr 1.08fr; }
+
+    .panel {
+      background: rgba(255,255,255,.94);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 22px;
+      box-shadow: 0 22px 60px rgba(15,23,42,.13);
+    }
+    .dark-panel {
+      background: var(--navy);
+      color: #e2e8f0;
+      border-color: rgba(255,255,255,.08);
+    }
+    .dark-panel .muted { color: #94a3b8; }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+    .pill {
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.86);
+      color: #344054;
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .case-card {
+      min-height: 410px;
+      display: grid;
+      align-content: space-between;
+      background:
+        radial-gradient(circle at 18% 16%, rgba(250,204,21,.35), transparent 28%),
+        radial-gradient(circle at 80% 22%, rgba(37,99,235,.18), transparent 26%),
+        #fff;
+    }
+    .case-title { font-size: 38px; line-height: 1.1; font-weight: 800; }
+    .case-meta { margin-top: 16px; display: grid; gap: 11px; font-size: 18px; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(255,255,255,.78);
+    }
+    .metric span { display: block; color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+    .metric strong { font-size: 28px; line-height: 1.1; font-weight: 800; }
+
+    .agent-window {
+      background: #0b1220;
+      color: #dbeafe;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 22px 60px rgba(15,23,42,.2);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .window-bar {
+      height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 14px;
+      background: #111827;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .red { background: #fb7185; }
+    .yellow { background: #fbbf24; }
+    .green { background: #34d399; }
+    .chat {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+      max-height: 490px;
+      overflow: hidden;
+    }
+    .bubble {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.06);
+      border-radius: 10px;
+      padding: 15px 16px;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+    .bubble.user {
+      background: rgba(37,99,235,.24);
+      border-color: rgba(96,165,250,.42);
+      color: #fff;
+    }
+    .bubble strong { color: #bfdbfe; }
+
+    .install-flow {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+    }
+    .install-card {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.06);
+      border-radius: 10px;
+      padding: 14px 16px;
+      line-height: 1.55;
+      font-size: 17px;
+    }
+    .install-card b {
+      display: block;
+      color: #bfdbfe;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+    .install-card code {
+      color: #dbeafe;
+      background: rgba(37,99,235,.22);
+      border: 1px solid rgba(96,165,250,.32);
+      border-radius: 7px;
+      padding: 2px 7px;
+      overflow-wrap: anywhere;
+    }
+    .install-link {
+      color: #93c5fd;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 30px;
+    }
+    .step {
+      min-height: 184px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 17px;
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+    .idx {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: var(--blue);
+      font-weight: 850;
+    }
+    .step:nth-child(2) .idx { background: var(--green); }
+    .step:nth-child(3) .idx { background: var(--amber); }
+    .step:nth-child(4) .idx { background: var(--rose); }
+    .step:nth-child(5) .idx { background: var(--violet); }
+    .step:nth-child(6) .idx { background: #0f766e; }
+    .step p { color: var(--muted); line-height: 1.55; font-size: 16px; }
+
+    .stage-board {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .rail {
+      display: grid;
+      gap: 10px;
+    }
+    .rail-item {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 9px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #475467;
+      font-weight: 700;
+      font-size: 18px;
+    }
+    .rail-item.active { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+    .rail-item .small-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      color: #334155;
+    }
+    .rail-item.active .small-num { background: #2563eb; color: #fff; }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .result-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 18px;
+      min-height: 122px;
+    }
+    .result-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .result-card strong {
+      display: block;
+      font-size: 27px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    .result-card p {
+      color: #475467;
+      line-height: 1.6;
+      font-size: 17px;
+      margin-top: 6px;
+    }
+
+    .copy-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .copy-title {
+      color: var(--blue);
+      font-size: 26px;
+      font-weight: 850;
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .copy-body {
+      color: #344054;
+      line-height: 1.85;
+      font-size: 19px;
+      white-space: pre-line;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag {
+      border-radius: 999px;
+      background: #eef2ff;
+      color: #3730a3;
+      padding: 8px 12px;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .prompt-list { display: grid; gap: 10px; }
+    .prompt-showcase {
+      display: grid;
+      gap: 12px;
+      align-self: center;
+    }
+    .prompt-result {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 18px 48px rgba(15,23,42,.12);
+    }
+    .prompt-result img {
+      display: block;
+      width: 100%;
+      height: 278px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
+    }
+    .prompt-result .caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 9px;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .prompt-card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 82px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+    .prompt-card b { color: var(--rose); font-size: 17px; }
+    .prompt-card p { color: #475467; line-height: 1.5; font-size: 16px; }
+
+    .asset-preview {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      box-shadow: 0 22px 60px rgba(15,23,42,.16);
+      background: #fff;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .time-row {
+      display: grid;
+      grid-template-columns: 120px 210px 1fr;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 14px 18px;
+    }
+    .time-row strong { color: var(--blue); font-size: 20px; font-weight: 800; }
+    .time-row b { color: #1f2937; font-size: 18px; }
+    .time-row span { color: var(--muted); font-size: 17px; line-height: 1.5; }
+
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .takeaway {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      min-height: 158px;
+    }
+    .takeaway b { display: block; font-size: 21px; margin-bottom: 10px; font-weight: 800; }
+    .takeaway span { color: var(--muted); line-height: 1.55; font-size: 17px; }
+
+    .playbar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      z-index: 10;
+      background: rgba(15,23,42,.12);
+    }
+    .playbar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      transition: width .25s linear;
+    }
+    .hint {
+      position: fixed;
+      right: 18px;
+      bottom: 16px;
+      z-index: 12;
+      color: #64748b;
+      background: rgba(255,255,255,.86);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 960px) {
+      body { overflow: auto; }
+      .deck { height: auto; overflow: visible; }
+      .slide { position: relative; min-height: 100vh; opacity: 1; transform: none; pointer-events: auto; padding: 34px 22px; }
+      .split, .split.narrow, .stage-board { grid-template-columns: 1fr; }
+      .workflow, .takeaway-grid { grid-template-columns: repeat(2, 1fr); }
+      .metric-grid, .result-grid { grid-template-columns: 1fr; }
+      .time-row { grid-template-columns: 1fr; }
+      .hint, .playbar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <article class="deck" id="deck">
+    <section class="slide active">
+      <header><div class="brand">Hermess Agent 提效工坊</div><div class="counter">01 / 09</div></header>
+      <main class="split">
+        <div>
+          <h1>从 0 开张：你的 AI 电商合伙人</h1>
+          <p class="lead">真实跑一遍：小鸭子泡澡玩具，从一句商品名到一份商品经营启动包。</p>
+          <div class="pill-row">
+            <span class="pill">选品</span>
+            <span class="pill">定价</span>
+            <span class="pill">文案</span>
+            <span class="pill">图片 Prompt</span>
+            <span class="pill">客服</span>
+            <span class="pill">复盘</span>
+          </div>
+        </div>
+        <div class="panel case-card">
+          <div>
+            <div class="brand">现场案例</div>
+            <div class="case-title">小鸭子泡澡玩具<br>会叫款</div>
+            <div class="case-meta">
+              <span>成本：0.3 元 / 个</span>
+              <span>平台：小红书 + 淘宝</span>
+              <span>卖点：会叫 + 材质较好</span>
+            </div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><span>建议售价</span><strong>12.9</strong></div>
+            <div class="metric"><span>毛利率</span><strong>78%</strong></div>
+            <div class="metric"><span>交付阶段</span><strong>8</strong></div>
+          </div>
+        </div>
+      </main>
+      <footer><span>视频主线：不是介绍功能，而是证明 Agent 能把业务跑成结果</span><span>点击 / 空格继续</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">安装与启用</div><div class="counter">02 / 09</div></header>
+      <main class="split narrow">
+        <div>
+          <h2>先把技能装好，再开始跑商品。</h2>
+          <p class="lead">如果已经安装 SkillHub 商店，直接安装电商技能；如果没有，先按官方文档只安装 CLI。</p>
+          <p class="sub">安装完成后，客户只需要给一个商品和几条事实，Hermess Agent 会把模糊输入拆成一条可确认的业务流程。</p>
+        </div>
+        <div class="agent-window">
+          <div class="window-bar"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span></div>
+          <div class="install-flow">
+            <div class="install-card">
+              <b>1. 先检查 SkillHub 商店</b>
+              若已安装，跳到第 3 步；若未安装，打开官方安装说明。
+            </div>
+            <div class="install-card">
+              <b>2. 未安装时：只安装 CLI</b>
+              按 <span class="install-link">https://skillhub.cn/install/skillhub.md</span> 操作，选择仅安装 SkillHub CLI。
+            </div>
+            <div class="install-card">
+              <b>3. 安装电商技能</b>
+              在 SkillHub 中安装 <code>hermess-ecom-launch-orchestrator</code> 技能。
+            </div>
+            <div class="install-card">
+              <b>4. 启动流程</b>
+              对 Agent 说：运行“从 0 开张：你的 AI 电商合伙人”，我选择“小鸭子泡澡玩具”。
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer><span>安装口径：已有商店直接装技能，未安装只装 CLI</span><span></span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">全链路流程</div><div class="counter">03 / 09</div></header>
+      <main>
+        <h2>Agent 像一个轻量电商团队一样连续工作。</h2>
+        <div class="workflow">
+          <div class="step"><div class="idx">1</div><h3>选品</h3><p>判断品类、卖点、风险，决定是否继续。</p></div>
+          <div class="step"><div class="idx">2</div><h3>定价</h3><p>把成本、平台和毛利变成价格区间。</p></div>
+          <div class="step"><div class="idx">3</div><h3>文案</h3><p>生成绑定产品事实的小红书笔记。</p></div>
+          <div class="step"><div class="idx">4</div><h3>图片 Prompt</h3><p>输出封面、功能、场景图的 Prompt 和拍摄清单。</p></div>
+          <div class="step"><div class="idx">5</div><h3>客服</h3><p>FAQ 承接用户问题，识别购买意图。</p></div>
+          <div class="step"><div class="idx">6</div><h3>复盘</h3><p>把评论痛点回流成下一轮选品种子。</p></div>
+        </div>
+      </main>
+      <footer><span>重点：不演示直接发布，只交付发布准备</span><span>每一步都有可见产物</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">Stage 1-2</div><div class="counter">04 / 09</div></header>
+      <main class="stage-board">
+        <div class="rail">
+          <div class="rail-item active"><span class="small-num">1</span>选品分析</div>
+          <div class="rail-item active"><span class="small-num">2</span>定价毛利</div>
+          <div class="rail-item"><span class="small-num">3</span>内容文案</div>
+          <div class="rail-item"><span class="small-num">4</span>图片 Prompt</div>
+          <div class="rail-item"><span class="small-num">5</span>客服复盘</div>
+        </div>
+        <div>
+          <h2>先判断能不能卖，再决定怎么卖。</h2>
+          <div class="result-grid" style="margin-top: 26px;">
+            <div class="result-card"><span>产品定位</span><strong>婴童洗浴玩具</strong><p>目标人群：0-3 岁宝宝的宝妈。</p></div>
+            <div class="result-card"><span>差异化</span><strong>会叫 + 材质较好</strong><p>比基础小黄鸭多一个互动钩子。</p></div>
+            <div class="result-card"><span>价格建议</span><strong>小红书 12.9 / 淘宝 11.9</strong><p>基于成本 0.3 元和加载成本约 2.1 元。</p></div>
+            <div class="result-card"><span>经营判断</span><strong>毛利约 78%</strong><p>同时提示 3C、BPA-free、声光安全等合规风险。</p></div>
+          </div>
+        </div>
+      </main>
+      <footer><span>客户看到的是经营判断，不是模型输出</span><span>阶段结束后确认继续</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">Stage 3-4</div><div class="counter">05 / 09</div></header>
+      <main class="split">
+        <div class="copy-box">
+          <div class="brand">生成的小红书笔记</div>
+          <div class="copy-title">谁懂！鸭子一叫，洗澡从“灾难现场”变“欢乐剧场”</div>
+          <div class="copy-body">以前给宝宝洗澡 = 大型崩溃现场
+现在 = 母慈子孝的快乐时光
+
+秘诀就是它，一只会“嘎嘎”叫的小黄鸭。
+捏一下，宝宝注意力立刻被吸引。
+关键是才 12 块多，材质还挺软乎。</div>
+          <div class="tags">
+            <span class="tag">#带娃日常</span>
+            <span class="tag">#洗澡神器</span>
+            <span class="tag">#小黄鸭</span>
+            <span class="tag">#母婴日常</span>
+          </div>
+        </div>
+        <div class="prompt-showcase">
+          <div class="prompt-result">
+            <img src="duck-prompt-result.png" alt="小鸭子泡澡玩具图片 Prompt 生成效果展示" />
+            <div class="caption"><span>图片 Prompt 效果展示</span><span>封面 / 功能 / 场景</span></div>
+          </div>
+          <div class="prompt-list">
+            <div class="prompt-card"><b>封面图</b><p>主体是小鸭子泡澡玩具（会叫款），多只黄色软胶小鸭漂浮在浴缸水面，明亮母婴摄影风，顶部预留标题区。</p></div>
+            <div class="prompt-card"><b>功能图</b><p>主体是单只小鸭子泡澡玩具，白底拼图展示捏压发声、软胶材质、底部不藏水，每格都有商品本体。</p></div>
+            <div class="prompt-card"><b>场景图</b><p>主体是小鸭子泡澡玩具，宝宝手部在浴盆里抓着小鸭互动，非露脸视角，温暖浴室光线。</p></div>
+          </div>
+        </div>
+      </main>
+      <footer><span>图片环节只输出 Prompt 和拍摄建议，不现场调用生图</span><span>内容必须绑定具体商品事实</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">Stage 5-7</div><div class="counter">06 / 09</div></header>
+      <main>
+        <h2>发布前准备、客服承接、评论复盘，一次串起来。</h2>
+        <p class="lead">这才像一个业务闭环，而不是一个“写文案工具”。</p>
+        <div class="result-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 30px;">
+          <div class="result-card"><span>发布准备</span><strong>标题 + 正文 + 话题 + 图片顺序</strong><p>附发布前检查：实物、库存、认证、物流。</p></div>
+          <div class="result-card"><span>客服 FAQ</span><strong>8 个高频问题</strong><p>多大能用、声音大不大、材质安全吗、怎么退换。</p></div>
+          <div class="result-card"><span>评论复盘</span><strong>Top 3 痛点</strong><p>比想象中小、声音变小、颜色随机不喜欢。</p></div>
+          <div class="result-card"><span>下一轮选品</span><strong>小鸭家庭套装</strong><p>3 只装“鸭妈妈带小鸭”，毛利和玩法都更好讲。</p></div>
+        </div>
+      </main>
+      <footer><span>发布不是终点，反馈会回到下一轮选品</span><span>现场展示的是可执行材料</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">最终成果</div><div class="counter">07 / 09</div></header>
+      <main class="split narrow">
+        <div>
+          <h2>最后沉淀成一份商品经营启动包。</h2>
+          <p class="lead">把聊天里的阶段成果，变成团队可以打开、复制、继续执行的 HTML 交付页。</p>
+          <div class="takeaway-grid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="takeaway"><b>业务可读</b><span>选品、定价、文案、发布准备、客服、复盘分区呈现。</span></div>
+            <div class="takeaway"><b>可带走</b><span>客户现场拿到的是一套经营资产，不是一段聊天记录。</span></div>
+          </div>
+        </div>
+        <img class="asset-preview" src="duck-asset-pack-preview.png" alt="小鸭子泡澡玩具商品经营启动包预览" />
+      </main>
+      <footer><span>交付物不是截图，而是一份可打开、可复制、可继续执行的经营页面</span><span>文件：商品经营启动包_小鸭子泡澡玩具.html</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">客户如何复用</div><div class="counter">08 / 09</div></header>
+      <main>
+        <h2>换一个商品，也能按同一套流程再跑一遍。</h2>
+        <div class="timeline">
+          <div class="time-row"><strong>输入</strong><b>商品事实</b><span>商品名、成本、目标平台、核心卖点、已有图片或链接。</span></div>
+          <div class="time-row"><strong>确认</strong><b>阶段结果</b><span>选品、定价、文案、图片 Prompt、客服、复盘，每一步都能修改。</span></div>
+          <div class="time-row"><strong>沉淀</strong><b>经营资产</b><span>把聊天结果变成文案包、图片 Prompt 包、客服 FAQ 和复盘建议。</span></div>
+          <div class="time-row"><strong>交付</strong><b>启动包</b><span>生成一份可分享的商品经营启动包，团队可以继续执行。</span></div>
+          <div class="time-row"><strong>复用</strong><b>换品再跑</b><span>下一次只换商品和平台，流程、质量门禁和交付格式保持一致。</span></div>
+        </div>
+      </main>
+      <footer><span>客户拿走的是方法和资产，不是一次性演示</span><span>适用于商品测试、运营提效和团队培训</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">收束</div><div class="counter">09 / 09</div></header>
+      <main class="split">
+        <div>
+          <h2>Agent 的价值，是把一个业务目标跑成可交付结果。</h2>
+          <p class="lead">选品、定价、文案、图片 Prompt、发布准备、客服、复盘，最后沉淀为商品经营启动包。</p>
+        </div>
+        <div class="panel dark-panel">
+          <h3>客户能带走什么</h3>
+          <div class="takeaway-grid" style="grid-template-columns: 1fr; margin-top: 18px;">
+            <div class="takeaway"><b>一段可复制 Prompt</b><span>换商品、换平台、换人群，可以再次运行。</span></div>
+            <div class="takeaway"><b>一个可分享 HTML</b><span>不是演示截图，而是一份正式交付页。</span></div>
+            <div class="takeaway"><b>一套可落地流程</b><span>每个阶段确认，结果清晰，边界可控。</span></div>
+          </div>
+        </div>
+      </main>
+      <footer><span>宣传语：从商品名到经营启动包，10 分钟看见 AI 业务闭环</span><span>Hermess Agent 提效工坊</span></footer>
+    </section>
+  </article>
+
+  <div class="playbar"><span id="bar"></span></div>
+  <div class="hint">点击 / 空格 / 方向键翻页</div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const bar = document.getElementById("bar");
+    let index = 0;
+    const duration = 6500;
+    const isAuto = new URLSearchParams(location.search).get("play") === "1";
+    let startedAt = Date.now();
+
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+      startedAt = Date.now();
+      updateBar();
+    }
+
+    function updateBar() {
+      const slideBase = (index / slides.length) * 100;
+      const local = Math.min(1, (Date.now() - startedAt) / duration);
+      bar.style.width = `${slideBase + local * (100 / slides.length)}%`;
+    }
+
+    function next() { show(index + 1 >= slides.length ? slides.length - 1 : index + 1); }
+    function prev() { show(index - 1); }
+    window.talkShow = show;
+    window.talkNext = next;
+    window.talkPrev = prev;
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === " " || event.key === "PageDown") next();
+      if (event.key === "ArrowLeft" || event.key === "PageUp") prev();
+    });
+    document.addEventListener("click", next);
+
+    setInterval(() => {
+      updateBar();
+      if (isAuto && Date.now() - startedAt > duration && index < slides.length - 1) next();
+    }, 120);
+  </script>
+</body>
+</html>

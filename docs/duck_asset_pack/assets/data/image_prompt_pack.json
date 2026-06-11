@@ -1,0 +1,50 @@
+{
+  "image_pack": {
+    "cover": {
+      "role": "封面图",
+      "source_type": "用户提交图片",
+      "source_path_or_url": "assets/images/duck_cover.png",
+      "prompt": "封面图 Prompt：主体必须是小鸭子泡澡玩具（捏捏叫款），4只不同花色鸭子并排展示。搪胶材质微光泽质感，鸭子圆润造型约7cm高，嘴巴微张，侧面可见底部捏压气孔。俯拍45度角，居中排列，干净浅蓝色背景，顶部预留标题安全区。真实产品摄影风格。",
+      "required_if_missing": "用于首屏识别的4只鸭子正面排排站商品主图",
+      "why_this_image": "让买家第一眼看清商品全貌和4花色差异，建立购买兴趣",
+      "image_status": "已收到图片，可放入商品经营启动包",
+      "expected_output_path": "assets/images/duck_cover.png"
+    },
+    "feature": {
+      "role": "功能图",
+      "source_type": "用户提交图片",
+      "source_path_or_url": "assets/images/duck_feature.png",
+      "prompt": "功能图 Prompt：白底拼图分4格展示核心功能卖点。分镜①捏叫演示、分镜②抓握特写、分镜③材质细节、分镜④4花色对比。所有分镜必须出现完整鸭子本体。",
+      "required_if_missing": "用于证明捏叫、抓握、材质、花色4大卖点的功能拼图",
+      "why_this_image": "用图证说话，让宝妈判断功能真实性和材质可靠性",
+      "image_status": "已收到图片，可放入商品经营启动包",
+      "expected_output_path": "assets/images/duck_feature.png"
+    },
+    "lifestyle": {
+      "role": "场景图",
+      "source_type": "用户提交图片",
+      "source_path_or_url": "assets/images/duck_lifestyle.png",
+      "prompt": "场景图 Prompt：主体必须是小鸭子泡澡玩具（捏捏叫款），展示4-6岁儿童在浴室戏水场景中使用。商品清楚可见，温暖自然光，真实生活方式摄影风格。涉及儿童只拍手部和背影。",
+      "required_if_missing": "用于建立浴室戏水代入感的真实场景图",
+      "why_this_image": "帮宝妈想象自己孩子在浴室和鸭子互动的画面，激发购买欲",
+      "image_status": "已收到图片，可放入商品经营启动包",
+      "expected_output_path": "assets/images/duck_lifestyle.png"
+    }
+  },
+  "image_order": [
+    "cover",
+    "feature",
+    "lifestyle"
+  ],
+  "missing_image_checklist": [
+    "尺寸参照图：鸭子与手掌/硬币对比（建议补拍）",
+    "亮片款安全确认截图：确认亮片是否内嵌不可脱落"
+  ],
+  "shot_list": [
+    "封面图：已收到",
+    "功能图：已收到",
+    "场景图：已收到",
+    "尺寸参照图：建议补拍",
+    "亮片安全确认：建议向供应商索取书面确认"
+  ]
+}

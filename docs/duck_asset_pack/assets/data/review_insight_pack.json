@@ -1,0 +1,41 @@
+{
+  "sentiment": {
+    "positive_pct": 0,
+    "neutral_pct": 0,
+    "negative_pct": 0,
+    "nps_estimate": 0,
+    "sample_size": 0,
+    "note": "商品尚未上架，数据为空"
+  },
+  "predicated_pain_points": [
+    {
+      "pain": "比想象中小",
+      "level": "high"
+    },
+    {
+      "pain": "声音没有视频里响",
+      "level": "high"
+    },
+    {
+      "pain": "包装简陋",
+      "level": "medium"
+    },
+    {
+      "pain": "底部进水不好晾干",
+      "level": "medium"
+    },
+    {
+      "pain": "想给更小宝宝用",
+      "level": "medium"
+    }
+  ],
+  "iteration_roadmap": {
+    "immediate": "上架前补齐尺寸参照图+真实捏叫视频",
+    "week_2": "收集首轮评论触发复盘分析",
+    "month_1": "根据数据决定是否升级包装或调整SKU"
+  },
+  "loopback": {
+    "next_selection_adjustment": "下一轮可探索0-3岁安全洗澡玩具",
+    "confidence_level": "low"
+  }
+}

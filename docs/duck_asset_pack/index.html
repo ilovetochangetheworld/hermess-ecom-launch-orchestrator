@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>小鸭子泡澡玩具（捏捏叫款） - 商品经营启动包</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #667085;
+      --line: #d8e0ea;
+      --paper: #f5f7fb;
+      --panel: #ffffff;
+      --blue: #1d4ed8;
+      --green: #047857;
+      --amber: #b45309;
+      --soft-green: #ecfdf5;
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: linear-gradient(180deg, #eef4ff 0, var(--paper) 260px); }
+    .page { max-width: 1180px; margin: 0 auto; padding: 44px 24px 72px; }
+    .hero { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 34px; box-shadow: 0 18px 50px rgba(15,23,42,.08); position: relative; overflow: hidden; }
+    .hero:before { content: ""; position: absolute; inset: 0 0 auto; height: 5px; background: linear-gradient(90deg, var(--blue), var(--green)); }
+    .eyebrow { color: var(--blue); font-size: 13px; font-weight: 800; letter-spacing: 0; }
+    h1 { margin: 12px 0 0; font-size: 42px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin: 0 0 18px; font-size: 26px; letter-spacing: 0; }
+    h3 { margin: 18px 0 8px; font-size: 17px; }
+    h4 { margin: 16px 0 8px; font-size: 14px; color: #344054; }
+    p { line-height: 1.65; }
+    .lead-small { color: #344054; font-size: 17px; }
+    .section { margin-top: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 28px; }
+    .section-intro { margin-top: -4px; color: #475467; }
+    .grid { display: grid; gap: 14px; }
+    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .kv, .mini-card, .copy-card { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 16px; }
+    .kv { background: linear-gradient(180deg, #fff, #fbfdff); }
+    .kv span { display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
+    .kv strong { display: block; font-size: 18px; line-height: 1.35; }
+    .copy-card h3 { font-size: 22px; margin-top: 8px; }
+    .tags { color: var(--green); font-weight: 700; line-height: 1.6; margin-top: 12px; }
+    .clean { padding-left: 20px; line-height: 1.7; }
+    .faq-row { display: grid; grid-template-columns: 1.1fr 1.7fr .4fr; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); align-items: start; }
+    .faq-row:first-child { border-top: 0; }
+    .faq-row span, .muted, small { color: var(--muted); }
+    .image-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .image-card { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; display: flex; flex-direction: column; min-width: 0; }
+    .image-frame { aspect-ratio: 4 / 3; background: #eef2f7; border-bottom: 1px solid var(--line); display: grid; place-items: center; overflow: hidden; }
+    .image-preview { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .image-placeholder { width: calc(100% - 28px); height: calc(100% - 28px); border: 1px dashed #a9b8cc; border-radius: 8px; display: grid; place-items: center; color: var(--muted); font-weight: 700; background: #f8fafc; }
+    .image-card-body { padding: 16px; min-width: 0; }
+    .card-head { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+    .card-head h3 { margin-top: 6px; }
+    .status-pill { flex: 0 1 auto; max-width: 150px; background: var(--soft-green); color: var(--green); border: 1px solid #bbf7d0; border-radius: 999px; padding: 6px 9px; font-size: 12px; font-weight: 800; line-height: 1.35; text-align: center; }
+    code { color: #344054; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f8fafc; border: 1px solid var(--line); border-radius: 8px; padding: 12px; line-height: 1.55; color: #344054; }
+    .asset-table { width: 100%; border-collapse: collapse; }
+    .asset-table th, .asset-table td { text-align: left; border-top: 1px solid var(--line); padding: 12px; vertical-align: top; }
+    .asset-table th { color: var(--muted); font-size: 13px; }
+    .footer { color: var(--muted); font-size: 13px; margin-top: 26px; }
+    @media (max-width: 820px) {
+      .page { padding: 24px 14px 48px; }
+      h1 { font-size: 32px; }
+      .two, .three, .four, .faq-row, .image-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">商品经营启动包</div>
+      <h1>小鸭子泡澡玩具（捏捏叫款）</h1>
+      <p class="lead-small">从选品判断到发布准备、客服承接、复盘迭代和文件交付的商品经营启动包。</p>
+    </header>
+    
+    <section class="section">
+      <h2>0. 工作流进度</h2>
+      <div class="grid three">
+            <article class="mini-card">
+              <div class="eyebrow">Stage 1</div>
+              <h3>选定商品并建立产品画像</h3>
+              <p>后续所有环节需要具体商品</p>
+              <small>明确商品候选和买家场景</small>
+            </article>
+            
+            <article class="mini-card">
+              <div class="eyebrow">Stage 2</div>
+              <h3>产品事实采集与选品判断</h3>
+              <p>好选品避免内容空转</p>
+              <small>产品画像、go/no-go、风险清单</small>
+            </article>
+            
+            <article class="mini-card">
+              <div class="eyebrow">Stage 3</div>
+              <h3>设计组合套餐定价方案</h3>
+              <p>套餐既实惠又拉高客单价</p>
+              <small>单只/2只/4只套餐价格+毛利明细</small>
+            </article>
+            
+            <article class="mini-card">
+              <div class="eyebrow">Stage 4</div>
+              <h3>生成小红书种草笔记+淘宝文案</h3>
+              <p>文案把产品画像变成买家想买</p>
+              <small>双版本笔记+淘宝标题/详情+合规质检</small>
+            </article>
+            
+            <article class="mini-card">
+              <div class="eyebrow">Stage 5</div>
+              <h3>生成图片Prompt与商品图片准备</h3>
+              <p>商品图用真实来源建立信任</p>
+              <small>封面/功能/场景图片Prompt+图片顺序+拍摄清单</small>
+            </article>
+            
+            <article class="mini-card">
+              <div class="eyebrow">Stage 6</div>
+              <h3>生成双平台发布准备包</h3>
+              <p>整合所有成果为可执行发布方案</p>
+              <small>双平台发布素材包+发布前确认清单</small>
+            </article>
+            
+            <article class="mini-card">
+              <div class="eyebrow">Stage 7</div>
+              <h3>生成客服FAQ与回复话术</h3>
+              <p>上架后咨询是第一道转化关</p>
+              <small>8条FAQ+意图识别+售后决策树</small>
+            </article>
+            
+            <article class="mini-card">
+              <div class="eyebrow">Stage 8</div>
+              <h3>建立评论复盘闭环框架</h3>
+              <p>上架后复盘把反馈变成下一轮弹药</p>
+              <small>监控指标+触发规则+下一轮选品种子</small>
+            </article>
+            </div>
+    </section>
+    
+    
+    <section class="section">
+      <h2>1. 选品结论</h2>
+      <div class="grid four"><div class="kv"><span>结论</span><strong>谨慎继续</strong></div><div class="kv"><span>评分</span><strong>78</strong></div><div class="kv"><span>风险</span><strong>暂无</strong></div><div class="kv"><span>信心</span><strong>中</strong></div></div><p class="lead-small">供应价极低+3C认证+4花色差异化，毛利优秀；但年龄合规需严格遵守，且需补充尺寸信息和亮片款安全确认</p>
+    </section>
+    
+    
+    <section class="section">
+      <h2>2. 产品画像</h2>
+      <div class="grid two"><div class="kv"><span>品类</span><strong>搪胶玩具 → 捏捏叫戏水玩具</strong></div><div class="kv"><span>目标人群</span><strong>4-6岁儿童的宝妈，重视玩教结合</strong></div><div class="kv"><span>核心卖点</span><strong>不只是洗澡玩具，是玩水中的感官启蒙教具</strong></div><div class="kv"><span>差异化方向</span><strong>玩水启蒙派（感官训练）+ 4花色选搭（参与感）+ 看得见的3C（信任感）</strong></div></div><h3>关键特征</h3><ul class="clean"><li>捏压发声，锻炼听觉与抓握</li><li>4款花色：港版小黄鸭/彩色鸭/表情鸭/亮片鸭</li><li>3C认证（2020182202016991）</li><li>袋装，有导购视频</li><li>能力培养：抓握、感官、手眼协调、互动、听觉、亲子交流</li></ul>
+    </section>
+    
+    
+    <section class="section">
+      <h2>3. 定价和毛利</h2>
+      <div class="grid three"><div class="kv"><span>保守价</span><strong>暂无</strong></div><div class="kv"><span>建议价</span><strong>暂无</strong></div><div class="kv"><span>进取价</span><strong>暂无</strong></div></div><h3>成本结构</h3><div class="grid four"><div class="kv"><span>采购成本</span><strong>暂无</strong></div><div class="kv"><span>平台扣点</span><strong>暂无</strong></div><div class="kv"><span>营销预留</span><strong>暂无</strong></div><div class="kv"><span>含损耗成本</span><strong>暂无</strong></div></div>
+    </section>
+    
+    
+    <section class="section">
+      <h2>4. 内容资产</h2>
+      
+            <article class="copy-card">
+              <div class="eyebrow">测评型</div>
+              <h3>4只小鸭子全评测🦆洗澡从「不要不要」变成「还要还要」</h3>
+              <p></p>
+              <div class="tags">#儿童洗澡玩具 #捏捏叫小鸭子 #4岁玩具推荐 #亲子洗澡时光 #玩水启蒙 #早教玩具 #3C认证玩具 #浴室好物</div>
+            </article>
+            
+            <article class="copy-card">
+              <div class="eyebrow">生活型</div>
+              <h3>洗澡不再哭🛁4只小鸭子让娃每天主动进浴室</h3>
+              <p></p>
+              <div class="tags">#洗澡不哭系列 #亲子洗澡神器 #4岁男孩玩具 #5岁女孩礼物 #浴室带娃神器 #捏捏叫鸭子 #宝妈好物分享 #玩中学</div>
+            </article>
+            
+    </section>
+    
+    
+    <section class="section">
+      <h2>5. 商品图片与 Prompt</h2>
+      <p class="section-intro">用户可以先根据中文 Prompt 生成或拍摄图片，再把图片提交给 Agent。交付页会同时保留图片、来源状态和对应 Prompt，方便运营复用和二次修改。</p><div class="image-grid">
+            <article class="image-card">
+              <div class="image-frame"><img class="image-preview" src="assets/images/duck_cover.png" alt="封面图"></div>
+              <div class="image-card-body">
+                <div class="card-head">
+                  <div>
+                    <div class="eyebrow">封面图</div>
+                    <h3>用户提交图片</h3>
+                  </div>
+                  <span class="status-pill">已收到图片，可放入商品经营启动包</span>
+                </div>
+                <p>让买家第一眼看清商品全貌和4花色差异，建立购买兴趣</p>
+                <small>assets/images/duck_cover.png</small>
+                <h4>中文图片 Prompt</h4>
+                <pre>封面图 Prompt：主体必须是小鸭子泡澡玩具（捏捏叫款），4只不同花色鸭子并排展示。搪胶材质微光泽质感，鸭子圆润造型约7cm高，嘴巴微张，侧面可见底部捏压气孔。俯拍45度角，居中排列，干净浅蓝色背景，顶部预留标题安全区。真实产品摄影风格。</pre>
+              </div>
+            </article>
+            
+            <article class="image-card">
+              <div class="image-frame"><img class="image-preview" src="assets/images/duck_feature.png" alt="功能图"></div>
+              <div class="image-card-body">
+                <div class="card-head">
+                  <div>
+                    <div class="eyebrow">功能图</div>
+                    <h3>用户提交图片</h3>
+                  </div>
+                  <span class="status-pill">已收到图片，可放入商品经营启动包</span>
+                </div>
+                <p>用图证说话，让宝妈判断功能真实性和材质可靠性</p>
+                <small>assets/images/duck_feature.png</small>
+                <h4>中文图片 Prompt</h4>
+                <pre>功能图 Prompt：白底拼图分4格展示核心功能卖点。分镜①捏叫演示、分镜②抓握特写、分镜③材质细节、分镜④4花色对比。所有分镜必须出现完整鸭子本体。</pre>
+              </div>
+            </article>
+            
+            <article class="image-card">
+              <div class="image-frame"><img class="image-preview" src="assets/images/duck_lifestyle.png" alt="场景图"></div>
+              <div class="image-card-body">
+                <div class="card-head">
+                  <div>
+                    <div class="eyebrow">场景图</div>
+                    <h3>用户提交图片</h3>
+                  </div>
+                  <span class="status-pill">已收到图片，可放入商品经营启动包</span>
+                </div>
+                <p>帮宝妈想象自己孩子在浴室和鸭子互动的画面，激发购买欲</p>
+                <small>assets/images/duck_lifestyle.png</small>
+                <h4>中文图片 Prompt</h4>
+                <pre>场景图 Prompt：主体必须是小鸭子泡澡玩具（捏捏叫款），展示4-6岁儿童在浴室戏水场景中使用。商品清楚可见，温暖自然光，真实生活方式摄影风格。涉及儿童只拍手部和背影。</pre>
+              </div>
+            </article>
+            </div>
+    </section>
+    
+    
+    <section class="section">
+      <h2>6. 发布准备包</h2>
+      <div class="grid two"><div class="kv"><span>发布状态</span><strong>素材包已准备</strong></div><div class="kv"><span>准备度</span><strong>待复核</strong></div></div><h3>洗澡不再哭🛁4只小鸭子让娃每天主动进浴室</h3><p></p><div class="tags">#洗澡不哭系列 #亲子洗澡神器 #4岁男孩玩具 #5岁女孩礼物 #浴室带娃神器 #捏捏叫鸭子 #宝妈好物分享 #玩中学</div><h3>发布前确认清单</h3><ul class="clean"><li>确认小红书和淘宝账号已注册且实名认证</li><li>确认图片无水印无侵权</li><li>复核标题、正文、话题标签、价格表述和售后话术</li><li>上传3C认证截图至详情页</li><li>配置淘宝物流模板</li><li>通过合适的平台流程提交或排期发布素材</li></ul>
+    </section>
+    
+    
+    <section class="section">
+      <h2>7. 客服 FAQ</h2>
+      
+            <div class="faq-row">
+              <strong>声音大不大？会吵吗？</strong>
+              <span>捏捏叫设计，声音温和不刺耳，浴室里刚好能听见嘎嘎声</span>
+              <em>功能</em>
+            </div>
+            
+            <div class="faq-row">
+              <strong>怎么叫的？按哪里？</strong>
+              <span>捏一下鸭肚子就会嘎嘎叫，4岁小朋友自己就能玩</span>
+              <em>功能</em>
+            </div>
+            
+            <div class="faq-row">
+              <strong>适合多大的孩子？</strong>
+              <span>适用4-6岁儿童，商品详情页已标注，建议成人陪同使用</span>
+              <em>使用</em>
+            </div>
+            
+            <div class="faq-row">
+              <strong>材质安全吗？有没有3C？</strong>
+              <span>搪胶材质，已通过3C认证（编号2020182202016991），可在国家认监委官网查验</span>
+              <em>安全</em>
+            </div>
+            
+            <div class="faq-row">
+              <strong>亮片会不会掉？</strong>
+              <span>亮片内嵌设计，正常使用不会脱落，建议4岁以上儿童在成人陪同下使用</span>
+              <em>安全</em>
+            </div>
+            
+            <div class="faq-row">
+              <strong>4款有什么区别？</strong>
+              <span>小黄鸭经典款、彩色鸭认颜色、表情鸭角色扮演、亮片鸭视觉吸引，4只全家桶玩法最丰富</span>
+              <em>对比</em>
+            </div>
+            
+            <div class="faq-row">
+              <strong>买几只比较划算？</strong>
+              <span>4只全家桶22.9元，折算一只5块7，省近5元且4只玩法多孩子不容易腻</span>
+              <em>价格</em>
+            </div>
+            
+            <div class="faq-row">
+              <strong>可以退换吗？</strong>
+              <span>7天无理由退换，质量问题包邮退，不影响二次销售均可申请</span>
+              <em>售后</em>
+            </div>
+            
+    </section>
+    
+    
+    <section class="section">
+      <h2>8. 复盘和下一轮</h2>
+      <div class="grid two"><div class="kv"><span>下一步调整</span><strong>下一轮可探索0-3岁安全洗澡玩具</strong></div><div class="kv"><span>复盘信心</span><strong>低</strong></div></div><h3>下一轮选品种子</h3><ul class="clean"><li>幼儿洗澡互动玩具 0-3岁安全款</li><li>3C认证</li><li>明确年龄标注</li><li>易于晾干</li><li>可定制包装</li><li>3C证书可查</li><li>支持定制包装</li><li>支持混批</li></ul>
+    </section>
+    
+    
+    <section class="section">
+      <h2>9. 交付文件清单</h2>
+      
+    <table class="asset-table">
+      <thead><tr><th>文件</th><th>路径</th></tr></thead>
+      <tbody>
+            <tr>
+              <td>商品经营启动包（HTML交付页）</td>
+              <td><code>duck_asset_pack.html</code></td>
+            </tr>
+            
+            <tr>
+              <td>完整流程数据包（Workflow Envelope JSON）</td>
+              <td><code>assets/data/workflow_envelope.json</code></td>
+            </tr>
+            
+            <tr>
+              <td>文案素材包</td>
+              <td><code>assets/data/content_pack.json</code></td>
+            </tr>
+            
+            <tr>
+              <td>客服问答包</td>
+              <td><code>assets/data/customer_service_pack.json</code></td>
+            </tr>
+            
+            <tr>
+              <td>发布准备清单</td>
+              <td><code>assets/data/publish_readiness.json</code></td>
+            </tr>
+            
+            <tr>
+              <td>图片Prompt包</td>
+              <td><code>assets/data/image_prompt_pack.json</code></td>
+            </tr>
+            
+            <tr>
+              <td>封面商品图</td>
+              <td><code>assets/images/duck_cover.png</code></td>
+            </tr>
+            
+            <tr>
+              <td>功能商品图</td>
+              <td><code>assets/images/duck_feature.png</code></td>
+            </tr>
+            
+            <tr>
+              <td>场景商品图</td>
+              <td><code>assets/images/duck_lifestyle.png</code></td>
+            </tr>
+            </tbody>
+    </table>
+    <h3>MEDIA 引用</h3>
+    <pre>MEDIA:duck_asset_pack.html
+MEDIA:assets/data/workflow_envelope.json
+MEDIA:assets/data/content_pack.json
+MEDIA:assets/data/customer_service_pack.json
+MEDIA:assets/data/publish_readiness.json
+MEDIA:assets/data/image_prompt_pack.json
+MEDIA:assets/images/duck_cover.png
+MEDIA:assets/images/duck_feature.png
+MEDIA:assets/images/duck_lifestyle.png</pre>
+    
+    </section>
+    
+    <div class="footer">本页面由完整流程数据包生成。发布前请结合平台规则、账号状态和业务审批要求完成最终确认。</div>
+  </main>
+</body>
+</html>
