@@ -50,7 +50,7 @@ Use these prompts to run the workflow consistently.
   2. 修改当前阶段
   3. 停止并导出当前资产
 
-最终或用户选择停止时，请合并为 workflow envelope；如果需要可分享交付物，请生成 HTML 资产包。
+最终或用户选择停止时，请合并为「完整流程数据包（workflow envelope JSON）」；如果需要可分享交付物，请生成「商品经营启动包（HTML交付页）」。
 ```
 
 ## Research Stage Starter
@@ -103,7 +103,7 @@ Expected output:
 ## Final Workshop Takeaway
 
 ```text
-请把以下 workflow envelope 整理成可复用的电商启动素材包。
+请把以下 workflow envelope 整理成可复用的「商品经营启动包」。
 
 {workflow_envelope_json}
 
@@ -111,6 +111,6 @@ Expected output:
 1. 一句话价值总结
 2. 六步流程图文案
 3. 可复用 prompt 清单
-4. 本次商品生成的素材列表
+4. 本次商品生成的交付文件清单
 5. 下一次迁移到其他业务场景的方法
 ```

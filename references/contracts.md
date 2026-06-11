@@ -226,13 +226,13 @@ Use these contracts to keep all e-commerce skills interoperable.
 
 ```json
 {
-  "asset_pack_html_path": "Local path to generated HTML asset pack or null",
+  "asset_pack_html_path": "Local path to generated 商品经营启动包（HTML交付页） or null",
   "delivery_manifest": {
-    "title": "交付资产清单",
+    "title": "交付文件清单",
     "assets": [
-      { "name": "文案包", "path": "/home/agentuser/product_content_pack.json" },
-      { "name": "客服FAQ包", "path": "/home/agentuser/product_cs_pack.json" },
-      { "name": "完整工作流Envelope", "path": "/home/agentuser/product_workflow_envelope.json" },
+      { "name": "文案素材包", "path": "/home/agentuser/product_content_pack.json" },
+      { "name": "客服问答包", "path": "/home/agentuser/product_cs_pack.json" },
+      { "name": "完整流程数据包", "path": "/home/agentuser/product_workflow_envelope.json" },
       { "name": "封面图", "path": "/home/agentuser/xhs_product_demo/封面图.png" },
       { "name": "功能图", "path": "/home/agentuser/xhs_product_demo/功能图.png" },
       { "name": "场景图", "path": "/home/agentuser/xhs_product_demo/场景图.png" }
@@ -241,6 +241,6 @@ Use these contracts to keep all e-commerce skills interoperable.
       "MEDIA:/home/agentuser/product_content_pack.json"
     ]
   },
-  "delivery_note": "The workflow envelope remains the machine-readable source of truth; the HTML asset pack is the user-facing view and should include the delivery manifest when files are available."
+  "delivery_note": "The complete workflow data package remains the machine-readable source of truth; the 商品经营启动包（HTML交付页） is the user-facing view and should include the delivery file list when files are available."
 }
 ```

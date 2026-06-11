@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render a workflow envelope into a shareable HTML asset pack."""
+"""Render a workflow envelope into a shareable business launch HTML page."""
 
 from __future__ import annotations
 
@@ -139,13 +139,13 @@ def build_delivery_manifest(data: dict[str, Any]) -> dict[str, Any]:
         "场景图": (image_pack.get("lifestyle") or {}).get("source_path_or_url") or f"{base_dir}/xhs_{slug}_demo/场景图.png",
     }
     assets = [
-        {"name": "文案包", "path": f"{base_dir}/{slug}_content_pack.json"},
-        {"name": "客服FAQ包", "path": f"{base_dir}/{slug}_cs_pack.json"},
-        {"name": "完整工作流Envelope", "path": f"{base_dir}/{slug}_workflow_envelope.json"},
+        {"name": "文案素材包", "path": f"{base_dir}/{slug}_content_pack.json"},
+        {"name": "客服问答包", "path": f"{base_dir}/{slug}_cs_pack.json"},
+        {"name": "完整流程数据包", "path": f"{base_dir}/{slug}_workflow_envelope.json"},
         *({"name": name, "path": path} for name, path in image_paths.items()),
     ]
     return {
-        "title": "交付资产清单",
+        "title": "交付文件清单",
         "assets": assets,
         "media_refs": [f"MEDIA:{item['path']}" for item in assets],
     }
@@ -187,7 +187,7 @@ def render_asset_pack(data: dict[str, Any]) -> str:
     next_seed = data.get("next_research_seed") or {}
     manifest = build_delivery_manifest(data)
 
-    title = profile.get("name") or "电商启动资产包"
+    title = profile.get("name") or "商品经营启动包"
     decision_body = (
         '<div class="grid four">'
         + field("结论", decision.get("verdict"))
@@ -254,7 +254,7 @@ def render_asset_pack(data: dict[str, Any]) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{esc(title)} - 电商启动资产包</title>
+  <title>{esc(title)} - 商品经营启动包</title>
   <style>
     :root {{
       --ink: #17202a;
@@ -307,9 +307,9 @@ def render_asset_pack(data: dict[str, Any]) -> str:
 <body>
   <main class="page">
     <header class="hero">
-      <div class="eyebrow">E-commerce Launch Asset Pack</div>
+      <div class="eyebrow">Product Business Launch Pack</div>
       <h1>{esc(title)}</h1>
-      <p class="lead-small">从选品判断到发布准备、客服承接、复盘迭代和文件交付的可执行资产包。</p>
+      <p class="lead-small">从选品判断到发布准备、客服承接、复盘迭代和文件交付的商品经营启动包。</p>
     </header>
     {section("0. 工作流进度", render_stage_progress(data.get("stage_progress")))}
     {section("1. 选品结论", decision_body)}
@@ -320,8 +320,8 @@ def render_asset_pack(data: dict[str, Any]) -> str:
     {section("6. 发布准备包", publish_body)}
     {section("7. 客服 FAQ", render_faq(data.get("customer_service_pack") or {}))}
     {section("8. 复盘和下一轮", review_body)}
-    {section("9. 交付资产清单", render_delivery_manifest(manifest))}
-    <div class="footer">Generated from workflow envelope. Actual publishing should follow platform rules, account status, and business approval requirements.</div>
+    {section("9. 交付文件清单", render_delivery_manifest(manifest))}
+    <div class="footer">Generated from the complete workflow data package. Actual publishing should follow platform rules, account status, and business approval requirements.</div>
   </main>
 </body>
 </html>

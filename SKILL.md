@@ -232,23 +232,23 @@ Required output:
 - FAQ improvements
 - next research seed
 
-### 8. AssetPackRenderer: User-Facing Delivery
+### 8. AssetPackRenderer: 商品经营启动包
 
-Purpose: turn the workflow envelope into a user-facing asset pack.
+Purpose: turn the workflow envelope into a user-facing delivery page named "商品经营启动包（HTML交付页）".
 
 Capabilities:
 
 - Render a single HTML file from the completed workflow envelope.
 - Organize outputs into readable sections: decision, product profile, pricing, content, image preparation, publishing readiness, FAQ, and loopback.
-- Include a delivery manifest section with generated file paths and `MEDIA:` references when available.
+- Include a delivery file list with clear business-facing names and `MEDIA:` references when available.
 - Show image prompts and generated image file paths together when an image generation step has run.
-- Keep the JSON envelope as the machine-readable source of truth.
+- Keep the "完整流程数据包（workflow envelope JSON）" as the machine-readable source of truth.
 
 Required output:
 
-- `workflow_envelope`
-- `asset_pack_html_path` when an HTML file is generated
-- delivery manifest inside the HTML when files or media references are available
+- `workflow_envelope`: 完整流程数据包
+- `asset_pack_html_path`: 商品经营启动包（HTML交付页）路径, when generated
+- delivery file list inside the HTML when files or media references are available
 
 ## Default Run Order
 
@@ -262,7 +262,7 @@ Use this sequence for a standard run. By default, complete one stage, summarize,
 6. Publishing readiness package.
 7. Customer service Q&A.
 8. Comment/data review and loopback.
-9. Render user-facing asset pack HTML when the user wants a shareable deliverable.
+9. Render the 商品经营启动包（HTML交付页） when the user wants a shareable deliverable.
 
 ## Stage Confirmation Pattern
 
@@ -279,7 +279,7 @@ Please choose:
 3. Stop and export current assets
 ```
 
-If the user chooses option 1, continue to the next stage. If the user chooses option 2, ask for the smallest correction needed. If the user chooses option 3, generate the current workflow envelope and, when possible, an HTML asset pack.
+If the user chooses option 1, continue to the next stage. If the user chooses option 2, ask for the smallest correction needed. If the user chooses option 3, generate the current 完整流程数据包（workflow envelope JSON） and, when possible, the 商品经营启动包（HTML交付页）.
 
 ## Shared Contracts
 
@@ -297,7 +297,7 @@ Use `references/contracts.md` for:
 - `asset_pack_html_path`
 
 Use `scripts/validate_envelope.py` to check the workflow envelope.
-Use `scripts/render_asset_pack.py` to turn a workflow envelope into a shareable HTML asset pack.
+Use `scripts/render_asset_pack.py` to turn a workflow envelope into a shareable 商品经营启动包（HTML交付页）.
 
 ## References
 
@@ -312,7 +312,7 @@ Use `scripts/render_asset_pack.py` to turn a workflow envelope into a shareable 
 
 - `scripts/main.py`: unified deterministic helper with research, pricing, content, image prep, publishing package, service, analytics, and an orchestrator.
 - `scripts/validate_envelope.py`: validates the workflow envelope.
-- `scripts/render_asset_pack.py`: renders the workflow envelope into a user-facing HTML asset pack.
+- `scripts/render_asset_pack.py`: renders the workflow envelope into a user-facing 商品经营启动包（HTML交付页）.
 - `scripts/xhs_publisher.py`: publishing readiness package helper.
 - `scripts/product_image_preparer.py`: image role and shot-list helper.
 
@@ -336,4 +336,4 @@ At the end of a run, summarize:
 - what is ready for publishing
 - what questions the customer service bot can answer
 - what should feed the next round of product research
-- where the HTML asset pack was saved, if generated
+- where the 商品经营启动包（HTML交付页） was saved, if generated

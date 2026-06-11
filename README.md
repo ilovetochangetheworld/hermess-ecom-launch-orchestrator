@@ -1,6 +1,6 @@
 # 从 0 开张：你的 AI 电商合伙人
 
-这是一个面向独立卖家、运营团队和电商提效场景的 Hermess Agent skill。它把一个商品从选品判断推进到定价、内容、商品图片准备、发布准备、客服 FAQ 和评论复盘，帮助用户把零散任务组织成一条可重复执行的电商工作流。
+这是一个面向独立卖家、运营团队和电商提效场景的 Hermess Agent skill。它把一个商品从选品判断推进到定价、内容、商品图片准备、发布准备、客服 FAQ 和评论复盘，最终交付一份可打开、可分享、可复制的「商品经营启动包」。
 
 ## 适合谁用
 
@@ -18,7 +18,7 @@
 5. 发布准备包：整理标题、正文、话题、图片顺序和发布前确认清单。
 6. 智能客服 FAQ：生成常见问题、买家意图识别和回复样例。
 7. 评论复盘闭环：把评论痛点和运营数据回流成下一轮选品建议。
-8. HTML 资产包：把完整 workflow envelope 渲染成可打开、可分享、可复制的单页 HTML，并在页面内展示交付资产清单和 `MEDIA:` 引用。
+8. 商品经营启动包：把完整流程数据渲染成单页 HTML 交付页，并在页面内展示交付文件清单和 `MEDIA:` 引用。
 
 发布相关能力聚焦于“发布前准备”：Agent 负责整理发布所需素材和检查项；实际发布动作应由使用者结合账号状态、平台规则和业务审批流程完成。
 
@@ -92,7 +92,7 @@ D. 我自己的商品
 - 发布环节输出发布准备包，包括标题、正文、话题、图片顺序和发布前确认清单。
 - 商品图片优先使用真实商品图、供应商图、商品截图或用户提供的实拍图。
 - 所有文案必须绑定商品具体参数，不要写成任何同类商品都能套用的泛泛内容。
-- 用户选择停止或完成全部阶段后，生成 workflow envelope；如需分享交付物，生成 HTML 资产包。
+- 用户选择停止或完成全部阶段后，生成「完整流程数据包」；如需分享交付物，生成「商品经营启动包（HTML交付页）」。
 ```
 
 ## 标准工作流
@@ -107,9 +107,29 @@ D. 我自己的商品
 | 客服问答 | 产品信息、售后政策、高频问题 | FAQ、回复样例、升级人工判断 |
 | 复盘回流 | 评论、咨询记录、运营指标 | 痛点分析、迭代建议、下一轮选品种子 |
 
-## 输出结构
+## 最终交付物
 
-完整流程会尽量收敛成一个 workflow envelope，核心字段包括：
+完整流程最终输出两层产物：
+
+```text
+1. 商品经营启动包（HTML交付页）
+   给业务用户打开查看，包含选品结论、定价、文案、发布准备、客服 FAQ、复盘建议和交付文件清单。
+
+2. 完整流程数据包（workflow_envelope.json）
+   给 Agent、系统集成或二次加工使用，是全流程的机器可读源数据。
+```
+
+配套文件会使用清晰名称：
+
+```text
+文案素材包（content_pack.json）
+客服问答包（cs_pack.json）
+发布准备清单（publish_readiness.json 或 publish_result 字段）
+商品图片素材与提示词（image_pack 字段或图片文件）
+下一轮优化建议（review_insight_pack / next_research_seed）
+```
+
+完整流程数据包核心字段包括：
 
 ```text
 workflow_meta
@@ -167,7 +187,7 @@ python3 scripts/xhs_publisher.py \
   --images cover.jpg feature.jpg lifestyle.jpg
 ```
 
-生成 HTML 资产包：
+生成商品经营启动包（HTML交付页）：
 
 ```bash
 python3 scripts/render_asset_pack.py \
@@ -175,7 +195,7 @@ python3 scripts/render_asset_pack.py \
   --out outputs/sample-asset-pack.html
 ```
 
-HTML 资产包会包含选品结论、产品画像、定价、文案、图片/Prompt、发布准备、客服 FAQ、复盘建议，以及文件路径和 `MEDIA:` 引用。
+商品经营启动包会包含选品结论、产品画像、定价、文案、图片/Prompt、发布准备、客服 FAQ、复盘建议，以及交付文件路径和 `MEDIA:` 引用。
 
 ## 目录说明
 
@@ -193,7 +213,7 @@ HTML 资产包会包含选品结论、产品画像、定价、文案、图片/Pr
 ├── scripts/
 │   ├── main.py                   # 统一流程样例生成器
 │   ├── validate_envelope.py      # envelope 校验器
-│   ├── render_asset_pack.py      # HTML 资产包渲染器
+│   ├── render_asset_pack.py      # 商品经营启动包 HTML 渲染器
 │   ├── product_image_preparer.py # 商品图片角色整理
 │   └── xhs_publisher.py          # 发布准备包生成器
 └── assets/

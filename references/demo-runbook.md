@@ -16,7 +16,7 @@ Use this runbook for the workshop case "From zero to launch: your AI e-commerce 
 
 Opening:
 
-"今天我们不讲复杂理论，直接做一个挑战：现场选一个小商品，让 Hermess Agent 在 10 分钟内跑完选品、定价、文案、图片、发布素材包、客服和复盘。"
+"今天我们不讲复杂理论，直接做一个挑战：现场选一个小商品，让 Hermess Agent 在 10 分钟内跑完选品、定价、文案、发布素材、客服和复盘，最后生成一份商品经营启动包。"
 
 Research transition:
 
@@ -77,7 +77,11 @@ The story should never fail because one platform status changes. The Agent shoul
 
 Prepare these outputs for participants:
 
-- product profile JSON
+- 商品经营启动包（HTML交付页）
+- 完整流程数据包（workflow envelope JSON）
+- 文案素材包（content pack JSON）
+- 客服问答包（FAQ pack JSON）
+- 发布准备清单
 - Xiaohongshu note versions
 - product image order and shot list
 - FAQ knowledge base
