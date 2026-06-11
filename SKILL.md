@@ -26,7 +26,7 @@ It replaces scattered e-commerce prompts with one operating flow. The skill must
 - Avoid repeating product facts already accepted by the user; refer to them as "已确认产品画像" unless a field changed.
 - For FAQ, output the top 8 questions during the live workflow; expand to 20 only in the exported customer service pack.
 - For review analysis, summarize top 3 pain points in the chat; put the full analysis in the envelope/export.
-- For image preparation, output 3 concise prompts and the image order. Do not generate images unless the user explicitly asks.
+- For image preparation, output 3 concise Chinese prompts and the image order. Do not generate images unless the user explicitly asks.
 
 ## Trigger Keywords
 
@@ -150,7 +150,7 @@ Capabilities:
   - cover image
   - feature/detail image
   - lifestyle/use-scene image
-- Generate three image prompts if real images are missing or the user wants a creative brief:
+- Generate three Chinese image prompts if real images are missing or the user wants a creative brief:
   - cover prompt
   - feature/detail prompt
   - lifestyle/use-scene prompt
@@ -158,9 +158,12 @@ Capabilities:
 - Suggest annotation points and image order.
 - Do not call image generation tools or external image APIs unless the user explicitly asks.
 - Label AI draft visuals only as concept drafts, not listing photos, if the user later requests generated images.
+- If the user generates, shoots, or uploads images after receiving the prompts, accept those image paths or files and update `image_pack.source_path_or_url`, `source_type`, and `image_status`.
+- In the final 商品经营启动包（HTML交付页）, the section "商品图片与 Prompt" must show each image role, the submitted image preview when available, image source/status, and the Chinese prompt used to create or guide that image.
 
 Prompt rules:
 
+- All image prompts must be written in Chinese by default, unless the user explicitly asks for English prompts.
 - Every image prompt must include the subject: product name, visible appearance, material/color, and package or quantity when known.
 - Every image prompt must include product background: target user, usage context, core selling point, and what buyer concern this image answers.
 - Feature image prompts must explicitly name the product subject and the feature being demonstrated; do not write feature fragments such as "sound demo + soft material" without a subject.
@@ -173,7 +176,7 @@ Required output:
 - `image_pack`
 - missing image checklist
 - image order
-- 3 image prompts
+- 3 Chinese image prompts
 - shot list / operator brief
 
 ### 5. PublishingReadiness: Publishing Preparation
@@ -266,7 +269,8 @@ Capabilities:
 - Render a single HTML file from the completed workflow envelope.
 - Organize outputs into readable sections: decision, product profile, pricing, content, image preparation, publishing readiness, FAQ, and loopback.
 - Include a delivery file list with clear business-facing names and `MEDIA:` references when available.
-- Show image prompts and real/generated image file paths only when such files are actually available.
+- Render the "商品图片与 Prompt" section professionally: show cover/feature/lifestyle cards, submitted image previews when available, image source/status, the Chinese Prompt, and the purpose of each image.
+- If no image has been submitted yet, show a clear placeholder and the Chinese Prompt so the user can generate or shoot the missing image.
 - Keep the "完整流程数据包（workflow envelope JSON）" as the machine-readable source of truth.
 
 Required output:

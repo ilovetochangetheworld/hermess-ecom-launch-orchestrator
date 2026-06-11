@@ -44,22 +44,22 @@ class MarketIntel:
 
     DEMO_PRODUCTS = {
         "portable_fan": {
-            "name": "USB-C Rechargeable Portable Fan",
-            "category": "portable cooling",
-            "target_audience": "commuters, students, office workers",
-            "key_features": ["USB-C charging", "portable body", "desk stand", "battery display"],
+            "name": "USB-C 充电便携小风扇",
+            "category": "便携降温小家电",
+            "target_audience": "通勤人群、学生和办公室用户",
+            "key_features": ["USB-C 充电", "小巧便携机身", "桌面支架", "电量显示"],
         },
         "insulated_tumbler": {
-            "name": "40oz Insulated Travel Tumbler",
-            "category": "drinkware",
-            "target_audience": "commuters, gym users, office workers",
-            "key_features": ["40oz capacity", "handle", "straw lid", "cupholder base"],
+            "name": "40oz 大容量保温随行杯",
+            "category": "饮水杯具",
+            "target_audience": "通勤人群、健身用户和办公室用户",
+            "key_features": ["40oz 大容量", "便携手柄", "吸管杯盖", "适配车载杯架的杯底"],
         },
         "clear_magsafe_case": {
-            "name": "Clear MagSafe-Compatible Phone Case",
-            "category": "phone accessory",
-            "target_audience": "iPhone users who want protection without hiding phone color",
-            "key_features": ["clear back", "MagSafe ring", "raised bezels", "shock-absorbing corners"],
+            "name": "透明 MagSafe 兼容手机壳",
+            "category": "手机配件",
+            "target_audience": "想保护手机但不想遮住机身颜色的 iPhone 用户",
+            "key_features": ["透明背板", "MagSafe 磁吸环", "高于屏幕和镜头的保护边", "防摔缓冲四角"],
         },
     }
 
@@ -98,18 +98,18 @@ class MarketIntel:
                 "key_features": facts.key_features,
                 "target_audience": facts.target_audience,
                 "key_selling_point": self._selling_point(facts),
-                "differentiation_direction": "Use concrete product facts and solo-seller-friendly operations.",
+                "differentiation_direction": "用具体商品事实建立差异化，并保持适合个人卖家执行的运营动作。",
                 "safe_claims": facts.key_features,
-                "claims_to_avoid": ["best", "number one", "permanent", "100% effective", "guaranteed result"],
-                "image_needs": ["clear product cover image", "feature/detail image", "real use-scene image"],
-                "faq_seeds": ["price", "quality", "shipping", "after-sales", "comparison"],
+                "claims_to_avoid": ["最强", "第一", "永久", "100%有效", "保证结果"],
+                "image_needs": ["清晰商品主图", "功能/细节图", "真实使用场景图"],
+                "faq_seeds": ["价格", "质量", "物流", "售后", "对比"],
             },
             "risk_checklist": [
                 {
-                    "risk": "Key product facts are not fully verified.",
-                    "level": "medium",
-                    "operator_check": "Confirm supplier price, material, package contents, and applicable platform restrictions before publishing.",
-                    "copywriting_rule": "Do not claim unverified certifications, battery life, material, or effectiveness.",
+                    "risk": "关键商品事实尚未完全核验。",
+                    "level": "中",
+                    "operator_check": "发布前确认供应价、材质、包装内容和适用平台限制。",
+                    "copywriting_rule": "不要宣称未核验的认证、续航、材质或功效。",
                 }
             ],
             "confidence": "medium" if facts.missing_fields else "high",
@@ -117,16 +117,16 @@ class MarketIntel:
 
     def _reason(self, verdict: str, facts: ProductFacts) -> str:
         return {
-            "go": f"{facts.name} has a clear buyer scene and enough product facts to continue.",
-            "go_with_caution": f"{facts.name} can continue, but margin or supply assumptions need confirmation.",
-            "pause": f"{facts.name} needs more product facts before content and publishing.",
-            "avoid": f"{facts.name} is not ready for this launch flow.",
+            "go": f"{facts.name} 的购买场景清楚，已有足够商品事实继续推进。",
+            "go_with_caution": f"{facts.name} 可以继续，但毛利或供应假设还需要确认。",
+            "pause": f"{facts.name} 需要补充更多商品事实后再生成内容和发布准备。",
+            "avoid": f"{facts.name} 暂不适合进入本次启动流程。",
         }[verdict]
 
     def _selling_point(self, facts: ProductFacts) -> str:
         if facts.key_features:
-            return f"{facts.name} for {facts.target_audience}, featuring {', '.join(facts.key_features[:3])}."
-        return f"{facts.name} for {facts.target_audience}."
+            return f"{facts.name} 面向{facts.target_audience}，核心特征包括{'、'.join(facts.key_features[:3])}。"
+        return f"{facts.name} 面向{facts.target_audience}。"
 
 
 class PricingEngine:
@@ -235,31 +235,32 @@ class ProductImagePrep:
                 missing.append(role)
             pack[role] = {
                 "role": {"cover": "封面图", "feature": "功能图", "lifestyle": "场景图"}[role],
-                "source_type": "user_photo" if source else "missing",
+                "source_type": "用户提交图片" if source else "待补充",
                 "source_path_or_url": source,
                 "prompt": self._prompt(role, product_profile),
                 "required_if_missing": self._requirement(role),
                 "why_this_image": self._reason(role),
+                "image_status": "已收到图片，可放入商品经营启动包" if source else "未收到图片，先使用中文 Prompt 指导拍摄或生成",
             }
         return {
             "image_pack": pack,
             "missing_image_checklist": [self._requirement(role) for role in missing],
             "image_order": ["cover", "feature", "lifestyle"],
             "shot_list": [
-                "Shoot or collect a clean front product image.",
-                "Shoot or collect one detail image for the strongest selling point.",
-                "Shoot or collect one real use-scene image with the target user context.",
+                "封面图：收集或拍摄一张干净清晰的商品正面/45 度图。",
+                "功能图：收集或拍摄一张能证明最强卖点的细节图或拼图。",
+                "场景图：收集或拍摄一张包含目标用户使用语境的真实场景图。",
             ],
-            "generation_policy": "Default output is prompts only. Do not call image generation APIs unless the user explicitly asks.",
-            "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos.",
+            "generation_policy": "默认只输出中文图片 Prompt、拍摄清单和图片顺序；除非用户明确要求，不调用生图接口。",
+            "ai_visual_policy": "用户根据 Prompt 生成并提交的图片可以作为概念图或发布素材候选，必须在交付页中标明来源；不要把未核验概念图表述为真实商品实拍。",
         }
 
     def _prompt(self, role: str, profile: dict[str, Any]) -> str:
-        name = profile.get("name") or "the exact product"
-        audience = profile.get("target_audience") or "the target buyer"
-        selling_point = profile.get("key_selling_point") or "the verified core selling point"
-        features = ", ".join((profile.get("key_features") or [])[:4]) or "verified visible features"
-        category = profile.get("category") or "product category"
+        name = profile.get("name") or "已确认商品"
+        audience = profile.get("target_audience") or "目标买家"
+        selling_point = profile.get("key_selling_point") or "已确认的核心卖点"
+        features = "、".join((profile.get("key_features") or [])[:4]) or "已确认的可见特征"
+        category = profile.get("category") or "商品品类"
         return {
             "cover": (
                 f"封面图 Prompt：主体必须是 {name}（{category}），画面要清楚展示商品真实外观、颜色、材质和包装/数量；"
@@ -283,16 +284,16 @@ class ProductImagePrep:
 
     def _requirement(self, role: str) -> str:
         return {
-            "cover": "Provide a clear real product photo for the first screen.",
-            "feature": "Provide detail photos that prove the key feature.",
-            "lifestyle": "Provide a real use-scene photo or supplier lifestyle image.",
+            "cover": "提供一张用于首屏识别的清晰真实商品主图。",
+            "feature": "提供一张能证明核心卖点的功能或细节图。",
+            "lifestyle": "提供一张真实使用场景图或供应商生活方式图。",
         }[role]
 
     def _reason(self, role: str) -> str:
         return {
-            "cover": "Help buyers recognize the product instantly.",
-            "feature": "Make the selling point visible.",
-            "lifestyle": "Help buyers imagine the use scenario.",
+            "cover": "帮助买家第一眼看清商品是什么、适不适合自己。",
+            "feature": "把核心卖点变成可被看见和验证的证据。",
+            "lifestyle": "帮助买家代入真实使用场景，降低决策成本。",
         }[role]
 
 
@@ -310,14 +311,14 @@ class PublishingPackage:
                 "visibility": None,
                 "failure_reason": None,
                 "direct_publish_enabled": False,
-                "policy_note": "Publishing readiness package prepared. Actual publishing should follow account status, platform policy, and business approval requirements.",
+                "policy_note": "已生成发布准备包。实际发布前请结合账号状态、平台规则和业务审批要求确认。",
                 "operator_checklist": [
-                    "Confirm account and platform policy readiness.",
-                    "Confirm image prompts, image order, and whether real product/supplier/user-provided photos are available.",
-                    "Review title, body, hashtags, price claims, and after-sales wording.",
-                    "Submit or schedule the approved package through the appropriate platform workflow.",
+                    "确认账号状态和平台规则是否满足发布要求。",
+                    "确认图片 Prompt、图片顺序，以及真实商品图、供应商图或用户回传图片是否齐备。",
+                    "复核标题、正文、话题标签、价格表述和售后话术。",
+                    "通过合适的平台流程提交或排期已确认的发布素材。",
                 ],
-                "next_action": "Review the package, resolve pending checklist items, then submit through the appropriate platform workflow.",
+                "next_action": "复核发布准备包，处理待确认事项后，再通过对应平台流程提交。",
             }
         }
 
@@ -392,7 +393,7 @@ class AnalyticsDashboard:
                 "health_triggers": triggers,
                 "force_loopback": force_loopback,
                 "loopback": {
-                    "next_selection_adjustment": "Tighten supplier requirements and avoid claims that caused questions or refunds.",
+                    "next_selection_adjustment": "收紧供应商要求，避免继续使用导致咨询或退款的未核验卖点。",
                     "confidence_level": "medium" if metrics else "low",
                 },
             },
@@ -451,13 +452,13 @@ class Orchestrator:
             **service,
             **analytics,
             "handoff_summary": [
-                "product research decision",
-                "pricing suggestion",
-                "xiaohongshu note",
-                "image prompts and product shot list",
-                "publishing readiness package",
-                "customer service FAQ",
-                "review loopback seed",
+                "选品判断",
+                "定价建议",
+                "小红书内容",
+                "图片 Prompt 和拍摄清单",
+                "发布准备包",
+                "客服 FAQ",
+                "复盘回流种子",
             ],
         }
 

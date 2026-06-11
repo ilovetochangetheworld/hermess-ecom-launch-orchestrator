@@ -107,37 +107,40 @@ Use these contracts to keep all e-commerce skills interoperable.
   "image_pack": {
     "cover": {
       "role": "封面图",
-      "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
+      "source_type": "用户提交图片|供应商图|平台截图|商品截图|概念图|待补充",
       "source_path_or_url": "Local path or URL",
-      "prompt": "Image generation or shooting prompt for this role",
+      "prompt": "中文图片生成或拍摄提示词",
       "expected_output_path": "Only present if a real/generated file already exists",
-      "required_if_missing": "What image the operator should provide or shoot",
-      "why_this_image": "Purpose"
+      "required_if_missing": "缺图时用户应提供、拍摄或生成什么图片",
+      "why_this_image": "图片用途",
+      "image_status": "已收到图片，可放入商品经营启动包|未收到图片，先使用中文 Prompt 指导拍摄或生成"
     },
     "feature": {
       "role": "功能图",
-      "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
+      "source_type": "用户提交图片|供应商图|平台截图|商品截图|概念图|待补充",
       "source_path_or_url": "Local path or URL",
-      "prompt": "Image generation or shooting prompt for this role",
+      "prompt": "中文图片生成或拍摄提示词",
       "expected_output_path": "Only present if a real/generated file already exists",
-      "required_if_missing": "What image the operator should provide or shoot",
-      "why_this_image": "Purpose"
+      "required_if_missing": "缺图时用户应提供、拍摄或生成什么图片",
+      "why_this_image": "图片用途",
+      "image_status": "已收到图片，可放入商品经营启动包|未收到图片，先使用中文 Prompt 指导拍摄或生成"
     },
     "lifestyle": {
       "role": "场景图",
-      "source_type": "user_photo|supplier_image|marketplace_image|screenshot|concept_draft|missing",
+      "source_type": "用户提交图片|供应商图|平台截图|商品截图|概念图|待补充",
       "source_path_or_url": "Local path or URL",
-      "prompt": "Image generation or shooting prompt for this role",
+      "prompt": "中文图片生成或拍摄提示词",
       "expected_output_path": "Only present if a real/generated file already exists",
-      "required_if_missing": "What image the operator should provide or shoot",
-      "why_this_image": "Purpose"
+      "required_if_missing": "缺图时用户应提供、拍摄或生成什么图片",
+      "why_this_image": "图片用途",
+      "image_status": "已收到图片，可放入商品经营启动包|未收到图片，先使用中文 Prompt 指导拍摄或生成"
     }
   },
   "image_order": ["cover", "feature", "lifestyle"],
   "missing_image_checklist": [],
   "shot_list": [],
-  "generation_policy": "Default output is prompts only. Do not call image generation APIs unless the user explicitly asks.",
-  "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos."
+  "generation_policy": "默认只输出中文图片 Prompt、拍摄清单和图片顺序；除非用户明确要求，不调用生图接口。",
+  "ai_visual_policy": "用户根据 Prompt 生成并提交的图片可以作为概念图或发布素材候选，必须在交付页中标明来源；不要把未核验概念图表述为真实商品实拍。"
 }
 ```
 

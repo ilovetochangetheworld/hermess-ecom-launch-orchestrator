@@ -8,13 +8,13 @@ import json
 
 
 ROLES = {
-    "cover": ("封面图", "A clear real product photo for first-screen recognition."),
-    "feature": ("功能图", "A detail image that proves the key selling point."),
-    "lifestyle": ("场景图", "A real use-scene or supplier lifestyle image."),
+    "cover": ("封面图", "用于首屏识别的清晰商品主图。"),
+    "feature": ("功能图", "用于证明核心卖点的功能或细节图。"),
+    "lifestyle": ("场景图", "用于建立使用代入感的真实场景图。"),
 }
 
 
-def prepare(images: list[str], product: str = "the exact product", features: str = "verified visible features", audience: str = "the target buyer", selling_point: str = "the verified core selling point") -> dict:
+def prepare(images: list[str], product: str = "已确认商品", features: str = "已确认的可见特征", audience: str = "目标买家", selling_point: str = "已确认的核心卖点") -> dict:
     result = {}
     missing = []
     for index, (key, (role, requirement)) in enumerate(ROLES.items()):
@@ -23,23 +23,24 @@ def prepare(images: list[str], product: str = "the exact product", features: str
             missing.append(requirement)
         result[key] = {
             "role": role,
-            "source_type": "user_photo" if source else "missing",
+            "source_type": "用户提交图片" if source else "待补充",
             "source_path_or_url": source,
             "prompt": prompt_for(key, product, features, audience, selling_point),
             "required_if_missing": requirement,
             "why_this_image": requirement,
+            "image_status": "已收到图片，可放入商品经营启动包" if source else "未收到图片，先使用中文 Prompt 指导拍摄或生成",
         }
     return {
         "image_pack": result,
         "image_order": list(ROLES.keys()),
         "missing_image_checklist": missing,
         "shot_list": [
-            "Use a real front or three-quarter product photo as the cover.",
-            "Use a real detail photo to prove the strongest selling point.",
-            "Use a real use-scene or supplier lifestyle image for context.",
+            "封面图：使用真实正面或 45 度角商品图，第一眼看清商品主体。",
+            "功能图：使用细节图或拼图证明最强卖点，避免只有文字没有商品。",
+            "场景图：使用真实使用场景或供应商生活方式图，帮助用户理解适用场景。",
         ],
-        "generation_policy": "Default output is prompts only. Do not call image generation APIs unless the user explicitly asks.",
-        "ai_visual_policy": "AI draft visuals can be used for concept exploration only; do not present them as real listing photos.",
+        "generation_policy": "默认只输出中文图片 Prompt、拍摄清单和图片顺序；除非用户明确要求，不调用生图接口。",
+        "ai_visual_policy": "用户根据 Prompt 生成并提交的图片可以作为概念图或发布素材候选，必须在交付页中标明来源；不要把未核验概念图表述为真实商品实拍。",
     }
 
 
@@ -67,10 +68,10 @@ def prompt_for(role: str, product: str, features: str, audience: str, selling_po
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("images", nargs="*")
-    parser.add_argument("--product", default="the exact product")
-    parser.add_argument("--features", default="verified visible features")
-    parser.add_argument("--audience", default="the target buyer")
-    parser.add_argument("--selling-point", default="the verified core selling point")
+    parser.add_argument("--product", default="已确认商品")
+    parser.add_argument("--features", default="已确认的可见特征")
+    parser.add_argument("--audience", default="目标买家")
+    parser.add_argument("--selling-point", default="已确认的核心卖点")
     args = parser.parse_args()
     print(json.dumps(prepare(args.images, args.product, args.features, args.audience, args.selling_point), ensure_ascii=False, indent=2))
 
