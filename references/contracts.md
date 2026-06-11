@@ -230,21 +230,28 @@ Use these contracts to keep all e-commerce skills interoperable.
 
 ```json
 {
-  "asset_pack_html_path": "Local path to generated 商品经营启动包（HTML交付页） or null",
+  "asset_pack_html_path": "Relative path or local path to generated 商品经营启动包（HTML交付页） or null",
+  "asset_pack_bundle_path": "Local path to portable delivery folder or null",
+  "asset_pack_zip_path": "Local path to 商品经营启动包（ZIP交付包） or null",
   "delivery_manifest": {
     "title": "交付文件清单",
     "assets": [
-      { "name": "文案素材包", "path": "/home/agentuser/product_content_pack.json" },
-      { "name": "客服问答包", "path": "/home/agentuser/product_cs_pack.json" },
-      { "name": "完整流程数据包", "path": "/home/agentuser/product_workflow_envelope.json" },
-      { "name": "封面图", "path": "/home/agentuser/xhs_product_demo/封面图.png" },
-      { "name": "功能图", "path": "/home/agentuser/xhs_product_demo/功能图.png" },
-      { "name": "场景图", "path": "/home/agentuser/xhs_product_demo/场景图.png" }
+      { "name": "商品经营启动包（HTML交付页）", "path": "duck_asset_pack.html" },
+      { "name": "完整流程数据包（Workflow Envelope JSON）", "path": "assets/data/workflow_envelope.json" },
+      { "name": "文案素材包", "path": "assets/data/content_pack.json" },
+      { "name": "客服问答包", "path": "assets/data/customer_service_pack.json" },
+      { "name": "发布准备清单", "path": "assets/data/publish_readiness.json" },
+      { "name": "图片Prompt包", "path": "assets/data/image_prompt_pack.json" },
+      { "name": "封面商品图", "path": "assets/images/duck_cover.png" },
+      { "name": "功能商品图", "path": "assets/images/duck_feature.png" },
+      { "name": "场景商品图", "path": "assets/images/duck_lifestyle.png" }
     ],
     "media_refs": [
-      "MEDIA:/home/agentuser/product_content_pack.json"
+      "MEDIA:duck_asset_pack.html",
+      "MEDIA:assets/images/duck_cover.png",
+      "MEDIA:assets/data/workflow_envelope.json"
     ]
   },
-  "delivery_note": "The complete workflow data package remains the machine-readable source of truth; the 商品经营启动包（HTML交付页） is the user-facing view and should include the delivery file list when files are available."
+  "delivery_note": "推荐生成 ZIP 交付包。HTML、图片和 JSON 数据应使用相对路径绑定，避免依赖 Hermess 运行环境中的 /home/agentuser/... 绝对路径。"
 }
 ```

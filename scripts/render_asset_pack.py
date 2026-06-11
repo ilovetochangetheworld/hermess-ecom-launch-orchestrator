@@ -4,8 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import html
 import json
+import re
+import shutil
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -44,6 +48,35 @@ def display_value(value: Any) -> str:
     if value is None:
         return ""
     return mapping.get(str(value), str(value))
+
+
+def safe_slug(value: str | None, fallback: str = "product") -> str:
+    value = value or fallback
+    if "duck" in value.lower() or "鸭" in value:
+        return "duck"
+    if "tumbler" in value.lower() or "cup" in value.lower() or "杯" in value:
+        return "tumbler"
+    if "fan" in value.lower() or "风扇" in value:
+        return "fan"
+    if "case" in value.lower() or "手机壳" in value:
+        return "case"
+    slug = re.sub(r"[^A-Za-z0-9\u4e00-\u9fff]+", "_", value).strip("_").lower()
+    return slug[:40] or fallback
+
+
+def local_file(path: str | None) -> Path | None:
+    if not path or path.startswith(("http://", "https://", "data:")):
+        return None
+    if path.startswith("file://"):
+        path = path[7:]
+    candidate = Path(path)
+    return candidate if candidate.is_file() else None
+
+
+def copy_asset(src: Path, dest: Path) -> str:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dest)
+    return dest.as_posix()
 
 
 def section(title: str, body: str) -> str:
@@ -181,12 +214,13 @@ def build_delivery_manifest(data: dict[str, Any]) -> dict[str, Any]:
     elif "case" in lowered:
         slug = "case"
 
-    base_dir = "/home/agentuser"
     assets = [
-        {"name": "文案素材包", "path": f"{base_dir}/{slug}_content_pack.json"},
-        {"name": "客服问答包", "path": f"{base_dir}/{slug}_cs_pack.json"},
-        {"name": "完整流程数据包", "path": f"{base_dir}/{slug}_workflow_envelope.json"},
-        {"name": "图片Prompt包", "path": f"{base_dir}/{slug}_image_prompt_pack.json"},
+        {"name": "商品经营启动包（HTML交付页）", "path": f"{slug}_asset_pack.html"},
+        {"name": "完整流程数据包（Workflow Envelope JSON）", "path": "assets/data/workflow_envelope.json"},
+        {"name": "文案素材包", "path": "assets/data/content_pack.json"},
+        {"name": "客服问答包", "path": "assets/data/customer_service_pack.json"},
+        {"name": "发布准备清单", "path": "assets/data/publish_readiness.json"},
+        {"name": "图片Prompt包", "path": "assets/data/image_prompt_pack.json"},
     ]
     image_pack = data.get("image_pack") or {}
     for name, key in [("封面图", "cover"), ("功能图", "feature"), ("场景图", "lifestyle")]:
@@ -198,6 +232,81 @@ def build_delivery_manifest(data: dict[str, Any]) -> dict[str, Any]:
         "assets": assets,
         "media_refs": [f"MEDIA:{item['path']}" for item in assets],
     }
+
+
+def build_bundled_delivery_manifest(slug: str, image_pack: dict[str, Any]) -> dict[str, Any]:
+    assets = [
+        {"name": "商品经营启动包（HTML交付页）", "path": f"{slug}_asset_pack.html"},
+        {"name": "完整流程数据包（Workflow Envelope JSON）", "path": "assets/data/workflow_envelope.json"},
+        {"name": "文案素材包", "path": "assets/data/content_pack.json"},
+        {"name": "客服问答包", "path": "assets/data/customer_service_pack.json"},
+        {"name": "发布准备清单", "path": "assets/data/publish_readiness.json"},
+        {"name": "图片Prompt包", "path": "assets/data/image_prompt_pack.json"},
+    ]
+    for label, role in [("封面商品图", "cover"), ("功能商品图", "feature"), ("场景商品图", "lifestyle")]:
+        path = (image_pack.get(role) or {}).get("source_path_or_url") or (image_pack.get(role) or {}).get("expected_output_path")
+        if path:
+            assets.append({"name": label, "path": path})
+    return {
+        "title": "交付文件清单",
+        "assets": assets,
+        "media_refs": [f"MEDIA:{item['path']}" for item in assets],
+    }
+
+
+def prepare_bundle(data: dict[str, Any], bundle_dir: Path, slug: str, html_name: str) -> dict[str, Any]:
+    bundled = copy.deepcopy(data)
+    image_pack = bundled.get("image_pack") or {}
+    role_names = {"cover": "cover", "feature": "feature", "lifestyle": "lifestyle"}
+
+    for role, file_role in role_names.items():
+        item = image_pack.get(role) or {}
+        raw_path = item.get("source_path_or_url") or item.get("expected_output_path")
+        src = local_file(raw_path)
+        if not src:
+            continue
+        suffix = src.suffix or ".png"
+        relative_path = f"assets/images/{slug}_{file_role}{suffix}"
+        copy_asset(src, bundle_dir / relative_path)
+        item.pop("source_original_path", None)
+        item["source_path_or_url"] = relative_path
+        item["expected_output_path"] = relative_path
+        item["image_status"] = item.get("image_status") or "已打包为相对路径图片，可随 HTML 一起交付"
+        image_pack[role] = item
+
+    data_dir = bundle_dir / "assets" / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+
+    bundled["asset_pack_html_path"] = html_name
+    bundled["asset_pack_bundle_path"] = "."
+    bundled["delivery_manifest"] = build_bundled_delivery_manifest(slug, image_pack)
+    bundled["delivery_note"] = "本交付包使用相对路径组织 HTML、图片和 JSON 数据。请解压整个 zip 后打开 HTML，不要单独移动 HTML 文件。"
+
+    payloads = {
+        "workflow_envelope.json": bundled,
+        "content_pack.json": bundled.get("content_pack") or {},
+        "customer_service_pack.json": bundled.get("customer_service_pack") or {},
+        "publish_readiness.json": bundled.get("publish_result") or {},
+        "image_prompt_pack.json": {
+            "image_pack": bundled.get("image_pack") or {},
+            "image_order": bundled.get("image_order") or [],
+            "missing_image_checklist": bundled.get("missing_image_checklist") or [],
+            "shot_list": bundled.get("shot_list") or [],
+        },
+        "review_insight_pack.json": bundled.get("review_insight_pack") or {},
+    }
+    for name, payload in payloads.items():
+        (data_dir / name).write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    return bundled
+
+
+def zip_bundle(bundle_dir: Path, zip_path: Path) -> None:
+    zip_path.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        for path in sorted(bundle_dir.rglob("*")):
+            if path.is_file():
+                zf.write(path, path.relative_to(bundle_dir))
 
 
 def render_delivery_manifest(manifest: dict[str, Any]) -> str:
@@ -394,12 +503,39 @@ def render_asset_pack(data: dict[str, Any]) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("envelope", help="Path to workflow envelope JSON")
-    parser.add_argument("--out", required=True, help="Output HTML path")
+    parser.add_argument("--out", help="Output HTML path")
+    parser.add_argument("--bundle-dir", help="Create a portable delivery folder with relative image/data paths")
+    parser.add_argument("--zip", dest="zip_path", help="Zip the portable delivery folder")
+    parser.add_argument("--slug", help="File prefix, for example duck")
     args = parser.parse_args()
 
     envelope_path = Path(args.envelope)
-    out_path = Path(args.out)
     data = json.loads(envelope_path.read_text(encoding="utf-8"))
+    profile = data.get("product_profile") or {}
+    slug = args.slug or safe_slug(profile.get("name"))
+
+    if args.bundle_dir:
+        bundle_dir = Path(args.bundle_dir)
+        html_name = Path(args.out).name if args.out else f"{slug}_asset_pack.html"
+        bundle_dir.mkdir(parents=True, exist_ok=True)
+        bundled = prepare_bundle(data, bundle_dir, slug, html_name)
+        html_path = bundle_dir / html_name
+        html_path.write_text(render_asset_pack(bundled), encoding="utf-8")
+
+        result = {
+            "asset_pack_html_path": str(html_path),
+            "asset_pack_bundle_path": str(bundle_dir),
+        }
+        if args.zip_path:
+            zip_path = Path(args.zip_path)
+            zip_bundle(bundle_dir, zip_path)
+            result["asset_pack_zip_path"] = str(zip_path)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        return
+
+    if not args.out:
+        parser.error("--out is required unless --bundle-dir is provided")
+    out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(render_asset_pack(data), encoding="utf-8")
     print(str(out_path))

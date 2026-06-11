@@ -262,21 +262,34 @@ Required output:
 
 ### 8. AssetPackRenderer: 商品经营启动包
 
-Purpose: turn the workflow envelope into a user-facing delivery page named "商品经营启动包（HTML交付页）".
+Purpose: turn the workflow envelope into a portable user-facing delivery package.
 
 Capabilities:
 
 - Render a single HTML file from the completed workflow envelope.
+- Prefer rendering a portable zip package when product images are included. The package must use relative paths so the HTML and images stay linked after download or transfer.
+- Recommended package structure:
+  - `{slug}_asset_pack.html`
+  - `assets/images/{slug}_cover.png`
+  - `assets/images/{slug}_feature.png`
+  - `assets/images/{slug}_lifestyle.png`
+  - `assets/data/workflow_envelope.json`
+  - `assets/data/content_pack.json`
+  - `assets/data/customer_service_pack.json`
+  - `assets/data/publish_readiness.json`
+  - `assets/data/image_prompt_pack.json`
 - Organize outputs into readable sections: decision, product profile, pricing, content, image preparation, publishing readiness, FAQ, and loopback.
-- Include a delivery file list with clear business-facing names and `MEDIA:` references when available.
+- Include a delivery file list with clear business-facing names, relative paths, and `MEDIA:` references when available.
 - Render the "商品图片与 Prompt" section professionally: show cover/feature/lifestyle cards, submitted image previews when available, image source/status, the Chinese Prompt, and the purpose of each image.
 - If no image has been submitted yet, show a clear placeholder and the Chinese Prompt so the user can generate or shoot the missing image.
+- Do not rely on Hermess runtime absolute paths such as `/home/agentuser/...` inside the final shared HTML. Copy available local image files into `assets/images/` and rewrite the HTML/image_pack paths to relative paths.
 - Keep the "完整流程数据包（workflow envelope JSON）" as the machine-readable source of truth.
 
 Required output:
 
 - `workflow_envelope`: 完整流程数据包
 - `asset_pack_html_path`: 商品经营启动包（HTML交付页）路径, when generated
+- `asset_pack_zip_path`: 商品经营启动包（可分享压缩包）路径, when generated
 - delivery file list inside the HTML when files or media references are available
 
 ## Default Run Order
@@ -291,7 +304,7 @@ Use this sequence for a standard run. By default, complete one stage, summarize,
 6. Publishing readiness package.
 7. Customer service Q&A.
 8. Comment/data review and loopback.
-9. Render the 商品经营启动包（HTML交付页） when the user wants a shareable deliverable.
+9. Render the 商品经营启动包（HTML交付页） or, when images are included, the 商品经营启动包（ZIP交付包） when the user wants a shareable deliverable.
 
 ## Stage Confirmation Pattern
 
@@ -308,7 +321,7 @@ Please choose:
 3. Stop and export current assets
 ```
 
-If the user chooses option 1, continue to the next stage. If the user chooses option 2, ask for the smallest correction needed. If the user chooses option 3, generate the current 完整流程数据包（workflow envelope JSON） and, when possible, the 商品经营启动包（HTML交付页）.
+If the user chooses option 1, continue to the next stage. If the user chooses option 2, ask for the smallest correction needed. If the user chooses option 3, generate the current 完整流程数据包（workflow envelope JSON） and, when possible, the 商品经营启动包（ZIP交付包，内含HTML交付页、图片和JSON数据）.
 
 ## Shared Contracts
 
@@ -324,9 +337,10 @@ Use `references/contracts.md` for:
 - `review_insight_pack`
 - `next_research_seed`
 - `asset_pack_html_path`
+- `asset_pack_zip_path`
 
 Use `scripts/validate_envelope.py` to check the workflow envelope.
-Use `scripts/render_asset_pack.py` to turn a workflow envelope into a shareable 商品经营启动包（HTML交付页）.
+Use `scripts/render_asset_pack.py` to turn a workflow envelope into a shareable 商品经营启动包. Prefer `--bundle-dir` and `--zip` when images must stay linked to the HTML.
 
 ## References
 
@@ -341,7 +355,7 @@ Use `scripts/render_asset_pack.py` to turn a workflow envelope into a shareable 
 
 - `scripts/main.py`: unified deterministic helper with research, pricing, content, image prep, publishing package, service, analytics, and an orchestrator.
 - `scripts/validate_envelope.py`: validates the workflow envelope.
-- `scripts/render_asset_pack.py`: renders the workflow envelope into a user-facing 商品经营启动包（HTML交付页）.
+- `scripts/render_asset_pack.py`: renders the workflow envelope into a user-facing 商品经营启动包（HTML交付页 or ZIP交付包）.
 - `scripts/xhs_publisher.py`: publishing readiness package helper.
 - `scripts/product_image_preparer.py`: image role and shot-list helper.
 
@@ -365,4 +379,4 @@ At the end of a run, summarize:
 - what is ready for publishing
 - what questions the customer service bot can answer
 - what should feed the next round of product research
-- where the 商品经营启动包（HTML交付页） was saved, if generated
+- where the 商品经营启动包（HTML交付页 or ZIP交付包） was saved, if generated

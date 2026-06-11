@@ -18,7 +18,7 @@
 5. 发布准备包：整理标题、正文、话题、图片顺序和发布前确认清单。
 6. 智能客服 FAQ：生成常见问题、买家意图识别和回复样例。
 7. 评论复盘闭环：把评论痛点和运营数据回流成下一轮选品建议。
-8. 商品经营启动包：把完整流程数据渲染成单页 HTML 交付页，并在页面内展示交付文件清单和 `MEDIA:` 引用。
+8. 商品经营启动包：把完整流程数据渲染成 HTML 交付页；当包含商品图片时，推荐生成 ZIP 交付包，用相对路径绑定 HTML、图片和 JSON 数据。
 
 发布相关能力聚焦于“发布前准备”：Agent 负责整理发布所需素材和检查项；实际发布动作应由使用者结合账号状态、平台规则和业务审批流程完成。
 
@@ -96,7 +96,7 @@ D. 我自己的商品
 - 图片 Prompt 必须包含商品主体、外观材质、目标用户或使用场景、构图光线、核心卖点和买家疑虑；不要只输出“发声演示、软胶材质”这类缺少主体的短语。
 - 为节省 token，每个阶段只输出摘要和确认选项；完整 JSON 只在用户选择导出或生成商品经营启动包时输出。
 - 所有文案必须绑定商品具体参数，不要写成任何同类商品都能套用的泛泛内容。
-- 用户选择停止或完成全部阶段后，生成「完整流程数据包」；如需分享交付物，生成「商品经营启动包（HTML交付页）」。
+- 用户选择停止或完成全部阶段后，生成「完整流程数据包」；如需分享交付物，优先生成「商品经营启动包（ZIP交付包）」，其中包含 HTML 交付页、图片和 JSON 数据。
 ```
 
 ## 标准工作流
@@ -116,11 +116,14 @@ D. 我自己的商品
 完整流程最终输出两层产物：
 
 ```text
-1. 商品经营启动包（HTML交付页）
+1. 商品经营启动包（ZIP交付包，推荐）
+   给业务用户下载或转发。包内包含 HTML 交付页、商品图片、完整流程数据和配套素材 JSON。HTML 使用相对路径引用 `assets/images/`，不会依赖 Hermess 运行环境中的 `/home/agentuser/...` 绝对路径。
+
+2. 商品经营启动包（HTML交付页）
    给业务用户打开查看，包含选品结论、定价、文案、发布准备、客服 FAQ、复盘建议和交付文件清单。
    「商品图片与 Prompt」区块会展示封面图、功能图、场景图；如果用户已提交图片，页面会显示图片预览、来源状态和对应中文 Prompt；如果暂未提交图片，页面会显示占位状态和可继续使用的中文 Prompt。
 
-2. 完整流程数据包（workflow_envelope.json）
+3. 完整流程数据包（workflow_envelope.json）
    给 Agent、系统集成或二次加工使用，是全流程的机器可读源数据。
 ```
 
@@ -148,6 +151,7 @@ customer_service_pack
 review_insight_pack
 next_research_seed
 asset_pack_html_path
+asset_pack_zip_path
 ```
 
 字段定义见 `references/contracts.md`。
@@ -196,7 +200,35 @@ python3 scripts/xhs_publisher.py \
   --images cover.jpg feature.jpg lifestyle.jpg
 ```
 
-生成商品经营启动包（HTML交付页）：
+生成商品经营启动包（ZIP交付包，推荐）：
+
+```bash
+python3 scripts/render_asset_pack.py \
+  assets/sample-envelope.json \
+  --bundle-dir outputs/duck_asset_pack \
+  --zip outputs/duck_asset_pack.zip \
+  --slug duck
+```
+
+压缩包结构示例：
+
+```text
+duck_asset_pack.zip
+├── duck_asset_pack.html
+└── assets/
+    ├── images/
+    │   ├── duck_cover.png
+    │   ├── duck_feature.png
+    │   └── duck_lifestyle.png
+    └── data/
+        ├── workflow_envelope.json
+        ├── content_pack.json
+        ├── customer_service_pack.json
+        ├── publish_readiness.json
+        └── image_prompt_pack.json
+```
+
+只生成单个 HTML：
 
 ```bash
 python3 scripts/render_asset_pack.py \
@@ -204,7 +236,7 @@ python3 scripts/render_asset_pack.py \
   --out outputs/sample-asset-pack.html
 ```
 
-商品经营启动包会包含选品结论、产品画像、定价、文案、商品图片与中文 Prompt、发布准备、客服 FAQ、复盘建议，以及交付文件路径和 `MEDIA:` 引用。
+商品经营启动包会包含选品结论、产品画像、定价、文案、商品图片与中文 Prompt、发布准备、客服 FAQ、复盘建议，以及交付文件路径和 `MEDIA:` 引用。需要对外分享时请优先使用 ZIP 交付包，避免 HTML 中的图片仍指向 Hermess 运行环境的绝对路径。
 
 ## 目录说明
 
