@@ -188,22 +188,26 @@
       "taobao": "4只全家桶 ¥22.9"
     },
     "cost_breakdown": {
-      "purchase_cost_single": 0.36,
-      "shipping_xhs": 3.0,
-      "shipping_taobao": 2.5,
-      "platform_fee_rate_xhs": 0.05,
-      "platform_fee_rate_taobao": 0.03,
-      "marketing_reserve_rate_xhs": 0.15,
-      "marketing_reserve_rate_taobao": 0.1,
-      "return_loss_rate_xhs": 0.03,
-      "return_loss_rate_taobao": 0.05
+      "purchase_cost": "¥1.44（4只×¥0.36）",
+      "platform_fee_rate": "5%（小红书）",
+      "marketing_reserve_rate": "15%",
+      "loaded_cost": "¥11.29（采购+快递+扣点+营销+退货损耗）",
+      "shipping": "¥3.00",
+      "return_loss_rate": "3%",
+      "net_profit_4pack_xhs": "¥18.57（净利率62.1%）",
+      "net_profit_4pack_taobao": "¥14.83（净利率64.8%）"
     },
     "price_saying": "4只不到30块，一只才7块多",
     "compliance_warnings": [
       "不得标注虚假原价",
       "组合优惠可用折算单价表述，不可用折扣率",
       "不得使用限量话术除非库存真实"
-    ]
+    ],
+    "price_range": {
+      "conservative": "¥22.9（4只全家桶·淘宝）",
+      "recommended": "¥29.9（4只全家桶·小红书）",
+      "aggressive": "¥39.9（4只全家桶·高端定位）"
+    }
   },
   "content_pack": {
     "platforms": [
