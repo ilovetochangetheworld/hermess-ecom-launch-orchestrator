@@ -266,6 +266,50 @@
     .step:nth-child(6) .idx { background: #0f766e; }
     .step p { color: var(--muted); line-height: 1.55; font-size: 16px; }
 
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+    .skill-card {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 18px;
+      min-height: 172px;
+      display: grid;
+      align-content: start;
+      gap: 10px;
+    }
+    .skill-card span {
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 850;
+    }
+    .skill-card b {
+      color: #1f2937;
+      font-size: 22px;
+      line-height: 1.25;
+      font-weight: 850;
+    }
+    .skill-card p {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+    .skill-strip {
+      margin-top: 18px;
+      border: 1px solid #bfdbfe;
+      background: #eff6ff;
+      border-radius: 10px;
+      padding: 18px 20px;
+      color: #1e3a8a;
+      font-size: 20px;
+      line-height: 1.55;
+      font-weight: 750;
+    }
+
     .stage-board {
       display: grid;
       grid-template-columns: 300px 1fr;
@@ -486,7 +530,7 @@
       .deck { height: auto; overflow: visible; }
       .slide { position: relative; min-height: 100vh; opacity: 1; transform: none; pointer-events: auto; padding: 34px 22px; }
       .split, .split.narrow, .stage-board { grid-template-columns: 1fr; }
-      .workflow, .takeaway-grid { grid-template-columns: repeat(2, 1fr); }
+      .workflow, .takeaway-grid, .skill-grid { grid-template-columns: repeat(2, 1fr); }
       .metric-grid, .result-grid { grid-template-columns: 1fr; }
       .time-row { grid-template-columns: 1fr; }
       .hint, .playbar { display: none; }
@@ -496,7 +540,7 @@
 <body>
   <article class="deck" id="deck">
     <section class="slide active">
-      <header><div class="brand">Hermess Agent 提效工坊</div><div class="counter">01 / 09</div></header>
+      <header><div class="brand">Hermess Agent 提效工坊</div><div class="counter">01 / 10</div></header>
       <main class="split">
         <div>
           <h1>从 0 开张：你的 AI 电商合伙人</h1>
@@ -531,7 +575,7 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">安装与启用</div><div class="counter">02 / 09</div></header>
+      <header><div class="brand">安装与启用</div><div class="counter">02 / 10</div></header>
       <main class="split narrow">
         <div>
           <h2>先把技能装好，再开始跑商品。</h2>
@@ -564,7 +608,25 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">全链路流程</div><div class="counter">03 / 09</div></header>
+      <header><div class="brand">Skill 介绍</div><div class="counter">03 / 10</div></header>
+      <main>
+        <h2>这个 Skill，把电商启动流程封装成可确认的 Agent 工作法。</h2>
+        <p class="lead">它不是单个 Prompt，而是一套从商品事实到经营资产的流程：每一步先说明正在做什么，再产出可检查的阶段结果。</p>
+        <div class="skill-grid">
+          <div class="skill-card"><span>01 / 输入</span><b>接住模糊商品</b><p>商品名、成本、图片、链接、供应商信息都可以作为起点，Agent 会先补齐关键事实。</p></div>
+          <div class="skill-card"><span>02 / 判断</span><b>先做经营判断</b><p>围绕选品、定价、毛利、风险和目标人群，判断这个商品值不值得继续推进。</p></div>
+          <div class="skill-card"><span>03 / 生产</span><b>生成经营素材</b><p>输出小红书文案、图片 Prompt、发布准备清单、客服 FAQ 和复盘建议。</p></div>
+          <div class="skill-card"><span>04 / 交互</span><b>每阶段都确认</b><p>默认不一口气跑完。每个阶段结束后，用户可以继续、修改，或导出当前资产。</p></div>
+          <div class="skill-card"><span>05 / 边界</span><b>不替代发布审批</b><p>Skill 交付发布准备材料，不默认直接发布；账号、平台规则和业务审批由用户确认。</p></div>
+          <div class="skill-card"><span>06 / 交付</span><b>沉淀启动包</b><p>最终生成商品经营启动包 HTML / ZIP，让团队能打开、复制、分享和继续执行。</p></div>
+        </div>
+        <div class="skill-strip">一句话理解：把“我想卖这个东西”变成“我知道怎么卖、卖多少钱、怎么讲、怎么承接用户问题”。</div>
+      </main>
+      <footer><span>Skill 名称：hermess-ecom-launch-orchestrator</span><span>适合商品测试、运营提效和客户共创</span></footer>
+    </section>
+
+    <section class="slide">
+      <header><div class="brand">全链路流程</div><div class="counter">04 / 10</div></header>
       <main>
         <h2>Agent 像一个轻量电商团队一样连续工作。</h2>
         <div class="workflow">
@@ -580,7 +642,7 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">Stage 1-2</div><div class="counter">04 / 09</div></header>
+      <header><div class="brand">Stage 1-2</div><div class="counter">05 / 10</div></header>
       <main class="stage-board">
         <div class="rail">
           <div class="rail-item active"><span class="small-num">1</span>选品分析</div>
@@ -603,7 +665,7 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">Stage 3-4</div><div class="counter">05 / 09</div></header>
+      <header><div class="brand">Stage 3-4</div><div class="counter">06 / 10</div></header>
       <main class="split">
         <div class="copy-box">
           <div class="brand">生成的小红书笔记</div>
@@ -637,7 +699,7 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">Stage 5-7</div><div class="counter">06 / 09</div></header>
+      <header><div class="brand">Stage 5-7</div><div class="counter">07 / 10</div></header>
       <main>
         <h2>发布前准备、客服承接、评论复盘，一次串起来。</h2>
         <p class="lead">这才像一个业务闭环，而不是一个“写文案工具”。</p>
@@ -652,7 +714,7 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">最终成果</div><div class="counter">07 / 09</div></header>
+      <header><div class="brand">最终成果</div><div class="counter">08 / 10</div></header>
       <main class="split narrow">
         <div>
           <h2>最后沉淀成一份商品经营启动包。</h2>
@@ -668,7 +730,7 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">客户如何复用</div><div class="counter">08 / 09</div></header>
+      <header><div class="brand">客户如何复用</div><div class="counter">09 / 10</div></header>
       <main>
         <h2>换一个商品，也能按同一套流程再跑一遍。</h2>
         <div class="timeline">
@@ -683,7 +745,7 @@
     </section>
 
     <section class="slide">
-      <header><div class="brand">收束</div><div class="counter">09 / 09</div></header>
+      <header><div class="brand">收束</div><div class="counter">10 / 10</div></header>
       <main class="split">
         <div>
           <h2>Agent 的价值，是把一个业务目标跑成可交付结果。</h2>
